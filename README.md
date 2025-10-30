@@ -9,7 +9,7 @@
   <title>Image responsive</title>
 
   <style>
-    /* --- Mise en page simple et centrée --- */
+    
     body {
       margin: 0;
       padding: 0;
@@ -20,10 +20,10 @@
       background-color: #f5f5f5;
     }
 
-    /* --- Image responsive --- */
+    
     img {
-      max-width: 100%;   /* ne dépasse jamais la largeur de l'écran */
-      height: auto;      /* garde les proportions */
+      max-width: 100%;  
+      height: auto;      
       border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
