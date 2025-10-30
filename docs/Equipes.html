@@ -8,24 +8,25 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #000; /* Fond noir */
+            background-color: #000;
             color: #fff;
-            display: flex; /* Pour le menu à gauche et le contenu à droite */
+            display: flex; /* pour le menu vertical et le contenu */
+            flex-direction: row;
         }
 
-        /* Menu vertical */
-        nav {
-            width: 200px;
+        /* Menu vertical à gauche */
+        nav.vertical {
+            width: 150px;
             background-color: #111;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding-top: 30px;
-            min-height: 100vh; /* prend toute la hauteur */
+            min-height: 100vh;
             box-sizing: border-box;
         }
 
-        nav a {
+        nav.vertical a {
             color: #fff;
             text-decoration: none;
             margin: 15px 0;
@@ -33,19 +34,38 @@
             transition: color 0.3s;
         }
 
-        nav a:hover {
-            color: #f39c12; /* Couleur au survol */
+        nav.vertical a:hover {
+            color: #f39c12;
         }
 
         /* Contenu principal */
         .content {
             flex: 1;
-            padding: 30px;
+            padding: 20px;
+        }
+
+        /* Menu horizontal en haut */
+        nav.horizontal {
+            background-color: #111;
+            padding: 15px 0;
             text-align: center;
+        }
+
+        nav.horizontal a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav.horizontal a:hover {
+            color: #f39c12;
         }
 
         .image-container {
             margin: 50px 0;
+            text-align: center;
         }
 
         .image-container img {
@@ -56,17 +76,26 @@
     </style>
 </head>
 <body>
-    <nav>
+    <!-- Menu vertical -->
+    <nav class="vertical">
         <a href="index.html">Accueil</a>
         <a href="Equipes.html">Equipes</a>
         <a href="#contact">Contact</a>
     </nav>
 
+    <!-- Contenu principal -->
     <div class="content">
+        <!-- Menu horizontal en haut -->
+        <nav class="horizontal">
+            <a href="index.html">Accueil</a>
+            <a href="Equipes.html">Equipes</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
         <div class="image-container">
-            <!-- Ton image ici -->
             <img src="images/mon_image.png" alt="Image">
         </div>
+
         <h1>Bienvenue sur la page Equipes</h1>
         <p>Contenu principal ici...</p>
     </div>
