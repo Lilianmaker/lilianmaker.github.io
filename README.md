@@ -6,29 +6,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image responsive</title>
+  
 
-  <style>
-    
-    body {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background-color: #f5f5f5;
-    }
-
-    
-    img {
-      max-width: 100%;  
-      height: auto;      
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-  </style>
-</head>
 
 <body>
   <img 
