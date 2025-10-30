@@ -42,20 +42,20 @@
         /* Contenu principal */
         .content {
             flex: 1;
-            padding: 10px;
+            padding: 20px;
         }
 
         /* Menu horizontal en haut */
         nav.horizontal {
             background-color: #111;
-            padding: 10px 0;
+            padding: 15px 0;
             text-align: center;
         }
 
         nav.horizontal a {
             color: #fff;
             text-decoration: none;
-            margin: 0 10px;
+            margin: 0 20px;
             font-weight: bold;
             transition: color 0.3s;
             display: inline-block;
@@ -66,7 +66,7 @@
         }
 
         .image-container {
-            margin: 30px 0;
+            margin: 50px 0;
             text-align: center;
         }
 
@@ -77,29 +77,49 @@
         }
 
         /* Ajustements pour petits écrans */
-        @media (max-width: 600px) {
-            body {
-                flex-direction: column; /* le menu vertical restera à gauche mais prendra le haut */
-            }
-
+        @media (max-width: 768px) {
             nav.vertical {
-                width: 100%;
-                flex-direction: row;
-                justify-content: space-around;
-                padding: 10px 0;
-                min-height: auto;
+                width: 80px; /* réduire la largeur du menu vertical */
+                padding-top: 60px;
             }
 
             nav.vertical a {
-                margin: 0;
+                font-size: 12px; /* réduire la taille du texte */
+                margin: 10px 0;
+            }
+
+            nav.horizontal a {
+                margin: 0 10px;
+                font-size: 14px;
+            }
+
+            .image-container {
+                margin: 30px 0;
             }
 
             .content {
                 padding: 10px;
             }
+        }
+
+        @media (max-width: 480px) {
+            nav.vertical {
+                width: 60px;
+                padding-top: 40px;
+            }
+
+            nav.vertical a {
+                font-size: 10px;
+                margin: 8px 0;
+            }
 
             nav.horizontal a {
                 margin: 0 5px;
+                font-size: 12px;
+            }
+
+            .image-container {
+                margin: 20px 0;
             }
         }
     </style>
