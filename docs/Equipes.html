@@ -5,17 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Equipes</title>
     <style>
-        /* On enlève tout espace par défaut */
+        /* On enlève tout espace du navigateur */
         html, body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
             background-color: #C8AD7F;
             color: #fff;
+            height: 100%;
+        }
+
+        /* Structure générale : le menu vertical + le contenu */
+        body {
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
-            height: 100%;
         }
 
         /* Menu vertical à gauche */
@@ -28,6 +32,10 @@
             padding-top: 220px;
             min-height: 100vh;
             box-sizing: border-box;
+            position: fixed; /* fixé à gauche */
+            left: 0;
+            top: 0;
+            bottom: 0;
         }
 
         nav.vertical a {
@@ -45,19 +53,21 @@
         /* Contenu principal */
         .content {
             flex: 1;
-            padding: 0; /* on enlève le padding du haut */
-            margin: 0;
+            margin-left: 150px; /* décalage du contenu pour ne pas passer sous le menu vertical */
+            padding: 0;
         }
 
-        /* Menu horizontal en haut */
+        /* Menu horizontal en haut — pleine largeur */
         nav.horizontal {
             background-color: #111;
             padding: 15px 0;
             text-align: center;
-            position: sticky; /* Reste visible en haut */
-            top: 0; /* collé tout en haut */
-            z-index: 1000; /* au-dessus du reste du contenu */
-            margin: 0; /* supprime toute marge éventuelle */
+            position: fixed; /* fixé en haut */
+            top: 0;
+            left: 0;
+            width: 100%; /* occupe toute la largeur de l’écran */
+            z-index: 1000; /* reste au-dessus de tout */
+            margin: 0;
         }
 
         nav.horizontal a {
@@ -71,6 +81,11 @@
 
         nav.horizontal a:hover {
             color: #f39c12;
+        }
+
+        /* Décalage du contenu sous le menu horizontal */
+        .page-content {
+            padding-top: 80px; /* espace pour ne pas cacher le contenu sous le menu horizontal */
         }
 
         .image-container {
@@ -91,6 +106,10 @@
                 padding-top: 60px;
             }
 
+            .content {
+                margin-left: 80px;
+            }
+
             nav.vertical a {
                 font-size: 12px;
                 margin: 10px 0;
@@ -104,16 +123,16 @@
             .image-container {
                 margin: 30px 0;
             }
-
-            .content {
-                padding: 10px;
-            }
         }
 
         @media (max-width: 480px) {
             nav.vertical {
                 width: 60px;
                 padding-top: 40px;
+            }
+
+            .content {
+                margin-left: 60px;
             }
 
             nav.vertical a {
@@ -142,19 +161,21 @@
 
     <!-- Contenu principal -->
     <div class="content">
-        <!-- Menu horizontal en haut -->
+        <!-- Menu horizontal (plein écran) -->
         <nav class="horizontal">
             <a href="index.html">Accueil</a>
             <a href="Equipes.html">Equipes</a>
             <a href="#contact">Contact</a>
         </nav>
 
-        <div class="image-container">
-            <img src="images/mon_image.png" alt="Image">
-        </div>
+        <div class="page-content">
+            <div class="image-container">
+                <img src="images/mon_image.png" alt="Image">
+            </div>
 
-        <h1>Bienvenue sur la page Equipes</h1>
-        <p>Contenu principal ici...</p>
+            <h1>Bienvenue sur la page Equipes</h1>
+            <p>Contenu principal ici...</p>
+        </div>
     </div>
 </body>
 </html>
