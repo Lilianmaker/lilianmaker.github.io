@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Équipes</title>
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Bouton menu burger mobile -->
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <!-- Menu horizontal -->
+    <nav class="horizontal">
+        <a href="index.html">Accueil</a>
+        <a href="Equipes.html">Équipes</a>
+        <a href="soiree.html">La soirée</a>
+        <a href="resultat.html">Résultats</a>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </nav>
 
-    <!-- Menu vertical -->
+    <!-- Menu vertical (mobile) -->
     <nav class="vertical">
-        <h1 class="titre-equipes">Les Équipes</h1>
         <a href="index.html">Coachella</a>
         <a href="Equipes.html">HellFest</a>
         <a href="#contact">F I L</a>
@@ -21,54 +26,11 @@
 
     <!-- Contenu principal -->
     <div class="content">
-
-        <!-- Menu horizontal -->
-        <nav class="horizontal">
-            <a href="index.html">Accueil</a>
-            <a href="Equipes.html">Équipes</a>
-            <a href="soiree.html">La soirée</a>
-            <a href="resultat.html">Résultats</a>
-        </nav>
-
-        <!-- Section Coachella -->
-        <div class="section coachella">
-            <img src="image/coachella.webp" alt="Coachella">
-            <div class="texte">
-                <h2>Coachella</h2>
-                <p>
-                    Coachella, c’est le Disneyland des mélomanes sous acide de soleil 🌴🎶
-                    Imagine : deux week-ends par an, au milieu du désert californien, des milliers de gens en tenues boho-chic, paillettes plein les cheveux et smartphones à bout de bras.
-                </p>
-            </div>
-        </div>
-
-        <!-- Section HellFest -->
-        <div class="section hellfest">
-            <img src="image/hellfest.jpg" alt="Hellfest">
-            <div class="texte">
-                <h2>HellFest</h2>
-                <p>
-                    Le Hellfest, c’est le parc d’attractions des métalleux en short et t-shirts noirs 🤘🔥
-                    Imagine : un petit village de clous, tatouages et piercings, planté à Clisson chaque été. Des milliers de fans de métal viennent pogoter et headbanger.
-                </p>
-            </div>
-        </div>
- <!-- Section FIL -->
-        <div class="section coachella">
-            <img src="image/coachella.webp" alt="FIL">
-            <div class="texte">
-                <h2>Festival interceltique de Lorient </h2>
-                <p>
-                    Le Festival Interceltique de Lorient, c’est la grande teuf des cousins celtes du monde entier 🍀🎻
-
-Imagine : un bout de Bretagne qui se transforme chaque été en village géant où sonnent cornemuses, bombardes et bodhrans. Des milliers de passionnés de musique celtique (Écosse, Irlande, Ga
-                </p>
-            </div>
-        </div>
+        <h1>Bienvenue sur la page Équipes</h1>
+        <p>Contenu principal ici...</p>
     </div>
 
     <script>
-        // Active/désactive le menu vertical sur mobile
         function toggleMenu() {
             document.body.classList.toggle('menu-open');
         }
