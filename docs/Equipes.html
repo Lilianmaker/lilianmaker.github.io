@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equipes</title>
+    <title>Équipes</title>
     <style>
-        /* On enlève tout espace du navigateur */
         html, body {
             margin: 0;
             padding: 0;
@@ -28,7 +27,7 @@
             width: 100%;
         }
 
-        /* Structure générale */
+        /* Structure principale */
         body {
             display: flex;
             flex-direction: row;
@@ -43,12 +42,12 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            box-sizing: border-box;
             position: fixed;
             left: 0;
             top: 0;
             bottom: 0;
-            padding-top: 70px; /* espace pour aligner le contenu sous le menu horizontal */
+            padding-top: 70px;
+            transition: transform 0.3s ease;
         }
 
         nav.vertical a {
@@ -70,7 +69,7 @@
             padding: 0;
         }
 
-        /* Menu horizontal en haut */
+        /* Menu horizontal */
         nav.horizontal {
             background-color: #111;
             padding: 15px 0;
@@ -80,7 +79,6 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            margin: 0;
         }
 
         nav.horizontal a {
@@ -96,7 +94,6 @@
             color: #f39c12;
         }
 
-        /* Décalage du contenu sous le menu horizontal */
         .page-content {
             padding-top: 100px;
         }
@@ -107,54 +104,81 @@
         }
 
         .image-container img {
-            max-width: 100%;
+            max-width: 90%;
             height: auto;
             border: 2px solid #fff;
+            border-radius: 10px;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
+        /* --- Responsive Design --- */
+        @media (max-width: 900px) {
+            /* Réduit le menu vertical */
             nav.vertical {
-                width: 80px;
+                width: 100px;
             }
+
             .content {
-                margin-left: 80px;
+                margin-left: 100px;
             }
+
             nav.vertical a {
-                font-size: 12px;
-                margin: 10px 0;
+                font-size: 13px;
+                margin: 15px 0;
             }
+
+            .titre-equipes {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            /* Cache le menu vertical, ajoute un bouton burger */
+            nav.vertical {
+                transform: translateX(-100%);
+                position: fixed;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 15px;
+                left: 15px;
+                background-color: #111;
+                color: #fff;
+                border: none;
+                padding: 10px 15px;
+                font-size: 18px;
+                border-radius: 5px;
+                z-index: 1100;
+                cursor: pointer;
+            }
+
+            .menu-open nav.vertical {
+                transform: translateX(0);
+            }
+
+            .content {
+                margin-left: 0;
+            }
+
             nav.horizontal a {
                 margin: 0 10px;
                 font-size: 14px;
             }
-        }
 
-        @media (max-width: 480px) {
-            nav.vertical {
-                width: 60px;
-            }
-            .content {
-                margin-left: 60px;
-            }
-            nav.vertical a {
-                font-size: 10px;
-                margin: 8px 0;
-            }
-            nav.horizontal a {
-                margin: 0 5px;
-                font-size: 12px;
+            .image-container img {
+                max-width: 95%;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Bouton menu (visible sur mobile) -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
     <!-- Menu vertical -->
     <nav class="vertical">
-        <h1 class="titre-equipes">Les Équipes
-    <br><br>    
-    <br>
-        </h1>
+        <h1 class="titre-equipes">Les Équipes</h1>
         <a href="index.html">Coachella</a>
         <a href="Equipes.html">HellFest</a>
         <a href="#contact">F I L</a>
@@ -178,5 +202,12 @@
             <p>Contenu principal ici...</p>
         </div>
     </div>
+
+    <script>
+        // Active/désactive le menu vertical sur mobile
+        function toggleMenu() {
+            document.body.classList.toggle('menu-open');
+        }
+    </script>
 </body>
 </html>
