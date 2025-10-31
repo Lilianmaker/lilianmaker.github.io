@@ -16,9 +16,15 @@ nav.horizontal {
     background-color: #111;
     padding: 15px 10px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     z-index: 1000;
+}
+
+/* Menu items à droite */
+nav.horizontal .menu-items {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
 }
 
 nav.horizontal .menu-items a {
@@ -32,7 +38,7 @@ nav.horizontal .menu-items a:hover {
     color: #f39c12;
 }
 
-/* Burger */
+/* Burger à gauche */
 .menu-toggle {
     display: none;
     background-color: #111;
@@ -132,6 +138,7 @@ nav.vertical a:hover {
     /* Burger visible */
     .menu-toggle {
         display: inline-block;
+        margin-right: 10px;
     }
 
     /* Menu vertical caché par défaut */
