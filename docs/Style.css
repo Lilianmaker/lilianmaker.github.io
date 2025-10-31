@@ -1,0 +1,167 @@
+/* style.css */
+
+/* --- Reset et base --- */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #C8AD7F; /* Le fond commun à toutes les pages */
+    color: #111;
+    height: 100%;
+}
+
+/* Titre menu vertical */
+.titre-equipes {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 22px;
+    color: #fff;
+    margin: 0;
+    padding: 15px 0;
+    letter-spacing: 2px;
+    text-align: center;
+    border-bottom: 2px solid #f39c12;
+    width: 100%;
+}
+
+/* Structure générale */
+body {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Menu vertical */
+nav.vertical {
+    width: 150px;
+    background-color: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    padding-top: 70px;
+    transition: transform 0.3s ease;
+    z-index: 1100;
+}
+
+nav.vertical a {
+    color: #fff;
+    text-decoration: none;
+    margin: 20px 0;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav.vertical a:hover {
+    color: #f39c12;
+}
+
+/* Contenu principal */
+.content {
+    flex: 1;
+    margin-left: 150px;
+    padding: 0;
+}
+
+/* Menu horizontal */
+nav.horizontal {
+    background-color: #111;
+    padding: 15px 0;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1200;
+}
+
+nav.horizontal a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
+    transition: color 0.3s;
+    display: inline-block;
+}
+
+nav.horizontal a:hover {
+    color: #f39c12;
+}
+
+.page-content {
+    padding-top: 100px;
+}
+
+/* Sections flexibles */
+.section-flex {
+    display: flex;
+    align-items: flex-start;
+    margin: 50px 0;
+    flex-wrap: wrap;
+}
+
+.section-flex .texte {
+    flex: 2 1 300px;
+    padding: 0 20px;
+    font-size: 18px;
+}
+
+.section-flex .texte h2 {
+    font-size: 24px;
+}
+
+.section-flex .image {
+    flex: 1 1 300px;
+    text-align: center;
+}
+
+.section-flex.reverse {
+    flex-direction: row-reverse;
+}
+
+.section-flex .image img {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #fff;
+    border-radius: 10px;
+}
+
+/* Bouton menu mobile */
+.menu-toggle {
+    display: none;
+    position: fixed;
+    top: 5px;
+    left: 15px;
+    background-color: #111;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    border-radius: 5px;
+    z-index: 1300;
+    cursor: pointer;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+    nav.vertical {
+        width: 100px;
+    }
+    .content { margin-left: 100px; }
+    nav.vertical a { font-size: 13px; margin: 15px 0; }
+    .titre-equipes { font-size: 18px; }
+}
+
+@media (max-width: 600px) {
+    nav.vertical { transform: translateX(-100%); }
+    .menu-toggle { display: block; }
+    .menu-open nav.vertical { transform: translateX(0); }
+    .content { margin-left: 0; padding-top: 120px; }
+    nav.horizontal a { margin: 0 10px; font-size: 14px; }
+    .section-flex { flex-direction: column; }
+    .section-flex.reverse { flex-direction: column; }
+    .section-flex .texte { padding: 20px 10px; font-size: 16px; }
+    .section-flex .texte h2 { font-size: 20px; }
+}
