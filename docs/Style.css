@@ -1,58 +1,20 @@
 /* Global */
-html, body {
+body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #C8AD7F;
-    color: #111;
-}
-
-/* Menu vertical */
-nav.vertical {
-    width: 150px;
-    background-color: #111;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
-    padding-top: 100px;
-    transition: transform 0.3s ease;
-    z-index: 1000;
-}
-
-.titre-equipes {
-    font-family: 'Brush Script MT', cursive;
-    font-size: 22px;
-    color: #fff;
-    margin: 0 0 20px 0;
-    text-align: center;
-}
-
-nav.vertical a {
-    color: #fff;
-    text-decoration: none;
-    margin: 15px 0;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-nav.vertical a:hover {
-    color: #f39c12;
 }
 
 /* Menu horizontal */
 nav.horizontal {
-    background-color: #111;
-    padding: 15px 0;
-    text-align: center;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1001;
+    background-color: #111;
+    padding: 15px;
+    text-align: center;
+    z-index: 1000;
 }
 
 nav.horizontal a {
@@ -60,117 +22,59 @@ nav.horizontal a {
     text-decoration: none;
     margin: 0 15px;
     font-weight: bold;
-    transition: color 0.3s;
-    display: inline-block;
 }
 
 nav.horizontal a:hover {
     color: #f39c12;
 }
 
-/* Contenu principal */
-.content {
-    margin-left: 150px;
-    padding-top: 80px;
-}
-
-/* Sections */
-.section {
-    display: flex;
-    align-items: flex-start;
-    margin: 50px 0;
-    flex-wrap: wrap;
-}
-
-.section img {
-    flex: 1 1 300px;
-    max-width: 100%;
-    height: auto;
-    border: 2px solid #fff;
-    border-radius: 10px;
-}
-
-.section .texte {
-    flex: 2 1 300px;
-    padding: 0 20px;
-    font-size: 18px;
-}
-
-.section .texte h2 {
-    font-size: 24px;
-}
-
-/* HellFest image à droite */
-.section.hellfest {
-    flex-direction: row-reverse;
-}
-
-/* Bouton menu burger mobile */
+/* Bouton burger */
 .menu-toggle {
-    display: none;
-    position: fixed;
-    top: 10px;
-    left: 15px;
+    display: none; /* seulement visible sur mobile */
     background-color: #111;
     color: #fff;
     border: none;
-    padding: 10px 15px;
     font-size: 18px;
-    border-radius: 5px;
-    z-index: 1100;
     cursor: pointer;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+
+/* Menu vertical (mobile) */
+nav.vertical {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    background-color: #111;
+    width: 150px;
+    height: calc(100% - 60px);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+nav.vertical a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin: 10px 0;
+}
+
+body.menu-open nav.vertical {
+    transform: translateX(0);
+}
+
+/* Contenu */
+.content {
+    margin-top: 60px; /* espace pour le menu horizontal */
+    padding: 20px;
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-    nav.vertical {
-        width: 120px;
-    }
-
-    .content {
-        margin-left: 120px;
-    }
-
-    nav.vertical a {
-        font-size: 14px;
-    }
-
-    .titre-equipes {
-        font-size: 20px;
-    }
-}
-
 @media (max-width: 600px) {
-    nav.vertical {
-        transform: translateX(-100%);
-        padding-top: 60px;
-    }
-
     .menu-toggle {
-        display: block;
-    }
-
-    .menu-open nav.vertical {
-        transform: translateX(0);
-    }
-
-    .content {
-        margin-left: 0;
-        padding-top: 80px;
-    }
-
-    .section {
-        flex-direction: column !important;
-        text-align: center;
-    }
-
-    .section .texte {
-        padding: 15px 10px;
-        font-size: 16px;
-    }
-
-    nav.horizontal a {
-        margin: 0 10px;
-        font-size: 14px;
+        display: inline-block; /* bouton visible */
     }
 }
