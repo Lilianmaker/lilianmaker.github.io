@@ -3,7 +3,7 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #C8AD7F; /* Fond desktop */
+    background-color: #C8AD7F;
     color: #111;
 }
 
@@ -14,31 +14,30 @@ nav.horizontal {
     left: 0;
     width: 100%;
     background-color: #111;
-    padding: 15px 10px;
+    padding: 10px 20px;
     display: flex;
+    justify-content: space-between; /* Espace entre burger et liens */
     align-items: center;
     z-index: 1000;
 }
 
-/* Menu items à droite */
-nav.horizontal .menu-items {
+.menu-items {
     display: flex;
-    flex: 1;
-    justify-content: flex-end;
+    flex-wrap: nowrap;
 }
 
-nav.horizontal .menu-items a {
+.menu-items a {
     color: #fff;
     text-decoration: none;
     margin: 0 15px;
     font-weight: bold;
 }
 
-nav.horizontal .menu-items a:hover {
+.menu-items a:hover {
     color: #f39c12;
 }
 
-/* Burger à gauche */
+/* Burger */
 .menu-toggle {
     display: none;
     background-color: #111;
@@ -53,7 +52,7 @@ nav.horizontal .menu-items a:hover {
 /* Menu vertical */
 nav.vertical {
     position: fixed;
-    top: 60px; /* sous le menu horizontal */
+    top: 60px;
     left: 0;
     width: 150px;
     height: calc(100% - 60px);
@@ -125,23 +124,11 @@ nav.vertical a:hover {
 }
 
 /* Responsive */
-@media (max-width: 900px) {
-    nav.vertical {
-        width: 100px;
-    }
-    .content {
-        margin-left: 100px;
-    }
-}
-
 @media (max-width: 600px) {
-    /* Burger visible */
     .menu-toggle {
         display: inline-block;
-        margin-right: 10px;
     }
 
-    /* Menu vertical caché par défaut */
     nav.vertical {
         transform: translateX(-100%);
         position: fixed;
@@ -156,7 +143,7 @@ nav.vertical a:hover {
         margin-left: 0;
     }
 
-    nav.horizontal .menu-items a {
+    .menu-items a {
         margin: 0 10px;
         font-size: 14px;
     }
