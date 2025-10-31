@@ -27,14 +27,12 @@
             width: 100%;
         }
 
-        /* Structure principale */
         body {
             display: flex;
             flex-direction: row;
-            flex-wrap: nowrap;
         }
 
-        /* Menu vertical à gauche */
+        /* Menu vertical */
         nav.vertical {
             width: 150px;
             background-color: #111;
@@ -48,6 +46,7 @@
             bottom: 0;
             padding-top: 70px;
             transition: transform 0.3s ease;
+            z-index: 1100;
         }
 
         nav.vertical a {
@@ -78,7 +77,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1000;
+            z-index: 1200;
         }
 
         nav.horizontal a {
@@ -98,151 +97,138 @@
             padding-top: 100px;
         }
 
-        .image-container {
+        /* Sections flexibles */
+        .section-flex {
+            display: flex;
+            align-items: flex-start;
             margin: 50px 0;
+            flex-wrap: wrap;
+        }
+
+        .section-flex .texte {
+            flex: 2 1 300px;
+            padding: 0 20px;
+            font-size: 18px;
+        }
+
+        .section-flex .texte h2 {
+            font-size: 24px;
+        }
+
+        .section-flex .image {
+            flex: 1 1 300px;
             text-align: center;
         }
 
-        .image-container img {
-            max-width: 90%;
+        .reverse {
+            flex-direction: row-reverse;
+        }
+
+        .image img {
+            max-width: 100%;
             height: auto;
             border: 2px solid #fff;
             border-radius: 10px;
         }
 
-        /* --- Responsive Design --- */
+        /* Bouton menu mobile */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 5px;
+            left: 15px;
+            background-color: #111;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            border-radius: 5px;
+            z-index: 1300;
+            cursor: pointer;
+        }
+
+        /* --- Responsive --- */
         @media (max-width: 900px) {
-            /* Réduit le menu vertical */
             nav.vertical {
                 width: 100px;
             }
-
             .content {
                 margin-left: 100px;
             }
-
-            nav.vertical a {
-                font-size: 13px;
-                margin: 15px 0;
-            }
-
-            .titre-equipes {
-                font-size: 18px;
-            }
+            nav.vertical a { font-size: 13px; margin: 15px 0; }
+            .titre-equipes { font-size: 18px; }
         }
 
         @media (max-width: 600px) {
-            /* Cache le menu vertical, ajoute un bouton burger */
             nav.vertical {
                 transform: translateX(-100%);
                 position: fixed;
             }
-
-            .menu-toggle {
-                display: block;
-                position: fixed;
-                top: 5px;
-                left: 15px;
-                background-color: #111;
-                color: #fff;
-                border: none;
-                padding: 10px 15px;
-                font-size: 18px;
-                border-radius: 5px;
-                z-index: 1100;
-                cursor: pointer;
-            }
-
-            .menu-open nav.vertical {
-                transform: translateX(0);
-            }
-
-            .content {
-                margin-left: 0;
-            }
-
-            nav.horizontal a {
-                margin: 0 10px;
-                font-size: 14px;
-            }
-
-            .image-container img {
-                max-width: 95%;
-            }
+            .menu-toggle { display: block; }
+            .menu-open nav.vertical { transform: translateX(0); }
+            .content { margin-left: 0; padding-top: 120px; }
+            nav.horizontal a { margin: 0 10px; font-size: 14px; }
+            .section-flex { flex-direction: column; }
+            .section-flex.reverse { flex-direction: column; }
+            .section-flex .texte { padding: 20px 10px; font-size: 16px; }
+            .section-flex .texte h2 { font-size: 20px; }
         }
     </style>
 </head>
 <body>
-    <!-- Bouton menu (visible sur mobile) -->
+    <!-- Bouton menu mobile -->
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
     <!-- Menu vertical -->
     <nav class="vertical">
         <h1 class="titre-equipes">Les Équipes</h1>
-        <a href="index.html"> <br><br>Coachella</a>
+        <a href="index.html">Coachella</a>
         <a href="Equipes.html">HellFest</a>
         <a href="#contact">F I L</a>
     </nav>
 
     <!-- Contenu principal -->
     <div class="content">
-        <!-- Menu horizontal -->
         <nav class="horizontal">
             <a href="index.html">Accueil</a>
             <a href="Equipes.html">Équipes</a>
             <a href="soirée.html">La soirée</a>
             <a href="resultat.html">Résultats</a>
-            
         </nav>
 
         <div class="page-content">
+            <!-- Section Coachella -->
+            <div class="section-flex">
+                <div class="image">
+                    <img src="image/coachella.webp" alt="Coachella">
+                </div>
+                <div class="texte">
+                    <h2>Coachella</h2>
+                    <p>
+                        Coachella, c’est le Disneyland des mélomanes sous acide de soleil 🌴🎶
+                        Imagine : deux week-ends par an, au milieu du désert californien, des dizaines de milliers de gens en tenues boho-chic, paillettes plein les cheveux et smartphones à bout de bras.
+                    </p>
+                </div>
+            </div>
 
-    <!-- Section Coachella -->
-    <div style="display: flex; align-items: flex-start; margin: 50px 0; flex-wrap: wrap;">
-        <!-- Image à gauche -->
-        <div style="flex: 1 1 300px; text-align: center;">
-            <img src="image/coachella.webp" alt="Coachella" style="max-width: 100%; height: auto; border: 2px solid #fff; border-radius: 10px;">
-        </div>
+            <!-- Section HellFest -->
+            <div class="section-flex reverse">
+                <div class="image">
+                    <img src="image/hellfest.jpg" alt="Hellfest">
+                </div>
+                <div class="texte">
+                    <h2>HellFest</h2>
+                    <p>
+                        Le Hellfest, c’est le parc d’attractions des métalleux en short et t-shirts noirs 🤘🔥
+                        Imagine : un petit village de clous, tatouages, et piercings, planté à Clisson chaque été.
+                    </p>
+                </div>
+            </div>
 
-        <!-- Texte à droite -->
-        <div style="flex: 2 1 300px; padding: 0 20px; color: #111; font-size: 18px;">
-            <h2 style="font-size: 24px;">Coachella</h2>
-            <p>
-                Coachella, c’est le Disneyland des mélomanes sous acide de soleil 🌴🎶
-                Imagine : deux week-ends par an, au milieu du désert californien, des dizaines de milliers de gens en tenues boho-chic, paillettes plein les cheveux et smartphones à bout de bras, qui viennent danser, chanter, transpirer et viber sous les palmiers d’Indio.
-            </p>
-        </div>
-    </div>
-
-    <!-- Section HellFest -->
-    <div style="display: flex; align-items: flex-start; margin: 50px 0; flex-wrap: wrap; flex-direction: row-reverse;">
-        <!-- Image à droite -->
-        <div style="flex: 1 1 300px; text-align: center;">
-            <img src="image/hellfest.jpg" alt="Hellfest" style="max-width: 100%; height: auto; border: 2px solid #fff; border-radius: 10px;">
-        </div>
-
-        <!-- Texte à gauche -->
-        <div style="flex: 2 1 300px; padding: 0 20px; color: #111; font-size: 18px;">
-            <h2 style="font-size: 24px;">HellFest</h2>
-            <p>
-                Le Hellfest, c’est le parc d’attractions des métalleux en short et t-shirts noirs 🤘🔥
-                Imagine : un petit village de clous, tatouages, et piercings, planté à Clisson chaque été. Des dizaines de milliers de fans de métal (de toutes sortes : heavy, death, black, folk…) qui viennent pogoter, headbanger et hurler comme si leur vie en dépendait.
-            </p>
-        </div>
-    </div>
-
-</div>
-
-
-
-            
-            <h1>Bienvenue sur la page Équipes</h1>
-            
         </div>
     </div>
 
     <script>
-        // Active/désactive le menu vertical sur mobile
         function toggleMenu() {
             document.body.classList.toggle('menu-open');
         }
