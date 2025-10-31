@@ -14,16 +14,21 @@
             color: #111;
             height: 100%;
         }
-.titre-equipes {
-    font-family: 'Brush Script MT', cursive; /* exemple : police manuscrite */
-    font-size: 20px;
-    align-items: center;
-    color: #fff;
-    display: inline-block;
-    margin-right: 50px;
-    letter-spacing: 2px; /* espace entre les lettres */
-}
-        /* Structure générale : le menu vertical + le contenu */
+
+        /* Titre du menu vertical */
+        .titre-equipes {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 22px;
+            color: #fff;
+            margin: 0;
+            padding: 15px 0;
+            letter-spacing: 2px;
+            text-align: center;
+            border-bottom: 2px solid #f39c12;
+            width: 100%;
+        }
+
+        /* Structure générale */
         body {
             display: flex;
             flex-direction: row;
@@ -37,13 +42,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 180px;
             min-height: 100vh;
             box-sizing: border-box;
-            position: fixed; /* fixé à gauche */
+            position: fixed;
             left: 0;
             top: 0;
             bottom: 0;
+            padding-top: 70px; /* espace pour aligner le contenu sous le menu horizontal */
         }
 
         nav.vertical a {
@@ -61,20 +66,20 @@
         /* Contenu principal */
         .content {
             flex: 1;
-            margin-left: 150px; /* décalage du contenu pour ne pas passer sous le menu vertical */
+            margin-left: 150px;
             padding: 0;
         }
 
-        /* Menu horizontal en haut — pleine largeur */
+        /* Menu horizontal en haut */
         nav.horizontal {
             background-color: #111;
             padding: 15px 0;
             text-align: center;
-            position: fixed; /* fixé en haut */
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%; /* occupe toute la largeur de l’écran */
-            z-index: 1000; /* reste au-dessus de tout */
+            width: 100%;
+            z-index: 1000;
             margin: 0;
         }
 
@@ -93,7 +98,7 @@
 
         /* Décalage du contenu sous le menu horizontal */
         .page-content {
-            padding-top: 80px; /* espace pour ne pas cacher le contenu sous le menu horizontal */
+            padding-top: 100px;
         }
 
         .image-container {
@@ -107,54 +112,38 @@
             border: 2px solid #fff;
         }
 
-        /* Ajustements pour petits écrans */
+        /* Responsive */
         @media (max-width: 768px) {
             nav.vertical {
                 width: 80px;
-                padding-top: 60px;
             }
-
             .content {
                 margin-left: 80px;
             }
-
             nav.vertical a {
                 font-size: 12px;
                 margin: 10px 0;
             }
-
             nav.horizontal a {
                 margin: 0 10px;
                 font-size: 14px;
-            }
-
-            .image-container {
-                margin: 30px 0;
             }
         }
 
         @media (max-width: 480px) {
             nav.vertical {
                 width: 60px;
-                padding-top: 40px;
             }
-
             .content {
                 margin-left: 60px;
             }
-
             nav.vertical a {
                 font-size: 10px;
                 margin: 8px 0;
             }
-
             nav.horizontal a {
                 margin: 0 5px;
                 font-size: 12px;
-            }
-
-            .image-container {
-                margin: 20px 0;
             }
         }
     </style>
@@ -162,10 +151,7 @@
 <body>
     <!-- Menu vertical -->
     <nav class="vertical">
-        <h1 class="titre-equipes">Les Equipes
-        
-        
-        </h1>
+        <h1 class="titre-equipes">Les Équipes</h1>
         <a href="index.html">Coachella</a>
         <a href="Equipes.html">HellFest</a>
         <a href="#contact">F I L</a>
@@ -173,11 +159,10 @@
 
     <!-- Contenu principal -->
     <div class="content">
-        <!-- Menu horizontal (plein écran) -->
+        <!-- Menu horizontal -->
         <nav class="horizontal">
-            
             <a href="index.html">Accueil</a>
-            <a href="Equipes.html">Equipes</a>
+            <a href="Equipes.html">Équipes</a>
             <a href="#contact">Contact</a>
         </nav>
 
@@ -186,7 +171,7 @@
                 <img src="images/mon_image.png" alt="Image">
             </div>
 
-            <h1>Bienvenue sur la page Equipes</h1>
+            <h1>Bienvenue sur la page Équipes</h1>
             <p>Contenu principal ici...</p>
         </div>
     </div>
