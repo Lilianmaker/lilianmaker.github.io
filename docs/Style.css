@@ -1,32 +1,10 @@
-/* style.css */
-
-/* --- Reset et base --- */
+/* Global */
 html, body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #C8AD7F; /* Le fond commun à toutes les pages */
+    background-color: #C8AD7F;
     color: #111;
-    height: 100%;
-}
-
-/* Titre menu vertical */
-.titre-equipes {
-    font-family: 'Brush Script MT', cursive;
-    font-size: 22px;
-    color: #fff;
-    margin: 0;
-    padding: 15px 0;
-    letter-spacing: 2px;
-    text-align: center;
-    border-bottom: 2px solid #f39c12;
-    width: 100%;
-}
-
-/* Structure générale */
-body {
-    display: flex;
-    flex-direction: row;
 }
 
 /* Menu vertical */
@@ -40,29 +18,29 @@ nav.vertical {
     position: fixed;
     left: 0;
     top: 0;
-    bottom: 0;
-    padding-top: 70px;
+    padding-top: 100px;
     transition: transform 0.3s ease;
-    z-index: 1100;
+    z-index: 1000;
+}
+
+.titre-equipes {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 22px;
+    color: #fff;
+    margin: 0 0 20px 0;
+    text-align: center;
 }
 
 nav.vertical a {
     color: #fff;
     text-decoration: none;
-    margin: 20px 0;
+    margin: 15px 0;
     font-weight: bold;
     transition: color 0.3s;
 }
 
 nav.vertical a:hover {
     color: #f39c12;
-}
-
-/* Contenu principal */
-.content {
-    flex: 1;
-    margin-left: 150px;
-    padding: 0;
 }
 
 /* Menu horizontal */
@@ -74,13 +52,13 @@ nav.horizontal {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1200;
+    z-index: 1001;
 }
 
 nav.horizontal a {
     color: #fff;
     text-decoration: none;
-    margin: 0 20px;
+    margin: 0 15px;
     font-weight: bold;
     transition: color 0.3s;
     display: inline-block;
@@ -90,49 +68,48 @@ nav.horizontal a:hover {
     color: #f39c12;
 }
 
-.page-content {
-    padding-top: 100px;
+/* Contenu principal */
+.content {
+    margin-left: 150px;
+    padding-top: 80px;
 }
 
-/* Sections flexibles */
-.section-flex {
+/* Sections */
+.section {
     display: flex;
     align-items: flex-start;
     margin: 50px 0;
     flex-wrap: wrap;
 }
 
-.section-flex .texte {
-    flex: 2 1 300px;
-    padding: 0 20px;
-    font-size: 18px;
-}
-
-.section-flex .texte h2 {
-    font-size: 24px;
-}
-
-.section-flex .image {
+.section img {
     flex: 1 1 300px;
-    text-align: center;
-}
-
-.section-flex.reverse {
-    flex-direction: row-reverse;
-}
-
-.section-flex .image img {
     max-width: 100%;
     height: auto;
     border: 2px solid #fff;
     border-radius: 10px;
 }
 
-/* Bouton menu mobile */
+.section .texte {
+    flex: 2 1 300px;
+    padding: 0 20px;
+    font-size: 18px;
+}
+
+.section .texte h2 {
+    font-size: 24px;
+}
+
+/* HellFest image à droite */
+.section.hellfest {
+    flex-direction: row-reverse;
+}
+
+/* Bouton menu burger mobile */
 .menu-toggle {
     display: none;
     position: fixed;
-    top: 5px;
+    top: 10px;
     left: 15px;
     background-color: #111;
     color: #fff;
@@ -140,28 +117,60 @@ nav.horizontal a:hover {
     padding: 10px 15px;
     font-size: 18px;
     border-radius: 5px;
-    z-index: 1300;
+    z-index: 1100;
     cursor: pointer;
 }
 
-/* --- Responsive --- */
-@media (max-width: 900px) {
+/* Responsive */
+@media (max-width: 768px) {
     nav.vertical {
-        width: 100px;
+        width: 120px;
     }
-    .content { margin-left: 100px; }
-    nav.vertical a { font-size: 13px; margin: 15px 0; }
-    .titre-equipes { font-size: 18px; }
+
+    .content {
+        margin-left: 120px;
+    }
+
+    nav.vertical a {
+        font-size: 14px;
+    }
+
+    .titre-equipes {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 600px) {
-    nav.vertical { transform: translateX(-100%); }
-    .menu-toggle { display: block; }
-    .menu-open nav.vertical { transform: translateX(0); }
-    .content { margin-left: 0; padding-top: 120px; }
-    nav.horizontal a { margin: 0 10px; font-size: 14px; }
-    .section-flex { flex-direction: column; }
-    .section-flex.reverse { flex-direction: column; }
-    .section-flex .texte { padding: 20px 10px; font-size: 16px; }
-    .section-flex .texte h2 { font-size: 20px; }
+    nav.vertical {
+        transform: translateX(-100%);
+        padding-top: 60px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .menu-open nav.vertical {
+        transform: translateX(0);
+    }
+
+    .content {
+        margin-left: 0;
+        padding-top: 80px;
+    }
+
+    .section {
+        flex-direction: column !important;
+        text-align: center;
+    }
+
+    .section .texte {
+        padding: 15px 10px;
+        font-size: 16px;
+    }
+
+    nav.horizontal a {
+        margin: 0 10px;
+        font-size: 14px;
+    }
 }
