@@ -3,6 +3,8 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    background-color: #C8AD7F;
+    color: #111;
 }
 
 /* Menu horizontal */
@@ -30,7 +32,7 @@ nav.horizontal a:hover {
 
 /* Bouton burger */
 .menu-toggle {
-    display: none; /* seulement visible sur mobile */
+    display: none;
     background-color: #111;
     color: #fff;
     border: none;
@@ -40,41 +42,115 @@ nav.horizontal a:hover {
     margin-left: 10px;
 }
 
-/* Menu vertical (mobile) */
+/* Menu vertical */
 nav.vertical {
     position: fixed;
     top: 60px;
     left: 0;
-    background-color: #111;
     width: 150px;
     height: calc(100% - 60px);
-    transform: translateX(-100%);
+    background-color: #111;
+    padding-top: 20px;
+    flex-direction: column;
     transition: transform 0.3s ease;
     z-index: 999;
-    flex-direction: column;
-    padding-top: 20px;
 }
 
 nav.vertical a {
+    display: block;
     color: #fff;
     text-decoration: none;
-    display: block;
-    margin: 10px 0;
+    margin: 15px 0;
+    padding: 5px 15px;
 }
 
+nav.vertical a:hover {
+    color: #f39c12;
+}
+
+.titre-equipes {
+    color: #fff;
+    font-family: 'Brush Script MT', cursive;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Cacher menu vertical sur mobile */
 body.menu-open nav.vertical {
+    transform: translateX(0);
+}
+
+nav.vertical {
     transform: translateX(0);
 }
 
 /* Contenu */
 .content {
-    margin-top: 60px; /* espace pour le menu horizontal */
+    margin-top: 60px;
+    margin-left: 150px;
     padding: 20px;
 }
 
+/* Section */
+.section {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 50px 0;
+}
+
+.section.reverse {
+    flex-direction: row-reverse;
+}
+
+.section-image {
+    flex: 1 1 300px;
+    text-align: center;
+}
+
+.section-image img {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #fff;
+    border-radius: 10px;
+}
+
+.section-text {
+    flex: 2 1 300px;
+    padding: 0 20px;
+    font-size: 18px;
+}
+
+.section-text h2 {
+    font-size: 24px;
+}
+
 /* Responsive */
+@media (max-width: 900px) {
+    nav.vertical {
+        width: 100px;
+    }
+    .content {
+        margin-left: 100px;
+    }
+}
+
 @media (max-width: 600px) {
     .menu-toggle {
-        display: inline-block; /* bouton visible */
+        display: inline-block;
+    }
+
+    nav.vertical {
+        transform: translateX(-100%);
+        top: 60px;
+        height: calc(100% - 60px);
+    }
+
+    body.menu-open nav.vertical {
+        transform: translateX(0);
+    }
+
+    .content {
+        margin-left: 0;
     }
 }
