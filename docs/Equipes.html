@@ -4,16 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Équipes</title>
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Équipes</title>
-    <link rel="stylesheet" href="Style.css">
-</head>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Bouton menu mobile -->
+
+    <!-- Bouton menu burger mobile -->
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
     <!-- Menu vertical -->
@@ -26,46 +21,43 @@
 
     <!-- Contenu principal -->
     <div class="content">
+
+        <!-- Menu horizontal -->
         <nav class="horizontal">
             <a href="index.html">Accueil</a>
             <a href="Equipes.html">Équipes</a>
-            <a href="soirée.html">La soirée</a>
+            <a href="soiree.html">La soirée</a>
             <a href="resultat.html">Résultats</a>
         </nav>
 
-        <div class="page-content">
-            <!-- Section Coachella -->
-            <div class="section-flex">
-                <div class="image">
-                    <img src="image/coachella.webp" alt="Coachella">
-                </div>
-                <div class="texte">
-                    <h2>Coachella</h2>
-                    <p>
-                        Coachella, c’est le Disneyland des mélomanes sous acide de soleil 🌴🎶
-                        Imagine : deux week-ends par an, au milieu du désert californien, des dizaines de milliers de gens en tenues boho-chic, paillettes plein les cheveux et smartphones à bout de bras.
-                    </p>
-                </div>
+        <!-- Section Coachella -->
+        <div class="section coachella">
+            <img src="image/coachella.webp" alt="Coachella">
+            <div class="texte">
+                <h2>Coachella</h2>
+                <p>
+                    Coachella, c’est le Disneyland des mélomanes sous acide de soleil 🌴🎶
+                    Imagine : deux week-ends par an, au milieu du désert californien, des milliers de gens en tenues boho-chic, paillettes plein les cheveux et smartphones à bout de bras.
+                </p>
             </div>
-
-            <!-- Section HellFest -->
-            <div class="section-flex reverse">
-                <div class="image">
-                    <img src="image/hellfest.jpg" alt="Hellfest">
-                </div>
-                <div class="texte">
-                    <h2>HellFest</h2>
-                    <p>
-                        Le Hellfest, c’est le parc d’attractions des métalleux en short et t-shirts noirs 🤘🔥
-                        Imagine : un petit village de clous, tatouages, et piercings, planté à Clisson chaque été.
-                    </p>
-                </div>
-            </div>
-
         </div>
+
+        <!-- Section HellFest -->
+        <div class="section hellfest">
+            <img src="image/hellfest.jpg" alt="Hellfest">
+            <div class="texte">
+                <h2>HellFest</h2>
+                <p>
+                    Le Hellfest, c’est le parc d’attractions des métalleux en short et t-shirts noirs 🤘🔥
+                    Imagine : un petit village de clous, tatouages et piercings, planté à Clisson chaque été. Des milliers de fans de métal viennent pogoter et headbanger.
+                </p>
+            </div>
+        </div>
+
     </div>
 
     <script>
+        // Active/désactive le menu vertical sur mobile
         function toggleMenu() {
             document.body.classList.toggle('menu-open');
         }
