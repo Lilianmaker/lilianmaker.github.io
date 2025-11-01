@@ -53,7 +53,7 @@ nav.horizontal {
 /* Menu vertical */
 nav.vertical {
     position: fixed;
-    top: 60px;
+    top: 30px;
     left: 0;
     width: 150px;
     height: calc(100% - 60px);
