@@ -86,6 +86,7 @@ nav.vertical {
     display: inline-block;
     padding-bottom: 5px;
     letter-spacing: 1px;
+    font-size: 36px;
 }
 
 /* Liens du menu vertical */
