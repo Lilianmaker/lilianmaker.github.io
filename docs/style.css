@@ -1,163 +1,152 @@
-/* ----------- GLOBAL ----------- */
+/* ======= GLOBAL ======= */
 html, body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #C8AD7F;
-    color: #111;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #C8AD7F; /* ✅ fond rétabli */
+  color: #111;
+  height: 100%;
 }
 
-/* ----------- MENU HORIZONTAL ----------- */
+/* ======= MENU HORIZONTAL ======= */
 nav.horizontal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #111;
-    padding: 10px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #111;
+  color: white;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
 .menu-items {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
+  display: flex;
+  gap: 25px;
 }
 
 .menu-items a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 20px;
-    font-weight: bold;
-    transition: color 0.3s;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
 }
 
-.menu-items a:hover {
-    color: #f39c12;
+.menu-items a:hover,
+.menu-items a.active {
+  color: #f39c12;
 }
 
-/* ----------- BOUTON BURGER ----------- */
+/* ======= BURGER ======= */
 .menu-toggle {
-    position: absolute;
-    left: 15px;
-    background-color: #111;
-    color: #fff;
-    border: none;
-    font-size: 22px;
-    cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 5px;
-    display: none; /* caché sur PC */
-    z-index: 1100;
+  position: absolute;
+  left: 15px;
+  background: none;
+  color: white;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+  display: none; /* caché sur PC */
+  z-index: 1100;
 }
 
-/* ----------- MENU VERTICAL ----------- */
+/* ======= MENU VERTICAL ======= */
 nav.vertical {
-    position: fixed;
-    top: 60px; /* sous le menu horizontal */
-    left: 0;
-    width: 150px;
-    height: calc(100% - 60px);
-    background-color: #111;
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 900;
-    transition: transform 0.3s ease;
+  position: fixed;
+  top: 60px; /* sous le menu horizontal */
+  left: 0;
+  width: 160px;
+  height: calc(100% - 60px);
+  background-color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  z-index: 900;
 }
 
 nav.vertical a {
-    color: #fff;
-    text-decoration: none;
-    margin: 15px 0;
-    font-weight: bold;
+  color: white;
+  text-decoration: none;
+  margin: 12px 0;
+  font-weight: bold;
+  transition: color 0.3s;
 }
 
 nav.vertical a:hover {
-    color: #f39c12;
+  color: #f39c12;
 }
 
 .titre-equipes {
-    color: #fff;
-    font-family: 'Brush Script MT', cursive;
-    font-size: 22px;
-    border-bottom: 2px solid #f39c12;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    text-align: center;
+  color: white;
+  font-family: 'Brush Script MT', cursive;
+  font-size: 22px;
+  border-bottom: 2px solid #f39c12;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-/* ----------- CONTENU ----------- */
+/* ======= CONTENU ======= */
 .content {
-    margin-top: 80px;
-    margin-left: 150px;
-    padding: 20px;
+  margin-top: 80px;   /* sous le menu horizontal */
+  margin-left: 180px; /* à droite du menu vertical */
+  padding: 20px;
 }
 
-/* ----------- SECTIONS ----------- */
 .section {
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    margin: 50px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 40px 0;
 }
 
 .section.reverse {
-    flex-direction: row-reverse;
-}
-
-.section-image {
-    flex: 1 1 300px;
-    text-align: center;
+  flex-direction: row-reverse;
 }
 
 .section-image img {
-    max-width: 100%;
-    height: auto;
-    border: 2px solid #fff;
-    border-radius: 10px;
+  width: 100%;
+  max-width: 350px;
+  border-radius: 10px;
+  border: 2px solid white;
 }
 
 .section-text {
-    flex: 2 1 300px;
-    padding: 0 20px;
-    font-size: 18px;
+  flex: 1;
+  padding: 20px;
 }
 
 .section-text h2 {
-    font-size: 26px;
+  font-size: 26px;
+  margin-bottom: 10px;
 }
 
-/* ----------- VERSION MOBILE ----------- */
+/* ======= RESPONSIVE ======= */
 @media (max-width: 700px) {
-    .menu-toggle {
-        display: inline-block;
-    }
+  .menu-toggle {
+    display: inline-block;
+  }
 
-    /* le menu vertical est caché par défaut */
-    nav.vertical {
-        transform: translateX(-100%);
-        position: fixed;
-        top: 60px;
-        height: calc(100% - 60px);
-    }
+  .menu-items {
+    display: none; /* on masque le menu horizontal */
+  }
 
-    /* affiché quand on clique sur le burger */
-    body.menu-open nav.vertical {
-        transform: translateX(0);
-    }
+  nav.vertical {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
 
-    .content {
-        margin-left: 0;
-    }
+  body.menu-open nav.vertical {
+    transform: translateX(0);
+  }
 
-    .menu-items a {
-        font-size: 14px;
-        margin: 0 10px;
-    }
+  .content {
+    margin-left: 0;
+  }
 }
