@@ -1,5 +1,5 @@
-/* Global */
-body, html {
+/* ----------- GLOBAL ----------- */
+html, body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
@@ -7,7 +7,7 @@ body, html {
     color: #111;
 }
 
-/* Menu horizontal */
+/* ----------- MENU HORIZONTAL ----------- */
 nav.horizontal {
     position: fixed;
     top: 0;
@@ -16,20 +16,31 @@ nav.horizontal {
     background-color: #111;
     padding: 10px 0;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     z-index: 1000;
 }
 
-.nav-container {
-    width: 100%;
+.menu-items {
     display: flex;
-    align-items: center;
     justify-content: center;
-    position: relative;
+    align-items: center;
+    flex-wrap: nowrap;
 }
 
-/* Burger */
+.menu-items a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.menu-items a:hover {
+    color: #f39c12;
+}
+
+/* ----------- BOUTON BURGER ----------- */
 .menu-toggle {
     position: absolute;
     left: 15px;
@@ -40,31 +51,14 @@ nav.horizontal {
     cursor: pointer;
     padding: 5px 10px;
     border-radius: 5px;
-    display: none;
+    display: none; /* caché sur PC */
+    z-index: 1100;
 }
 
-/* Liens centrés */
-.menu-items {
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
-}
-
-.menu-items a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-}
-
-.menu-items a:hover {
-    color: #f39c12;
-}
-
-/* Menu vertical */
+/* ----------- MENU VERTICAL ----------- */
 nav.vertical {
     position: fixed;
-    top: 60px;
+    top: 60px; /* sous le menu horizontal */
     left: 0;
     width: 150px;
     height: calc(100% - 60px);
@@ -72,15 +66,16 @@ nav.vertical {
     padding-top: 20px;
     display: flex;
     flex-direction: column;
-    z-index: 999;
+    align-items: center;
+    z-index: 900;
+    transition: transform 0.3s ease;
 }
 
 nav.vertical a {
-    display: block;
     color: #fff;
     text-decoration: none;
     margin: 15px 0;
-    padding: 5px 15px;
+    font-weight: bold;
 }
 
 nav.vertical a:hover {
@@ -90,18 +85,21 @@ nav.vertical a:hover {
 .titre-equipes {
     color: #fff;
     font-family: 'Brush Script MT', cursive;
-    text-align: center;
+    font-size: 22px;
+    border-bottom: 2px solid #f39c12;
+    padding-bottom: 10px;
     margin-bottom: 20px;
+    text-align: center;
 }
 
-/* Contenu */
+/* ----------- CONTENU ----------- */
 .content {
     margin-top: 80px;
     margin-left: 150px;
     padding: 20px;
 }
 
-/* Section */
+/* ----------- SECTIONS ----------- */
 .section {
     display: flex;
     align-items: flex-start;
@@ -132,21 +130,24 @@ nav.vertical a:hover {
 }
 
 .section-text h2 {
-    font-size: 24px;
+    font-size: 26px;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
+/* ----------- VERSION MOBILE ----------- */
+@media (max-width: 700px) {
     .menu-toggle {
         display: inline-block;
     }
 
+    /* le menu vertical est caché par défaut */
     nav.vertical {
         transform: translateX(-100%);
         position: fixed;
+        top: 60px;
         height: calc(100% - 60px);
     }
 
+    /* affiché quand on clique sur le burger */
     body.menu-open nav.vertical {
         transform: translateX(0);
     }
