@@ -15,14 +15,17 @@ nav.horizontal {
     width: 100%;
     background-color: #111;
     padding: 10px 20px;
-    text-align: center;
     display: flex;
-    justify-content: space-between; /* Espace entre burger et liens */
     align-items: center;
+    justify-content: flex-start; /* on aligne à gauche pour le burger */
     z-index: 1000;
 }
 
+/* Liens du menu centrés */
 .menu-items {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-wrap: nowrap;
 }
@@ -144,8 +147,15 @@ nav.vertical a:hover {
         margin-left: 0;
     }
 
+    .menu-items {
+        position: static;
+        transform: none;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
     .menu-items a {
-        margin: 0 10px;
+        margin: 5px 10px;
         font-size: 14px;
     }
 }
