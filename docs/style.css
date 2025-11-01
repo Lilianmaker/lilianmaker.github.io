@@ -16,40 +16,17 @@ nav.horizontal {
     background-color: #111;
     padding: 12px 20px;
     display: flex;
-    justify-content: center; /* centrer les liens */
+    justify-content: center; /* centre le menu horizontal */
     align-items: center;
     z-index: 1000;
 }
 
-/* Conteneur du burger + liens */
-.nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    position: relative;
-}
-
-/* --- BOUTON BURGER --- */
-.menu-toggle {
-    position: absolute;
-    left: 10px;
-    top: 0px; /* ✅ descend un peu le burger */
-    background-color: #111;
-    color: #fff;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 6px 10px;
-    border-radius: 5px;
-    display: none; /* caché sur PC */
-    z-index: 1100;
-}
-
-/* --- LIENS DU MENU HORIZONTAL --- */
+/* Liens du menu horizontal */
 .menu-items {
     display: flex;
+    justify-content: center; /* centre les liens */
     flex-wrap: nowrap;
+    width: 100%; /* prend toute la largeur pour le centrage */
 }
 
 .menu-items a {
@@ -60,14 +37,32 @@ nav.horizontal {
     transition: color 0.3s;
 }
 
-.menu-items a:hover {
+.menu-items a:hover,
+.menu-items a.active {
     color: #f39c12;
+}
+
+/* --- BOUTON BURGER --- */
+.menu-toggle {
+    display: none; /* caché sur PC */
+    position: absolute;
+    left: 10px;
+    top: 50%; 
+    transform: translateY(-50%); /* centré verticalement par rapport au nav */
+    background-color: #111;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 5px;
+    z-index: 1100;
 }
 
 /* --- MENU VERTICAL --- */
 nav.vertical {
     position: fixed;
-    top: 20px; /* sous le menu horizontal */
+    top: 60px; /* sous le menu horizontal */
     left: 0;
     width: 150px;
     height: calc(100% - 60px);
@@ -78,7 +73,7 @@ nav.vertical {
     align-items: center;
     transform: translateX(0);
     z-index: 999;
-    transition: transform 0.4s ease; /* ✅ animation fluide */
+    transition: transform 0.4s ease; /* animation slide */
 }
 
 /* Titre du menu vertical */
@@ -87,10 +82,10 @@ nav.vertical {
     font-family: 'Brush Script MT', cursive;
     text-align: center;
     margin-bottom: 20px;
-    border-bottom: 3px solid #f39c12; /* orange */
-    display: inline-block; /* pour que le soulignement s’adapte au texte */
-    padding-bottom: 5px; /* espace entre le texte et la ligne */
-    letter-spacing: 1px; /* optionnel, espace entre les lettres */
+    border-bottom: 3px solid #f39c12;
+    display: inline-block;
+    padding-bottom: 5px;
+    letter-spacing: 1px;
 }
 
 /* Liens du menu vertical */
@@ -151,7 +146,8 @@ nav.vertical a:hover {
 
 /* --- RESPONSIVE --- */
 @media (max-width: 600px) {
-    /* Affiche le burger */
+
+    /* Affiche le burger sur mobile */
     .menu-toggle {
         display: block;
     }
@@ -167,7 +163,7 @@ nav.vertical a:hover {
         transform: translateX(0);
     }
 
-    /* Contenu sans marge */
+    /* Contenu sans marge pour mobile */
     .content {
         margin-left: 0;
     }
