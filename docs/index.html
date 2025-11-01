@@ -3,20 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Équipes</title>
+  <title>Accueil</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Centrer le conteneur */
+    /* Image centrée */
     .image-container {
-      text-align: center;
-      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      margin-top: 100px; /* espace sous le menu fixe */
+      width: 100%;
     }
 
-    /* Image responsive */
     .image-container img {
-      max-width: 100%;
+      max-width: 90%;
       height: auto;
-      display: inline-block; /* pour être centré avec text-align */
+    }
+
+    /* Responsive pour mobile */
+    @media (max-width: 600px) {
+      .image-container {
+        margin-top: 80px;
+      }
+    }
+
+    /* Menu horizontal fixe */
+    nav.horizontal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #111;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .menu-items {
+      display: flex;
+      gap: 15px;
+    }
+
+    .menu-items a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .menu-items a:hover {
+      color: #f39c12;
+    }
+
+    /* Burger pour mobile */
+    .menu-toggle {
+      display: none;
+      background-color: #111;
+      color: #fff;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    @media (max-width: 600px) {
+      .menu-toggle {
+        display: inline-block;
+      }
+      .menu-items {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        background-color: #111;
+        padding: 10px 0;
+      }
+      body.menu-open .menu-items {
+        display: flex;
+      }
+      .menu-items a {
+        padding: 10px;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -26,8 +97,8 @@
   <nav class="horizontal">
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <div class="menu-items">
-      <a href="index.html">Accueil</a>
-      <a href="equipes.html" class="active">Équipes</a>
+      <a href="index.html" class="active">Accueil</a>
+      <a href="equipes.html">Équipes</a>
       <a href="soiree.html">La soirée</a>
       <a href="resultat.html">Résultats</a>
     </div>
@@ -35,10 +106,14 @@
 
   <!-- Image centrée -->
   <div class="image-container">
-    <img 
-      src="https://github.com/user-attachments/assets/0480379e-0507-41ca-a736-ffc528856ef1"
-      alt="9fc046d9-d713-462e-b6ad-0e832036a5a5">
+    <img src="https://github.com/user-attachments/assets/0480379e-0507-41ca-a736-ffc528856ef1" 
+         alt="Événement">
   </div>
 
+  <script>
+    function toggleMenu() {
+      document.body.classList.toggle('menu-open');
+    }
+  </script>
 </body>
 </html>
