@@ -33,7 +33,7 @@ nav.horizontal {
 /* Bouton Burger */
 .menu-toggle {
     position: absolute;
-    left: 10px;
+    left: 5px;
     background-color: #111;
     color: #fff;
     border: none;
