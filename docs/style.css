@@ -34,7 +34,7 @@ nav.horizontal {
 .menu-toggle {
     position: absolute;
     left: 5px;
-    top: 10px; /* ✅ descend un peu le burger */
+    top: 5px; /* ✅ descend un peu le burger */
     background-color: #111;
     color: #fff;
     border: none;
