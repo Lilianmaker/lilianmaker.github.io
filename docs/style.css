@@ -14,14 +14,14 @@ nav.horizontal {
     left: 0;
     width: 100%;
     background-color: #111;
-    padding: 15px 20px;
+    padding: 10px 20px;
     display: flex;
     justify-content: center; /* centrer les liens */
     align-items: center;
     z-index: 1000;
 }
 
-/* Conteneur pour le burger + liens */
+/* Conteneur du burger + liens */
 .nav-container {
     display: flex;
     align-items: center;
@@ -30,23 +30,23 @@ nav.horizontal {
     position: relative;
 }
 
-/* Bouton Burger */
+/* --- BOUTON BURGER --- */
 .menu-toggle {
     position: absolute;
-    left: 5px;
-    top: 10px; /* descendre un peu le burger */
+    left: 10px;
+    top: 8px; /* ✅ descend un peu le burger */
     background-color: #111;
     color: #fff;
     border: none;
     font-size: 22px;
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 6px 10px;
     border-radius: 5px;
     display: none; /* caché sur PC */
     z-index: 1100;
 }
 
-/* Liens du menu horizontal */
+/* --- LIENS DU MENU HORIZONTAL --- */
 .menu-items {
     display: flex;
     flex-wrap: nowrap;
@@ -78,20 +78,15 @@ nav.vertical {
     align-items: center;
     transform: translateX(0);
     z-index: 999;
-    transition: transform 0.4s ease; /* animation fluide */
+    transition: transform 0.4s ease; /* ✅ animation fluide */
 }
 
-/* Titre du menu vertical avec ligne orange */
+/* Titre du menu vertical */
 .titre-equipes {
     color: #fff;
     font-family: 'Brush Script MT', cursive;
     text-align: center;
     margin-bottom: 20px;
-    font-size: 24px;
-    border-bottom: 3px solid #f39c12; /* ligne orange */
-    width: 90%;
-    padding-bottom: 5px;
-    box-sizing: border-box;
 }
 
 /* Liens du menu vertical */
