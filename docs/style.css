@@ -195,6 +195,12 @@ nav.vertical a:hover {
     box-shadow: 0 0 25px #ff4d4d; 
 }
 
+.main-img {
+    max-width: 400px; /* limite la taille sur PC */
+    width: 100%;      /* reste responsive */
+    height: auto;     /* conserve les proportions */
+}
+
 @keyframes glow {
     0% { box-shadow: 0 0 10px #00ff00; }
     50% { box-shadow: 0 0 25px #00ff00; }
