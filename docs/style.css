@@ -1,13 +1,3 @@
-/* --- GLOBAL --- */
-body, html {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #fceabb, #f8b500, #ff6f61);
-    color: #111;
-    padding-top: 60px; /* espace pour menu horizontal fixe */
-    min-height: 100vh;
-}
-
 /* --- MENU HORIZONTAL --- */
 nav.horizontal {
     position: fixed;
@@ -17,192 +7,72 @@ nav.horizontal {
     background-color: #111;
     padding: 12px 20px;
     display: flex;
-    justify-content: center; /* centre le menu horizontal */
-    align-items: center;
+    justify-content: center; /* centre horizontalement */
+    align-items: center;     /* centre verticalement */
     z-index: 1000;
+    box-sizing: border-box;
 }
 
-
+/* Conteneur des liens */
 .menu-items {
     display: flex;
-    justify-content: center;
-    gap: 15px;
+    justify-content: center; /* centre les liens */
+    gap: 20px;               /* espace entre les liens */
 }
 
+/* Liens du menu */
 .menu-items a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s, transform 0.3s;
+    transition: color 0.3s;
 }
 
-.menu-items a:hover,
-.menu-items a.active {
+/* Lien actif reste blanc, changement uniquement au hover */
+.menu-items a:hover {
     color: #f39c12;
-    transform: scale(1.1);
 }
 
-/* --- BOUTON BURGER --- */
+/* --- BOUTON BURGER (mobile) --- */
 .menu-toggle {
-    display: none;
+    display: none;           /* caché sur desktop */
     position: fixed;
     left: 10px;
-    top: 5px;
+    top: 12px;
     background-color: #111;
     color: #fff;
     border: none;
-    font-size: 12px;
+    font-size: 18px;
     cursor: pointer;
     padding: 6px 10px;
     border-radius: 5px;
     z-index: 1100;
 }
 
-/* --- MENU VERTICAL --- */
-nav.vertical {
-    position: fixed;
-    top: 60px; /* juste sous le menu horizontal */
-    left: 0;
-    width: 150px;
-    height: calc(100% - 60px);
-    background-color: #111;
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 999;
-}
-
-nav.vertical a.titre-equipes {
-    font-family: 'Brush Script MT', cursive;
-    font-size: 28px;
-    color: #fff;
-    text-align: center;
-    margin-bottom: 20px;
-    border-bottom: 3px solid #f39c12;
-    padding-bottom: 5px;
-}
-
-nav.vertical a {
-    color: #fff;
-    text-decoration: none;
-    margin: 10px 0;
-    padding: 5px 15px;
-    transition: color 0.3s, transform 0.3s;
-}
-
-nav.vertical a:hover {
-    color: #f39c12;
-    transform: translateX(5px);
-}
-
-/* --- CONTENU --- */
-.content {
-    margin-left: 150px; /* espace pour menu vertical */
-    padding: 20px;
-    align-self: flex-start; /* éviter le centrage vertical */
-}
-
-/* --- SECTIONS --- */
-.section {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    margin: 30px 0;
-    gap: 20px;
-}
-
-.section.reverse {
-    flex-direction: row-reverse;
-}
-
-.section-image {
-    flex: 1 1 300px;
-    text-align: center;
-    position: relative;
-}
-
-.section-image img {
-    max-width: 100%;
-    height: auto;
-    border: 2px solid #fff;
-    border-radius: 10px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-/* Effet visuel sur les images */
-.section-image img:hover {
-    transform: scale(1.05) rotate(-1deg);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-}
-
-.section-text {
-    flex: 2 1 300px;
-    padding: 0 20px;
-    font-size: 18px;
-    animation: slideFadeIn 1s ease forwards;
-    opacity: 0;
-}
-
-.section-text h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
-    color: #f39c12;
-    text-shadow: 0 0 5px #f1c40f, 0 0 10px #f1c40f;
-    animation: glowTitle 2s infinite alternate;
-}
-
-/* Animation pour le texte */
-@keyframes slideFadeIn {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-/* Glow pour le titre */
-@keyframes glowTitle {
-    0% { text-shadow: 0 0 5px #f1c40f, 0 0 10px #f39c12; }
-    100% { text-shadow: 0 0 15px #f1c40f, 0 0 25px #f39c12; }
-}
-
-/* --- RESPONSIVE --- */
+/* --- RESPONSIVE (mobile) --- */
 @media (max-width: 600px) {
     .menu-toggle {
-        display: block;
+        display: block;       /* bouton visible sur mobile */
     }
 
-    nav.vertical {
-        transform: translateX(-100%);
-        transition: transform 0.4s ease;
+    nav.horizontal .menu-items {
+        flex-direction: column; /* liens empilés */
+        background-color: #111;
+        position: fixed;
+        top: 50px;             /* sous le menu horizontal */
+        left: 0;
+        width: 100%;
+        text-align: center;
+        display: none;          /* caché par défaut */
+        padding: 10px 0;
     }
 
-    body.menu-open nav.vertical {
-        transform: translateX(0);
-    }
-
-    .content {
-        margin-left: 0;
-        padding: 10px;
-    }
-
-    .menu-items {
-        justify-content: center;
-        gap: 10px;
+    body.menu-open nav.horizontal .menu-items {
+        display: flex;         /* affiché quand burger cliqué */
     }
 
     .menu-items a {
-        font-size: 14px;
-    }
-
-    .section {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .section.reverse {
-        flex-direction: column;
-    }
-
-    .section-text {
-        padding: 10px 0;
+        margin: 10px 0;        /* espace vertical entre liens */
+        font-size: 16px;
     }
 }
