@@ -50,9 +50,9 @@ nav.horizontal {
     background-color: transparent;
     color: #fff;
     border: none;
-    font-size: 10px;
+    font-size: 8px;
     cursor: pointer;
-    padding: 6px 6px;
+    padding: 3px 6px;
     border-radius: 5px;
     z-index: 1100;
 }
