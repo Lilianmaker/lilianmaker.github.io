@@ -98,24 +98,27 @@
       margin-bottom: 10px;
     }
 
+    /* --- COULEURS PODIUM --- */
     .first .bar { 
-      background: linear-gradient(180deg, #f1c40f, #f39c12); 
-      box-shadow: 0 0 25px #f39c12; 
+      background: linear-gradient(180deg, #00ff00, #008000); /* vert dégradé */
+      box-shadow: 0 0 25px #00ff00; 
       animation: glow 2s infinite; 
     }
+
     .second .bar { 
-      background: linear-gradient(180deg, #00e5ff, #0077ff); 
+      background: linear-gradient(180deg, #00e5ff, #0077ff); /* bleu dégradé */
       box-shadow: 0 0 25px #00bfff; 
     }
+
     .third .bar { 
-      background: linear-gradient(180deg, #ff69b4, #ff1493); 
-      box-shadow: 0 0 25px #ff66cc; 
+      background: linear-gradient(180deg, #ff4d4d, #cc0000); /* rouge dégradé */
+      box-shadow: 0 0 25px #ff4d4d; 
     }
 
     @keyframes glow {
-      0% { box-shadow: 0 0 10px #f39c12; }
-      50% { box-shadow: 0 0 25px #f1c40f; }
-      100% { box-shadow: 0 0 10px #f39c12; }
+      0% { box-shadow: 0 0 10px #00ff00; }
+      50% { box-shadow: 0 0 25px #00ff00; }
+      100% { box-shadow: 0 0 10px #00ff00; }
     }
   </style>
 </head>
