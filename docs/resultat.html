@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Résultats dynamiques</title>
+  <title>Résultats</title>
   <style>
+    /* --- GLOBAL --- */
     body {
-      font-family: 'Poppins', sans-serif;
       margin: 0;
+      font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #eee, #ccc);
       color: #111;
-      padding-top: 60px;
+      padding-top: 60px; /* espace pour menu fixe */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -24,6 +25,33 @@
       margin-bottom: 50px;
     }
 
+    /* --- MENU HORIZONTAL --- */
+    nav.horizontal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #222;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    nav.horizontal a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 15px;
+      transition: color 0.3s;
+    }
+
+    nav.horizontal a:hover,
+    nav.horizontal a.active {
+      color: #f39c12;
+    }
+
+    /* --- PODIUM --- */
     .podium {
       display: flex;
       align-items: flex-end;
@@ -36,7 +64,12 @@
     .team {
       text-align: center;
       flex: 1;
+      position: relative;
       transition: transform 0.3s ease;
+    }
+
+    .team:hover {
+      transform: translateY(-10px);
     }
 
     .bar {
@@ -61,7 +94,7 @@
       margin-bottom: 10px;
     }
 
-    .first .bar { background: linear-gradient(180deg, #f1c40f, #f39c12); box-shadow: 0 0 25px #f39c12; }
+    .first .bar { background: linear-gradient(180deg, #f1c40f, #f39c12); box-shadow: 0 0 25px #f39c12; animation: glow 2s infinite; }
     .second .bar { background: linear-gradient(180deg, #00e5ff, #0077ff); box-shadow: 0 0 25px #00bfff; }
     .third .bar { background: linear-gradient(180deg, #ff69b4, #ff1493); box-shadow: 0 0 25px #ff66cc; }
 
@@ -70,52 +103,57 @@
       50% { box-shadow: 0 0 25px #f1c40f; }
       100% { box-shadow: 0 0 10px #f39c12; }
     }
-    .first .bar { animation: glow 2s infinite; }
   </style>
 </head>
 <body>
 
-<h1>Classement des Équipes</h1>
+  <!-- Menu horizontal -->
+  <nav class="horizontal">
+    <a href="index.html">Accueil</a>
+    <a href="equipes.html">Équipes</a>
+    <a href="soiree.html">La soirée</a>
+    <a href="resultat.html" class="active">Résultats</a>
+  </nav>
 
-<div class="podium" id="podium">
-  <div class="team" data-name="Hellfest" data-score="4">
-    <div class="bar"><span class="score">4 pts</span></div>
-    <div class="team-name">Hellfest</div>
+  <!-- Contenu principal -->
+  <h1>Classement des Équipes</h1>
+
+  <div class="podium" id="podium">
+    <div class="team" data-name="Hellfest" data-score="4">
+      <div class="bar"><span class="score">4 pts</span></div>
+      <div class="team-name">Hellfest</div>
+    </div>
+    <div class="team" data-name="Coachella" data-score="72">
+      <div class="bar"><span class="score">72 pts</span></div>
+      <div class="team-name">Coachella</div>
+    </div>
+    <div class="team" data-name="FIL" data-score="108">
+      <div class="bar"><span class="score">108 pts</span></div>
+      <div class="team-name">FIL</div>
+    </div>
   </div>
-  <div class="team" data-name="Coachella" data-score="72">
-    <div class="bar"><span class="score">72 pts</span></div>
-    <div class="team-name">Coachella</div>
-  </div>
-  <div class="team" data-name="FIL" data-score="108">
-    <div class="bar"><span class="score">108 pts</span></div>
-    <div class="team-name">FIL</div>
-  </div>
-</div>
 
-<script>
-  const podium = document.getElementById('podium');
-  const teams = Array.from(podium.querySelectorAll('.team'));
+  <script>
+    const podium = document.getElementById('podium');
+    const teams = Array.from(podium.querySelectorAll('.team'));
 
-  // Trier les équipes par score décroissant
-  teams.sort((a, b) => b.dataset.score - a.dataset.score);
+    teams.sort((a,b) => b.dataset.score - a.dataset.score);
 
-  // Mettre à jour le podium
-  podium.innerHTML = '';
-  teams.forEach((team, index) => {
-    team.classList.remove('first', 'second', 'third');
-    if(index === 0) team.classList.add('first');
-    else if(index === 1) team.classList.add('second');
-    else team.classList.add('third');
+    podium.innerHTML = '';
+    teams.forEach((team, index) => {
+      team.classList.remove('first','second','third');
+      if(index===0) team.classList.add('first');
+      else if(index===1) team.classList.add('second');
+      else team.classList.add('third');
 
-    // Ajuster la hauteur de la barre (ex: max 250px)
-    const maxHeight = 250;
-    const maxScore = Math.max(...teams.map(t => +t.dataset.score));
-    const height = (team.dataset.score / maxScore) * maxHeight;
-    team.querySelector('.bar').style.height = height + 'px';
+      const maxHeight = 250;
+      const maxScore = Math.max(...teams.map(t => +t.dataset.score));
+      const height = (team.dataset.score / maxScore) * maxHeight;
+      team.querySelector('.bar').style.height = height + 'px';
 
-    podium.appendChild(team);
-  });
-</script>
+      podium.appendChild(team);
+    });
+  </script>
 
 </body>
 </html>
