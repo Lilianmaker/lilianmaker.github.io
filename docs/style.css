@@ -4,7 +4,7 @@ body, html {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #fceabb, #f8b500, #ff6f61);
     color: #111;
-    padding-top: 60px; /* espace pour menu horizontal fixe */
+    padding-top: 60px; /* espace pour menu horizontal */
     min-height: 100vh;
 }
 
@@ -15,10 +15,10 @@ nav.horizontal {
     left: 0;
     width: 100%;
     background-color: #111;
-    padding: 13px 20px;
+    padding: 12px 20px;
     display: flex;
     justify-content: center;
-    /*align-items: center;*/
+    align-items: center; /* centrage vertical */
     z-index: 1000;
 }
 
@@ -59,7 +59,7 @@ nav.horizontal {
 /* --- MENU VERTICAL --- */
 nav.vertical {
     position: fixed;
-    top: 60px; /* juste sous le menu horizontal */
+    top: 60px;
     left: 0;
     width: 150px;
     height: calc(100% - 60px);
@@ -96,84 +96,91 @@ nav.vertical a:hover {
 
 /* --- CONTENU --- */
 .content {
-    margin-left: 150px; /* espace pour le menu vertical */
+    margin-left: 150px;
     padding: 20px;
-    align-self: flex-start; /* éviter le centrage vertical */
+    align-self: flex-start;
 }
 
-/* --- SECTIONS --- */
-.section {
+/* --- PODIUM --- */
+.podium {
     display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    margin: 30px 0;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 40px;
+    width: 80%;
+    max-width: 800px;
+    position: relative;
 }
 
-.section.reverse {
-    flex-direction: row-reverse;
-}
-
-.section-image {
-    flex: 1 1 300px;
+.team {
     text-align: center;
+    flex: 1;
+    position: relative;
+    transition: transform 0.3s ease;
 }
 
-.section-image img {
-    max-width: 100%;
-    height: auto;
-    border: 2px solid #fff;
-    border-radius: 10px;
+.team:hover {
+    transform: translateY(-10px);
 }
 
-.section-text {
-    flex: 2 1 300px;
-    padding: 0 20px;
-    font-size: 18px;
+.bar {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-weight: bold;
+    color: #000;
+    height: 0;
+    transition: height 1s ease;
 }
 
-.section-text h2 {
-    font-size: 24px;
+.team-name {
+    margin-top: 15px;
+    font-size: 22px;
+    color: #fff;
+    text-shadow: 0 0 5px #000;
+}
+
+.score {
+    font-size: 20px;
+    font-weight: bold;
     margin-bottom: 10px;
+}
+
+/* --- COULEURS PODIUM --- */
+.first .bar { 
+    background: linear-gradient(180deg, #00ff00, #008000); 
+    box-shadow: 0 0 25px #00ff00; 
+    animation: glow 2s infinite; 
+}
+.second .bar { 
+    background: linear-gradient(180deg, #00e5ff, #0077ff); 
+    box-shadow: 0 0 25px #00bfff; 
+}
+.third .bar { 
+    background: linear-gradient(180deg, #ff4d4d, #cc0000); 
+    box-shadow: 0 0 25px #ff4d4d; 
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 10px #00ff00; }
+    50% { box-shadow: 0 0 25px #00ff00; }
+    100% { box-shadow: 0 0 10px #00ff00; }
 }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 600px) {
-    .menu-toggle {
-        display: block;
-    }
-
+    .menu-toggle { display: block; }
     nav.vertical {
         transform: translateX(-100%);
         transition: transform 0.4s ease;
     }
-
     body.menu-open nav.vertical {
         transform: translateX(0);
     }
-
-    .content {
-        margin-left: 0;
-    }
-
-    .menu-items {
-        justify-content: center;
-        gap: 10px;
-    }
-
-    .menu-items a {
-        font-size: 14px;
-    }
-
-    .section {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .section.reverse {
-        flex-direction: column;
-    }
-
-    .section-text {
-        padding: 10px 0;
-    }
+    .content { margin-left: 0; }
+    .menu-items { justify-content: center; gap: 10px; }
+    .menu-items a { font-size: 14px; }
+    .podium { flex-direction: column; gap: 20px; }
 }
