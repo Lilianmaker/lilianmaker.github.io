@@ -1,10 +1,14 @@
 /* --- GLOBAL --- */
 body, html {
     margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #C8AD7F;
-    color: #111;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #fceabb, #f8b500, #ff6f61);
+      color: #111;
+      padding-top: 60px; /* espace pour menu fixe */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
 }
 
 /* --- MENU HORIZONTAL --- */
