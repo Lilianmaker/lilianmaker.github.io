@@ -61,27 +61,43 @@ const teams = Array.from(podium.querySelectorAll('.team'));
 teams.sort((a, b) => b.dataset.score - a.dataset.score);
 podium.innerHTML = '';
 
+// Calculer le score maximum pour la hauteur
+const maxScore = Math.max(...teams.map(t => +t.dataset.score));
+const maxHeight = 250;
+
 teams.forEach((team, index) => {
   team.classList.remove('first','second','third');
 
+  // Attribution de la place sur le podium
   if(index===0){ team.classList.add('first'); team.style.order=2; }
   else if(index===1){ team.classList.add('second'); team.style.order=1; }
   else { team.classList.add('third'); team.style.order=3; }
 
+  // Affichage du score
   const score = team.dataset.score;
   team.querySelector('.score').textContent = score + ' pts';
 
-  const maxHeight = 250;
-  const maxScore = Math.max(...teams.map(t => +t.dataset.score));
+  // Animation hauteur
   const height = (score / maxScore) * maxHeight;
-
   team.querySelector('.bar').style.height = '0px';
   podium.appendChild(team);
-
   setTimeout(() => {
     team.querySelector('.bar').style.height = height + 'px';
   }, 100);
 });
+
+// --- Confettis ---
+const colors = ['#ff0','#f39c12','#00ff00','#00e5ff','#ff4d4d','#ff69b4'];
+for(let i=0;i<80;i++){
+  const confetti = document.createElement('div');
+  confetti.classList.add('confetti');
+  confetti.style.left = Math.random() * window.innerWidth + 'px';
+  confetti.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+  confetti.style.width = confetti.style.height = (5 + Math.random()*5) + 'px';
+  confetti.style.animationDuration = (3 + Math.random()*3) + 's';
+  confetti.style.animationDelay = Math.random()*5 + 's';
+  document.body.appendChild(confetti);
+}
 </script>
 
 </body>
