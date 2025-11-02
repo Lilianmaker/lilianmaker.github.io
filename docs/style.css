@@ -21,12 +21,12 @@ nav.horizontal {
     z-index: 1000;
 }
 
-/* Liens du menu horizontal */
+/* Conteneur des liens */
 .menu-items {
     display: flex;
     justify-content: center; /* centre les liens */
     flex-wrap: nowrap;
-    width: 100%; /* prend toute la largeur pour le centrage */
+    width: auto; /* correction pour mobile */
 }
 
 .menu-items a {
@@ -45,10 +45,9 @@ nav.horizontal {
 /* --- BOUTON BURGER --- */
 .menu-toggle {
     display: none; /* caché sur PC */
-    position: absolute;
+    position: fixed; /* pour ne pas gêner le centrage des liens */
     left: 10px;
-    top: 50%; 
-    transform: translateY(-50%); /* centré verticalement par rapport au nav */
+    top: 10px; 
     background-color: #111;
     color: #fff;
     border: none;
@@ -169,7 +168,12 @@ nav.vertical a:hover {
         margin-left: 0;
     }
 
-    /* Liens plus petits */
+    /* Liens plus petits et centrés */
+    .menu-items {
+        justify-content: center;
+        width: auto; /* supprime 100% pour centrage correct */
+    }
+
     .menu-items a {
         margin: 0 10px;
         font-size: 14px;
