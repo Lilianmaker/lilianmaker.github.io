@@ -6,13 +6,13 @@
   <title>Résultats</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Menu horizontal fixe */
+    /* --- MENU --- */
     nav.horizontal {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background-color: #111;
+      background-color: #222;
       padding: 10px 20px;
       display: flex;
       justify-content: center;
@@ -30,69 +30,105 @@
       color: #f39c12;
     }
 
-    /* Contenu */
+    /* --- CONTENU --- */
+    body {
+      background: linear-gradient(135deg, #222, #444, #666);
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
     .content {
-      margin-top: 100px; /* pour ne pas cacher le titre ni le tableau */
+      margin-top: 100px;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 20px;
-      color: white;
-      font-family: 'Poppins', sans-serif;
-      background-color: #0a0a0a;
       min-height: 100vh;
     }
 
-    /* Titre du tableau */
     h1 {
       font-family: 'Brush Script MT', cursive;
-      font-size: 48px;
+      font-size: 52px;
       color: #fff;
-      text-shadow: 0 0 15px #f39c12, 0 0 30px #f39c12;
-      margin-bottom: 40px;
+      text-shadow: 0 0 20px #f39c12, 0 0 40px #f1c40f;
+      margin-bottom: 50px;
     }
 
-    /* Tableau */
-    table {
-      width: 70%;
-      border-collapse: collapse;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 0 25px rgba(243, 156, 18, 0.6);
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
+    /* --- PODIUM --- */
+    .podium {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 40px;
+      width: 80%;
+      max-width: 800px;
+      margin-top: 40px;
     }
 
-    th, td {
-      padding: 20px;
-      font-size: 24px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    .team {
+      text-align: center;
+      flex: 1;
+      position: relative;
+      transition: transform 0.3s ease;
     }
 
-    th {
-      background-color: rgba(243, 156, 18, 0.2);
-      text-transform: uppercase;
-      letter-spacing: 2px;
+    .team:hover {
+      transform: translateY(-10px);
     }
 
-    tr:hover {
-      background-color: rgba(243, 156, 18, 0.15);
-      transition: background-color 0.3s ease;
+    .bar {
+      width: 100%;
+      border-radius: 10px 10px 0 0;
+      background: linear-gradient(180deg, #f1c40f, #f39c12);
+      box-shadow: 0 0 25px #f39c12;
+      transition: height 1s ease;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .team-name {
+      margin-top: 15px;
+      font-size: 22px;
+      letter-spacing: 1px;
     }
 
     .score {
+      font-size: 20px;
       font-weight: bold;
-      color: #f39c12;
-      text-shadow: 0 0 10px #f39c12, 0 0 20px #f39c12;
-      animation: pulse 2s infinite;
+      margin-bottom: 10px;
     }
 
-    /* Effet pulsant fluo */
-    @keyframes pulse {
-      0% { text-shadow: 0 0 10px #f39c12, 0 0 20px #f39c12; }
-      50% { text-shadow: 0 0 25px #f1c40f, 0 0 45px #f39c12; }
-      100% { text-shadow: 0 0 10px #f39c12, 0 0 20px #f39c12; }
+    /* --- Hauteur du podium selon score --- */
+    .first .bar { height: 250px; background: linear-gradient(180deg, #f1c40f, #f39c12); }
+    .second .bar { height: 200px; background: linear-gradient(180deg, #00e5ff, #0077ff); box-shadow: 0 0 25px #00bfff; }
+    .third .bar { height: 150px; background: linear-gradient(180deg, #ff69b4, #ff1493); box-shadow: 0 0 25px #ff66cc; }
+
+    /* --- Animation pulsante --- */
+    @keyframes glow {
+      0% { box-shadow: 0 0 10px #f39c12; }
+      50% { box-shadow: 0 0 25px #f1c40f; }
+      100% { box-shadow: 0 0 10px #f39c12; }
     }
+
+    .first .bar {
+      animation: glow 2s infinite;
+    }
+
+    /* Fond plus clair */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.1), transparent 60%);
+      z-index: -1;
+    }
+
   </style>
 </head>
 <body>
@@ -107,26 +143,30 @@
 
   <!-- Contenu principal -->
   <div class="content">
-    <h1>Tableau des Scores</h1>
+    <h1>Classement des Équipes</h1>
 
-    <table>
-      <tr>
-        <th>Équipe</th>
-        <th>Score</th>
-      </tr>
-      <tr>
-        <td>Équipe A</td>
-        <td class="score">82</td>
-      </tr>
-      <tr>
-        <td>Équipe B</td>
-        <td class="score">74</td>
-      </tr>
-      <tr>
-        <td>Équipe C</td>
-        <td class="score">68</td>
-      </tr>
-    </table>
+    <div class="podium">
+      <div class="team second">
+        <div class="bar">
+          <span class="score">74 pts</span>
+        </div>
+        <div class="team-name">Équipe B</div>
+      </div>
+
+      <div class="team first">
+        <div class="bar">
+          <span class="score">82 pts</span>
+        </div>
+        <div class="team-name">Équipe A 🏆</div>
+      </div>
+
+      <div class="team third">
+        <div class="bar">
+          <span class="score">68 pts</span>
+        </div>
+        <div class="team-name">Équipe C</div>
+      </div>
+    </div>
   </div>
 
 </body>
