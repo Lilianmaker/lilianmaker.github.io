@@ -60,7 +60,7 @@ nav.horizontal {
 /* --- MENU VERTICAL --- */
 nav.vertical {
     position: fixed;
-    top: 30px;
+    top: 40px;
     left: 0;
     width: 150px;
     height: calc(100% - 60px);
