@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accueil</title>
+  <title>Résultats</title>
   <link rel="stylesheet" href="style.css">
   <style>
     /* Menu horizontal fixe */
@@ -15,7 +15,7 @@
       background-color: #111;
       padding: 10px 20px;
       display: flex;
-      justify-content: center; /* centrer les liens */
+      justify-content: center;
       z-index: 1000;
     }
 
@@ -32,16 +32,66 @@
 
     /* Contenu */
     .content {
-      margin-top: 60px; /* espace pour ne pas cacher le menu */
+      margin-top: 100px; /* pour ne pas cacher le titre ni le tableau */
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
       padding: 20px;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0a0a0a;
+      min-height: 100vh;
     }
 
-    .content img {
-      max-width: 90%;
-      height: auto;
-      display: block;
+    /* Titre du tableau */
+    h1 {
+      font-family: 'Brush Script MT', cursive;
+      font-size: 48px;
+      color: #fff;
+      text-shadow: 0 0 15px #f39c12, 0 0 30px #f39c12;
+      margin-bottom: 40px;
+    }
+
+    /* Tableau */
+    table {
+      width: 70%;
+      border-collapse: collapse;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(243, 156, 18, 0.6);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+    }
+
+    th, td {
+      padding: 20px;
+      font-size: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    th {
+      background-color: rgba(243, 156, 18, 0.2);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    tr:hover {
+      background-color: rgba(243, 156, 18, 0.15);
+      transition: background-color 0.3s ease;
+    }
+
+    .score {
+      font-weight: bold;
+      color: #f39c12;
+      text-shadow: 0 0 10px #f39c12, 0 0 20px #f39c12;
+      animation: pulse 2s infinite;
+    }
+
+    /* Effet pulsant fluo */
+    @keyframes pulse {
+      0% { text-shadow: 0 0 10px #f39c12, 0 0 20px #f39c12; }
+      50% { text-shadow: 0 0 25px #f1c40f, 0 0 45px #f39c12; }
+      100% { text-shadow: 0 0 10px #f39c12, 0 0 20px #f39c12; }
     }
   </style>
 </head>
@@ -49,15 +99,34 @@
 
   <!-- Menu horizontal -->
   <nav class="horizontal">
-    <a href="index.html" class="active">Accueil</a>
+    <a href="index.html">Accueil</a>
     <a href="equipes.html">Équipes</a>
     <a href="soiree.html">La soirée</a>
-    <a href="resultat.html">Résultats</a>
+    <a href="resultat.html" class="active">Résultats</a>
   </nav>
 
-  <!-- Contenu -->
+  <!-- Contenu principal -->
   <div class="content">
-    <img src="image/ChatGPT.png" alt="Événement">
+    <h1>Tableau des Scores</h1>
+
+    <table>
+      <tr>
+        <th>Équipe</th>
+        <th>Score</th>
+      </tr>
+      <tr>
+        <td>Équipe A</td>
+        <td class="score">82</td>
+      </tr>
+      <tr>
+        <td>Équipe B</td>
+        <td class="score">74</td>
+      </tr>
+      <tr>
+        <td>Équipe C</td>
+        <td class="score">68</td>
+      </tr>
+    </table>
   </div>
 
 </body>
