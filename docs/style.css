@@ -7,20 +7,20 @@ nav.horizontal {
     background-color: #111;
     padding: 12px 20px;
     display: flex;
-    justify-content: center; /* centre horizontalement */
-    align-items: center;     /* centre verticalement */
+    justify-content: space-between; /* espace entre burger et liens */
+    align-items: center;
     z-index: 1000;
     box-sizing: border-box;
 }
 
-/* Conteneur des liens */
+/* Liens du menu horizontal */
 .menu-items {
     display: flex;
-    justify-content: center; /* centre les liens */
-    gap: 20px;               /* espace entre les liens */
+    justify-content: center;
+    gap: 20px;
 }
 
-/* Liens du menu */
+/* Liens */
 .menu-items a {
     color: #fff;
     text-decoration: none;
@@ -28,51 +28,50 @@ nav.horizontal {
     transition: color 0.3s;
 }
 
-/* Lien actif reste blanc, changement uniquement au hover */
 .menu-items a:hover {
     color: #f39c12;
 }
 
-/* --- BOUTON BURGER (mobile) --- */
+/* --- BOUTON BURGER --- */
 .menu-toggle {
-    display: none;           /* caché sur desktop */
-    position: fixed;
-    left: 10px;
-    top: 12px;
+    display: none; /* caché sur desktop */
     background-color: #111;
     color: #fff;
     border: none;
-    font-size: 18px;
+    font-size: 20px;
     cursor: pointer;
     padding: 6px 10px;
     border-radius: 5px;
-    z-index: 1100;
 }
 
-/* --- RESPONSIVE (mobile) --- */
+/* --- RESPONSIVE --- */
 @media (max-width: 600px) {
-    .menu-toggle {
-        display: block;       /* bouton visible sur mobile */
-    }
-
-    nav.horizontal .menu-items {
-        flex-direction: column; /* liens empilés */
-        background-color: #111;
-        position: fixed;
-        top: 50px;             /* sous le menu horizontal */
-        left: 0;
-        width: 100%;
-        text-align: center;
-        display: none;          /* caché par défaut */
+    nav.horizontal {
+        justify-content: center; /* centre le contenu horizontal */
+        flex-direction: column;
         padding: 10px 0;
     }
 
-    body.menu-open nav.horizontal .menu-items {
-        display: flex;         /* affiché quand burger cliqué */
+    .menu-toggle {
+        display: block; /* visible sur mobile */
+        margin-bottom: 10px;
+    }
+
+    .menu-items {
+        flex-direction: column;  /* liens empilés */
+        display: none;           /* caché par défaut */
+        width: 100%;
+        text-align: center;
+        gap: 10px;
+    }
+
+    /* Quand burger cliqué */
+    body.menu-open .menu-items {
+        display: flex;
     }
 
     .menu-items a {
-        margin: 10px 0;        /* espace vertical entre liens */
+        margin: 0;
         font-size: 16px;
     }
 }
