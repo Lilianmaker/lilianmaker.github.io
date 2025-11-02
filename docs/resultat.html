@@ -21,7 +21,7 @@
     h1 {
       font-family: 'Brush Script MT', cursive;
       font-size: 52px;
-      color: #000000;
+      color: #fff;
       text-shadow: 0 0 10px #fff, 0 0 20px #f39c12;
       margin-bottom: 50px;
     }
@@ -98,9 +98,19 @@
       margin-bottom: 10px;
     }
 
-    .first .bar { background: linear-gradient(180deg, #25c70a, #93f86b); box-shadow: 0 0 25px #f39c12; animation: glow 2s infinite; }
-    .second .bar { background: linear-gradient(180deg, #00e5ff, #0077ff); box-shadow: 0 0 25px #00bfff; }
-    .third .bar { background: linear-gradient(180deg, #cd2c0a, #f99b91); box-shadow: 0 0 25px #ff66cc; }
+    .first .bar { 
+      background: linear-gradient(180deg, #f1c40f, #f39c12); 
+      box-shadow: 0 0 25px #f39c12; 
+      animation: glow 2s infinite; 
+    }
+    .second .bar { 
+      background: linear-gradient(180deg, #00e5ff, #0077ff); 
+      box-shadow: 0 0 25px #00bfff; 
+    }
+    .third .bar { 
+      background: linear-gradient(180deg, #ff69b4, #ff1493); 
+      box-shadow: 0 0 25px #ff66cc; 
+    }
 
     @keyframes glow {
       0% { box-shadow: 0 0 10px #f39c12; }
@@ -124,15 +134,15 @@
 
   <div class="podium" id="podium">
     <div class="team" data-name="Hellfest" data-score="100">
-      <div class="bar"><span class="score">4 pts</span></div>
+      <div class="bar"><span class="score"></span></div>
       <div class="team-name">Hellfest</div>
     </div>
     <div class="team" data-name="Coachella" data-score="72">
-      <div class="bar"><span class="score">72 pts</span></div>
+      <div class="bar"><span class="score"></span></div>
       <div class="team-name">Coachella</div>
     </div>
     <div class="team" data-name="FIL" data-score="40">
-      <div class="bar"><span class="score">108 pts</span></div>
+      <div class="bar"><span class="score"></span></div>
       <div class="team-name">FIL</div>
     </div>
   </div>
@@ -145,6 +155,7 @@
     teams.sort((a, b) => b.dataset.score - a.dataset.score);
 
     podium.innerHTML = '';
+
     teams.forEach((team, index) => {
       team.classList.remove('first', 'second', 'third');
 
@@ -153,10 +164,14 @@
       else if(index === 1) { team.classList.add('second'); team.style.order = 1; } // gauche
       else { team.classList.add('third'); team.style.order = 3; }              // droite
 
+      // Mettre à jour le score affiché
+      const score = team.dataset.score;
+      team.querySelector('.score').textContent = score + ' pts';
+
       // Barres animées
       const maxHeight = 250;
       const maxScore = Math.max(...teams.map(t => +t.dataset.score));
-      const height = (team.dataset.score / maxScore) * maxHeight;
+      const height = (score / maxScore) * maxHeight;
 
       // Départ à 0 pour animation
       team.querySelector('.bar').style.height = '0px';
