@@ -47,10 +47,10 @@ nav.horizontal {
     position: fixed;
     left: 10px;
     top: 1px;
-    background-color: #111;
+    background-color: transparent;
     color: #fff;
     border: none;
-    font-size: 18px;
+    font-size: 10px;
     cursor: pointer;
     padding: 6px 10px;
     border-radius: 5px;
