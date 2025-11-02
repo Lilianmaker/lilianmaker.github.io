@@ -1,12 +1,12 @@
-
 /* --- GLOBAL --- */
 body, html {
     margin: 0;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #fceabb, #f8b500, #ff6f61);
     color: #111;
-    padding-top: 60px; /* espace pour menu horizontal */
+    padding-top: 60px; /* espace pour menu horizontal fixe */
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 /* --- MENU HORIZONTAL --- */
@@ -41,67 +41,6 @@ nav.horizontal {
     color: #f39c12;
 }
 
-/* --- BOUTON BURGER --- */
-.menu-toggle {
-    display: none;
-    position: fixed;
-    left: 10px;
-    top: 10px;
-    background-color: #111;
-    color: #fff;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 6px 10px;
-    border-radius: 5px;
-    z-index: 1100;
-}
-
-/* --- MENU VERTICAL --- */
-nav.vertical {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    width: 150px;
-    height: calc(100% - 60px);
-    background-color: #111;
-    padding-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 999;
-}
-
-nav.vertical a.titre-equipes {
-    font-family: 'Brush Script MT', cursive;
-    font-size: 28px;
-    color: #fff;
-    text-align: center;
-    margin-bottom: 20px;
-    border-bottom: 3px solid #f39c12;
-    padding-bottom: 5px;
-}
-
-nav.vertical a {
-    color: #fff;
-    text-decoration: none;
-    margin: 10px 0;
-    padding: 5px 15px;
-    transition: color 0.3s, transform 0.3s;
-}
-
-nav.vertical a:hover {
-    color: #f39c12;
-    transform: translateX(5px);
-}
-
-/* --- CONTENU --- */
-.content {
-    margin-left: 150px;
-    padding: 20px;
-    align-self: flex-start;
-}
-
 /* --- PODIUM --- */
 .podium {
     display: flex;
@@ -111,6 +50,7 @@ nav.vertical a:hover {
     width: 80%;
     max-width: 800px;
     position: relative;
+    margin-top: 50px;
 }
 
 .team {
@@ -170,18 +110,53 @@ nav.vertical a:hover {
     100% { box-shadow: 0 0 10px #00ff00; }
 }
 
-/* --- RESPONSIVE --- */
+/* --- CONFETTIS --- */
+.confetti {
+    position: fixed;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    opacity: 0.8;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: 50%;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10px) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* --- RESPONSIVE MOBILE --- */
 @media (max-width: 600px) {
-    .menu-toggle { display: block; }
-    nav.vertical {
-        transform: translateX(-100%);
-        transition: transform 0.4s ease;
+    .content {
+        margin-left: 0;
+        padding: 10px;
     }
-    body.menu-open nav.vertical {
-        transform: translateX(0);
+
+    .menu-items {
+        justify-content: center;
+        gap: 10px;
     }
-    .content { margin-left: 0; }
-    .menu-items { justify-content: center; gap: 10px; }
-    .menu-items a { font-size: 14px; }
-    .podium { flex-direction: column; gap: 20px; }
+
+    .menu-items a {
+        font-size: 14px;
+    }
+
+    .podium {
+        flex-direction: row; /* garder les équipes côte à côte */
+        gap: 15px;
+        width: 100%;
+    }
+
+    .team {
+        flex: 1;
+        min-width: 60px; /* éviter que les barres soient trop petites */
+    }
+
+    .bar {
+        max-height: 200px; /* adapter la hauteur */
+    }
 }
