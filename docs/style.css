@@ -100,6 +100,9 @@ nav.vertical a:hover {
 .content {
     margin-left: 150px; /* espace pour menu vertical */
     padding: 20px;
+     display: flex;
+    justify-content: center; /* centre horizontalement */
+    flex-direction: column;  /* utile si tu ajoutes du texte dessous */
 }
 
 /* --- SECTIONS ÉQUIPES --- */
