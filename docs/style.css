@@ -1,12 +1,12 @@
+
 /* --- GLOBAL --- */
 body, html {
     margin: 0;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #fceabb, #f8b500, #ff6f61);
     color: #111;
-    padding-top: 60px; /* espace pour menu horizontal fixe */
+    padding-top: 60px; /* espace pour menu horizontal */
     min-height: 100vh;
-    overflow-x: hidden;
 }
 
 /* --- MENU HORIZONTAL --- */
@@ -41,7 +41,23 @@ nav.horizontal {
     color: #f39c12;
 }
 
-/* --- MENU VERTICAL (optionnel) --- */
+/* --- BOUTON BURGER --- */
+.menu-toggle {
+    display: none;
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    background-color: #111;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 5px;
+    z-index: 1100;
+}
+
+/* --- MENU VERTICAL --- */
 nav.vertical {
     position: fixed;
     top: 60px;
@@ -81,7 +97,7 @@ nav.vertical a:hover {
 
 /* --- CONTENU --- */
 .content {
-    margin-left: 150px; /* espace pour le menu vertical */
+    margin-left: 150px;
     padding: 20px;
     align-self: flex-start;
 }
@@ -95,7 +111,6 @@ nav.vertical a:hover {
     width: 80%;
     max-width: 800px;
     position: relative;
-    margin-top: 50px;
 }
 
 .team {
@@ -155,69 +170,18 @@ nav.vertical a:hover {
     100% { box-shadow: 0 0 10px #00ff00; }
 }
 
-/* --- CONFETTIS --- */
-.confetti {
-    position: fixed;
-    top: 0;
-    width: 10px;
-    height: 10px;
-    background-color: red;
-    opacity: 0.8;
-    z-index: 1;
-    pointer-events: none;
-    border-radius: 50%;
-    animation: fall linear infinite;
-}
-
-@keyframes fall {
-    0% { transform: translateY(-10px) rotate(0deg); }
-    100% { transform: translateY(110vh) rotate(360deg); }
-}
-
-/* --- RESPONSIVE MOBILE --- */
+/* --- RESPONSIVE --- */
 @media (max-width: 600px) {
-    .content {
-        margin-left: 0;
-        padding: 10px;
+    .menu-toggle { display: block; }
+    nav.vertical {
+        transform: translateX(-100%);
+        transition: transform 0.4s ease;
     }
-
-    .menu-items {
-        gap: 10px;
+    body.menu-open nav.vertical {
+        transform: translateX(0);
     }
-
-    .menu-items a {
-        font-size: 14px;
-    }
-
-    .podium {
-        flex-direction: row; /* toujours côte à côte */
-        gap: 15px;
-        width: 100%;
-    }
-
-    .team {
-        flex: 1;
-        min-width: 60px; /* éviter barres trop petites */
-    }
-
-    .bar {
-        max-height: 200px;
-    }
-
-    /* Images des sections équipes */
-    .section {
-        flex-direction: row; /* garder images à côté du texte si possible */
-        flex-wrap: wrap;
-    }
-
-    .section-image, .section-text {
-        flex: 1 1 100%;
-        padding: 5px;
-        text-align: center;
-    }
-
-    .section-image img {
-        max-width: 100%;
-        height: auto;
-    }
+    .content { margin-left: 0; }
+    .menu-items { justify-content: center; gap: 10px; }
+    .menu-items a { font-size: 14px; }
+    .podium { flex-direction: column; gap: 20px; }
 }
