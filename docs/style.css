@@ -4,7 +4,7 @@ body, html {
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #fceabb, #f8b500, #ff6f61);
       color: #111;
-      padding-top: 60px; /* espace pour menu fixe */
+      padding-top: 30px; /* espace pour menu fixe */
       display: flex;
       flex-direction: column;
       align-items: center;
