@@ -137,15 +137,25 @@
     const podium = document.getElementById('podium');
     const teams = Array.from(podium.querySelectorAll('.team'));
 
-    teams.sort((a,b) => b.dataset.score - a.dataset.score);
+    // Trier par score décroissant
+    teams.sort((a, b) => b.dataset.score - a.dataset.score);
 
     podium.innerHTML = '';
     teams.forEach((team, index) => {
-      team.classList.remove('first','second','third');
-      if(index===0) team.classList.add('first');
-      else if(index===1) team.classList.add('second');
-      else team.classList.add('third');
+      team.classList.remove('first', 'second', 'third');
 
+      if(index === 0) {
+        team.classList.add('first');
+        team.style.order = 2; // centre
+      } else if(index === 1) {
+        team.classList.add('second');
+        team.style.order = 1; // gauche
+      } else {
+        team.classList.add('third');
+        team.style.order = 3; // droite
+      }
+
+      // Hauteur proportionnelle
       const maxHeight = 250;
       const maxScore = Math.max(...teams.map(t => +t.dataset.score));
       const height = (team.dataset.score / maxScore) * maxHeight;
