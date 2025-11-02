@@ -9,19 +9,20 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #eee, #ccc);
+      background: linear-gradient(135deg, #fceabb, #f8b500, #ff6f61);
       color: #111;
       padding-top: 60px; /* espace pour menu fixe */
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: 100vh;
     }
 
     h1 {
       font-family: 'Brush Script MT', cursive;
       font-size: 52px;
-      color: #f39c12;
-      text-shadow: 0 0 10px #f1c40f;
+      color: #fff;
+      text-shadow: 0 0 10px #fff, 0 0 20px #f39c12;
       margin-bottom: 50px;
     }
 
@@ -80,12 +81,15 @@
       justify-content: center;
       font-weight: bold;
       color: #000;
-      transition: height 0.5s ease;
+      height: 0;
+      transition: height 1s ease;
     }
 
     .team-name {
       margin-top: 15px;
       font-size: 22px;
+      color: #fff;
+      text-shadow: 0 0 5px #000;
     }
 
     .score {
@@ -144,24 +148,24 @@
     teams.forEach((team, index) => {
       team.classList.remove('first', 'second', 'third');
 
-      if(index === 0) {
-        team.classList.add('first');
-        team.style.order = 2; // centre
-      } else if(index === 1) {
-        team.classList.add('second');
-        team.style.order = 1; // gauche
-      } else {
-        team.classList.add('third');
-        team.style.order = 3; // droite
-      }
+      // Position sur le podium
+      if(index === 0) { team.classList.add('first'); team.style.order = 2; }   // centre
+      else if(index === 1) { team.classList.add('second'); team.style.order = 1; } // gauche
+      else { team.classList.add('third'); team.style.order = 3; }              // droite
 
-      // Hauteur proportionnelle
+      // Barres animées
       const maxHeight = 250;
       const maxScore = Math.max(...teams.map(t => +t.dataset.score));
       const height = (team.dataset.score / maxScore) * maxHeight;
-      team.querySelector('.bar').style.height = height + 'px';
 
+      // Départ à 0 pour animation
+      team.querySelector('.bar').style.height = '0px';
       podium.appendChild(team);
+
+      // Animation montée progressive
+      setTimeout(() => {
+        team.querySelector('.bar').style.height = height + 'px';
+      }, 100);
     });
   </script>
 
