@@ -4,55 +4,184 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Résultats</title>
-<link rel="stylesheet" href="style.css">
+<style>
+/* --- GLOBAL --- */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #fceabb, #f8b500, #ff6f61);
+  color: #111;
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* --- MENU HORIZONTAL --- */
+nav.horizontal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #111;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+}
+
+nav.horizontal a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 15px;
+  transition: color 0.3s;
+}
+
+nav.horizontal a:hover,
+nav.horizontal a.active {
+  color: #f39c12;
+}
+
+/* --- TITRE --- */
+h1 {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 52px;
+  color: #000;
+  text-shadow: 0 0 10px #fff, 0 0 20px #f39c12;
+  margin-bottom: 50px;
+  z-index: 10;
+  position: relative;
+}
+
+/* --- PODIUM --- */
+.podium {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 40px;
+  width: 80%;
+  max-width: 800px;
+  position: relative;
+  z-index: 5;
+}
+
+.team {
+  text-align: center;
+  flex: 1;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.team:hover {
+  transform: translateY(-10px);
+}
+
+.bar {
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-weight: bold;
+  color: #000;
+  height: 0;
+  transition: height 1s ease;
+}
+
+.team-name {
+  margin-top: 15px;
+  font-size: 22px;
+  color: #fff;
+  text-shadow: 0 0 5px #000;
+}
+
+.score {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* --- COULEURS PODIUM --- */
+.first .bar { 
+  background: linear-gradient(180deg, #00ff00, #008000); 
+  box-shadow: 0 0 25px #00ff00; 
+  animation: glow 2s infinite; 
+}
+.second .bar { 
+  background: linear-gradient(180deg, #00e5ff, #0077ff); 
+  box-shadow: 0 0 25px #00bfff; 
+}
+.third .bar { 
+  background: linear-gradient(180deg, #ff4d4d, #cc0000); 
+  box-shadow: 0 0 25px #ff4d4d; 
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 10px #00ff00; }
+  50% { box-shadow: 0 0 25px #00ff00; }
+  100% { box-shadow: 0 0 10px #00ff00; }
+}
+
+/* --- CONFETTIS --- */
+.confetti {
+  position: fixed;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  opacity: 0.8;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 50%;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10px) rotate(0deg); }
+  100% { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 600px) {
+  .podium { gap: 20px; }
+  .team-name { font-size: 18px; }
+  .score { font-size: 16px; }
+}
+</style>
 </head>
 <body>
 
 <!-- Menu horizontal -->
 <nav class="horizontal">
-  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-  <div class="menu-items">
-    <a href="index.html">Accueil</a>
-    <a href="equipes.html">Équipes</a>
-    <a href="soiree.html">La soirée</a>
-    <a href="resultat.html" class="active">Résultats</a>
-  </div>
-</nav>
-
-<!-- Menu vertical -->
-<nav class="vertical">
-  <a href="equipes.html" class="titre-equipes">Les Équipes</a>
-  <a href="Coachella.html">Coachella</a>
-  <a href="hellfest.html">HellFest</a>
-  <a href="fil.html">F I L</a>
+  <a href="index.html">Accueil</a>
+  <a href="equipes.html">Équipes</a>
+  <a href="soiree.html">La soirée</a>
+  <a href="resultat.html" class="active">Résultats</a>
 </nav>
 
 <!-- Contenu principal -->
-<div class="content">
-  <h1>Classement des Équipes</h1>
+<h1>Classement des Équipes</h1>
 
-  <div class="podium" id="podium">
-    <div class="team" data-name="Hellfest" data-score="4">
-      <div class="bar"><span class="score"></span></div>
-      <div class="team-name">Hellfest</div>
-    </div>
-    <div class="team" data-name="Coachella" data-score="7">
-      <div class="bar"><span class="score"></span></div>
-      <div class="team-name">Coachella</div>
-    </div>
-    <div class="team" data-name="FIL" data-score="2">
-      <div class="bar"><span class="score"></span></div>
-      <div class="team-name">FIL</div>
-    </div>
+<div class="podium" id="podium">
+  <div class="team" data-name="Hellfest" data-score="4">
+    <div class="bar"><span class="score"></span></div>
+    <div class="team-name">Hellfest</div>
+  </div>
+  <div class="team" data-name="Coachella" data-score="7">
+    <div class="bar"><span class="score"></span></div>
+    <div class="team-name">Coachella</div>
+  </div>
+  <div class="team" data-name="FIL" data-score="2">
+    <div class="bar"><span class="score"></span></div>
+    <div class="team-name">FIL</div>
   </div>
 </div>
 
 <script>
-// --- Menu burger ---
-function toggleMenu() {
-  document.body.classList.toggle('menu-open');
-}
-
 // --- Podium dynamique ---
 const podium = document.getElementById('podium');
 const teams = Array.from(podium.querySelectorAll('.team'));
@@ -86,7 +215,7 @@ teams.forEach((team, index) => {
   }, 100);
 });
 
-// --- Confettis ---
+// --- Générer confettis ---
 const colors = ['#ff0','#f39c12','#00ff00','#00e5ff','#ff4d4d','#ff69b4'];
 for(let i=0;i<80;i++){
   const confetti = document.createElement('div');
