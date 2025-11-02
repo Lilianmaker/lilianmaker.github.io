@@ -178,4 +178,11 @@ nav.vertical a:hover {
         margin: 0 10px;
         font-size: 14px;
     }
+    .podium {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 40px;
+}
+
 }
