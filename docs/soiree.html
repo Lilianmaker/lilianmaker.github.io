@@ -3,61 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accueil</title>
+  <title>Équipes</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* Menu horizontal fixe */
-    nav.horizontal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: #111;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: center; /* centrer les liens */
-      z-index: 1000;
-    }
-
-    nav.horizontal a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      margin: 0 15px;
-    }
-
-    nav.horizontal a:hover {
-      color: #f39c12;
-    }
-
-    /* Contenu */
-    .content {
-      margin-top: 60px; /* espace pour ne pas cacher le menu */
-      display: flex;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .content img {
-      max-width: 90%;
-      height: auto;
-      display: block;
-    }
-  </style>
 </head>
 <body>
 
   <!-- Menu horizontal -->
   <nav class="horizontal">
-    <a href="index.html" class="active">Accueil</a>
-    <a href="equipes.html">Équipes</a>
-    <a href="soiree.html">La soirée</a>
-    <a href="resultat.html">Résultats</a>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <div class="menu-items">
+      <a href="index.html">Accueil</a>
+      <a href="equipes.html" class="active">Équipes</a>
+      <a href="soiree.html">La soirée</a>
+      <a href="resultat.html">Résultats</a>
+    </div>
   </nav>
 
-  <!-- Contenu -->
-  <div class="content">
+  <!-- Menu vertical -->
+  <nav class="vertical">
+    <a href="equipes.html" class="titre-equipes">Les Équipes</a>
+    
+    <a href="Coachella.html">Coachella</a>
+    <a href="hellfest.html">HellFest</a>
+    <a href="fil.html">F I L</a>
+  </nav>
 
+  <!-- Contenu principal -->
+  <div class="content">
     <h1> 🌟 Soirée FLUO – Brille dans la nuit ! 🌟</h1>
     <p> 
 <br><br><br><br><br><br>
@@ -68,5 +40,13 @@ Quand la lumière baisse, le fluo prend le relais.
 Sors tes tenues les plus flashy, et prépare-toi à danser sous les néons jusqu’au bout de la nuit. </p>
   </div>
 
+ 
+    
+
+  <script>
+    function toggleMenu() {
+      document.body.classList.toggle('menu-open');
+    }
+  </script>
 </body>
 </html>
