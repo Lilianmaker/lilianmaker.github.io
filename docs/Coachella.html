@@ -1,79 +1,207 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Équipes</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+/* --- GLOBAL --- */
+body, html {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #fceabb, #f8b500, #ff6f61);
+    color: #111;
+    padding-top: 60px; /* espace pour menu horizontal fixe */
+    min-height: 100vh;
+}
 
-  <!-- Menu horizontal -->
-  <nav class="horizontal">
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <div class="menu-items">
-      <a href="index.html">Accueil</a>
-      <a href="equipes.html" class="active">Équipes</a>
-      <a href="soiree.html">La soirée</a>
-      <a href="resultat.html">Résultats</a>
-    </div>
-  </nav>
+/* --- MENU HORIZONTAL --- */
+nav.horizontal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #111;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
 
-  <!-- Menu vertical -->
-  <nav class="vertical">
-    <a href="equipes.html" class="titre-equipes">Les Équipes</a>
-    
-    <a href="Coachella.html">Coachella</a>
-    <a href="hellfest.html">HellFest</a>
-    <a href="fil.html">F I L</a>
-  </nav>
+.menu-items {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
 
-  <!-- Contenu principal -->
-  <div class="content">
-    <div class="section">
-      <div class="section-image">
-        <img src="image/coachella.webp" alt="Coachella">
-      </div>
-      <div class="section-text">
-        <h2>Coachella</h2>
-        <p>
-          Coachella, c’est le Disneyland des mélomanes sous acide de soleil 🌴🎶
-          Imagine : deux week-ends par an, au milieu du désert californien, des milliers de gens en tenues boho-chic, paillettes plein les cheveux et smartphones à bout de bras.
-        </p>
-      </div>
-    </div>
+.menu-items a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s, transform 0.3s;
+}
 
-    <div class="section reverse">
-      <div class="section-image">
-        <img src="image/hellfest.jpg" alt="HellFest">
-      </div>
-      <div class="section-text">
-        <h2>HellFest</h2>
-        <p>
-          Le Hellfest, c’est le parc d’attractions des métalleux en short et t-shirts noirs 🤘🔥
-          Un petit village de clous, tatouages, et piercings, planté à Clisson chaque été.
-        </p>
-      </div>
-    </div>
-    <div class="section">
-      <div class="section-image">
-        <img src="image/fil.jpg" alt="FIL">
-      </div>
-      <div class="section-text">
-        <h2>Festival Interceltique de Lorient</h2>
-        <p>
-         FIL </p>
-      </div>
-    </div>
-  </div>
+.menu-items a:hover,
+.menu-items a.active {
+    color: #f39c12;
+    transform: scale(1.1);
+}
 
- 
-    
+/* --- BOUTON BURGER --- */
+.menu-toggle {
+    display: none;
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    background-color: #111;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 5px;
+    z-index: 1100;
+}
 
-  <script>
-    function toggleMenu() {
-      document.body.classList.toggle('menu-open');
+/* --- MENU VERTICAL --- */
+nav.vertical {
+    position: fixed;
+    top: 60px; /* juste sous le menu horizontal */
+    left: 0;
+    width: 150px;
+    height: calc(100% - 60px);
+    background-color: #111;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 999;
+}
+
+nav.vertical a.titre-equipes {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 28px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #f39c12;
+    padding-bottom: 5px;
+}
+
+nav.vertical a {
+    color: #fff;
+    text-decoration: none;
+    margin: 10px 0;
+    padding: 5px 15px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+nav.vertical a:hover {
+    color: #f39c12;
+    transform: translateX(5px);
+}
+
+/* --- CONTENU --- */
+.content {
+    margin-left: 150px; /* espace pour menu vertical */
+    padding: 20px;
+    align-self: flex-start; /* éviter le centrage vertical */
+}
+
+/* --- SECTIONS --- */
+.section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 30px 0;
+    gap: 20px;
+}
+
+.section.reverse {
+    flex-direction: row-reverse;
+}
+
+.section-image {
+    flex: 1 1 300px;
+    text-align: center;
+    position: relative;
+}
+
+.section-image img {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Effet visuel sur les images */
+.section-image img:hover {
+    transform: scale(1.05) rotate(-1deg);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.section-text {
+    flex: 2 1 300px;
+    padding: 0 20px;
+    font-size: 18px;
+    animation: slideFadeIn 1s ease forwards;
+    opacity: 0;
+}
+
+.section-text h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #f39c12;
+    text-shadow: 0 0 5px #f1c40f, 0 0 10px #f1c40f;
+    animation: glowTitle 2s infinite alternate;
+}
+
+/* Animation pour le texte */
+@keyframes slideFadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Glow pour le titre */
+@keyframes glowTitle {
+    0% { text-shadow: 0 0 5px #f1c40f, 0 0 10px #f39c12; }
+    100% { text-shadow: 0 0 15px #f1c40f, 0 0 25px #f39c12; }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 600px) {
+    .menu-toggle {
+        display: block;
     }
-  </script>
-</body>
-</html>
+
+    nav.vertical {
+        transform: translateX(-100%);
+        transition: transform 0.4s ease;
+    }
+
+    body.menu-open nav.vertical {
+        transform: translateX(0);
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .menu-items {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .menu-items a {
+        font-size: 14px;
+    }
+
+    .section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .section.reverse {
+        flex-direction: column;
+    }
+
+    .section-text {
+        padding: 10px 0;
+    }
+}
