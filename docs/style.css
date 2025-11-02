@@ -46,7 +46,7 @@ nav.horizontal {
     display: none; /* caché sur desktop */
     position: fixed;
     left: 10px;
-    top: 5px;
+    top: 1px;
     background-color: #111;
     color: #fff;
     border: none;
