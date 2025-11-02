@@ -155,14 +155,8 @@ nav.horizontal {
         flex: 1;
         min-width: 60px; /* éviter que les barres soient trop petites */
     }
-    /* --- CENTRAGE IMAGE DANS .CONTENT --- */
-.content {
-    display: flex;
-    justify-content: center; /* centre horizontalement */
-    align-items: center;     /* centre verticalement */
-    height: calc(100vh - 60px); /* prend toute la hauteur restante après le menu fixe */
-    padding: 20px;           /* optionnel : espace autour de l'image */
-}
+   
+
 
 
     .bar {
