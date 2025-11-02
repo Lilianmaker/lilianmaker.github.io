@@ -10,16 +10,15 @@ body, html {
 
 /* --- MENU HORIZONTAL --- */
 nav.horizontal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #111;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+   position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #111;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: center; /* centrer les liens */
+      z-index: 1000;
 }
 
 .menu-items {
