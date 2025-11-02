@@ -3,41 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accueil</title>
+  <title>Équipes</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* Menu horizontal fixe */
-   
-
-    /* Contenu */
-    .content {
-      margin-top: 60px; /* espace pour ne pas cacher le menu */
-      display: flex;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .content img {
-      max-width: 90%;
-      height: auto;
-      display: block;
-    }
-  </style>
 </head>
 <body>
 
   <!-- Menu horizontal -->
   <nav class="horizontal">
-    <a href="index.html" class="active">Accueil</a>
-    <a href="equipes.html">Équipes</a>
-    <a href="soiree.html">La soirée</a>
-    <a href="resultat.html">Résultats</a>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <div class="menu-items">
+      <a href="index.html">Accueil</a>
+      <a href="equipes.html" >Équipes</a>
+      <a href="soiree.html"class="active" >La soirée</a>
+      <a href="resultat.html">Résultats</a>
+    </div>
   </nav>
 
-  <!-- Contenu -->
+  
+
+  <!-- Contenu principal -->
   <div class="content">
-  <img src="image/ChatGPT.png" alt="Événement">
+    <img src="image/ChatGPT.png" alt="Événement">
   </div>
 
+ 
+  
 </body>
 </html>
