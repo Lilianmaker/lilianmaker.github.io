@@ -11,11 +11,12 @@
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #fceabb, #f8b500, #ff6f61);
       color: #111;
-      padding-top: 60px; /* espace pour menu fixe */
+      padding-top: 60px;
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     h1 {
@@ -24,6 +25,8 @@
       color: #fff;
       text-shadow: 0 0 10px #fff, 0 0 20px #f39c12;
       margin-bottom: 50px;
+      z-index: 10;
+      position: relative;
     }
 
     /* --- MENU HORIZONTAL --- */
@@ -60,6 +63,8 @@
       gap: 40px;
       width: 80%;
       max-width: 800px;
+      position: relative;
+      z-index: 5;
     }
 
     .team {
@@ -69,9 +74,7 @@
       transition: transform 0.3s ease;
     }
 
-    .team:hover {
-      transform: translateY(-10px);
-    }
+    .team:hover { transform: translateY(-10px); }
 
     .bar {
       width: 100%;
@@ -100,18 +103,16 @@
 
     /* --- COULEURS PODIUM --- */
     .first .bar { 
-      background: linear-gradient(180deg, #00ff00, #008000); /* vert dégradé */
+      background: linear-gradient(180deg, #00ff00, #008000); 
       box-shadow: 0 0 25px #00ff00; 
       animation: glow 2s infinite; 
     }
-
     .second .bar { 
-      background: linear-gradient(180deg, #00e5ff, #0077ff); /* bleu dégradé */
+      background: linear-gradient(180deg, #00e5ff, #0077ff); 
       box-shadow: 0 0 25px #00bfff; 
     }
-
     .third .bar { 
-      background: linear-gradient(180deg, #ff4d4d, #cc0000); /* rouge dégradé */
+      background: linear-gradient(180deg, #ff4d4d, #cc0000); 
       box-shadow: 0 0 25px #ff4d4d; 
     }
 
@@ -119,6 +120,25 @@
       0% { box-shadow: 0 0 10px #00ff00; }
       50% { box-shadow: 0 0 25px #00ff00; }
       100% { box-shadow: 0 0 10px #00ff00; }
+    }
+
+    /* --- CONFETTIS --- */
+    .confetti {
+      position: fixed;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      opacity: 0.8;
+      z-index: 1;
+      pointer-events: none;
+      border-radius: 50%;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10px) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
     }
   </style>
 </head>
@@ -163,9 +183,9 @@
       team.classList.remove('first', 'second', 'third');
 
       // Position sur le podium
-      if(index === 0) { team.classList.add('first'); team.style.order = 2; }   // centre
-      else if(index === 1) { team.classList.add('second'); team.style.order = 1; } // gauche
-      else { team.classList.add('third'); team.style.order = 3; }              // droite
+      if(index === 0) { team.classList.add('first'); team.style.order = 2; }
+      else if(index === 1) { team.classList.add('second'); team.style.order = 1; }
+      else { team.classList.add('third'); team.style.order = 3; }
 
       // Mettre à jour le score affiché
       const score = team.dataset.score;
@@ -180,11 +200,23 @@
       team.querySelector('.bar').style.height = '0px';
       podium.appendChild(team);
 
-      // Animation montée progressive
       setTimeout(() => {
         team.querySelector('.bar').style.height = height + 'px';
       }, 100);
     });
+
+    // --- Générer confettis ---
+    const colors = ['#ff0','#f39c12','#00ff00','#00e5ff','#ff4d4d','#ff69b4'];
+    for(let i=0;i<80;i++){
+      const confetti = document.createElement('div');
+      confetti.classList.add('confetti');
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+      confetti.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+      confetti.style.width = confetti.style.height = (5 + Math.random()*5) + 'px';
+      confetti.style.animationDuration = (3 + Math.random()*3) + 's';
+      confetti.style.animationDelay = Math.random()*5 + 's';
+      document.body.appendChild(confetti);
+    }
   </script>
 
 </body>
