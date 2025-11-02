@@ -3,60 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Résultats</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Résultats dynamiques</title>
   <style>
-    /* --- MENU --- */
-    nav.horizontal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: #222;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: center;
-      z-index: 1000;
-    }
-
-    nav.horizontal a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      margin: 0 15px;
-    }
-
-    nav.horizontal a:hover {
-      color: #f39c12;
-    }
-
-    /* --- CONTENU --- */
     body {
-      background: linear-gradient(135deg, #222, #444, #666);
       font-family: 'Poppins', sans-serif;
-      color: #fff;
       margin: 0;
-      padding: 0;
-    }
-
-    .content {
-      margin-top: 30px;
+      background: linear-gradient(135deg, #eee, #ccc);
+      color: #111;
+      padding-top: 60px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px;
-      min-height: 100vh;
     }
 
     h1 {
       font-family: 'Brush Script MT', cursive;
       font-size: 52px;
-      color: #fff;
-      text-shadow: 0 0 20px #f39c12, 0 0 40px #f1c40f;
+      color: #f39c12;
+      text-shadow: 0 0 10px #f1c40f;
       margin-bottom: 50px;
     }
 
-    /* --- PODIUM --- */
     .podium {
       display: flex;
       align-items: flex-end;
@@ -64,37 +31,28 @@
       gap: 40px;
       width: 80%;
       max-width: 800px;
-      margin-top: 40px;
     }
 
     .team {
       text-align: center;
       flex: 1;
-      position: relative;
       transition: transform 0.3s ease;
-    }
-
-    .team:hover {
-      transform: translateY(-10px);
     }
 
     .bar {
       width: 100%;
       border-radius: 10px 10px 0 0;
-      background: linear-gradient(180deg, #f1c40f, #f39c12);
-      box-shadow: 0 0 25px #f39c12;
-      transition: height 1s ease;
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      color: #000;
       font-weight: bold;
+      color: #000;
+      transition: height 0.5s ease;
     }
 
     .team-name {
       margin-top: 15px;
       font-size: 22px;
-      letter-spacing: 1px;
     }
 
     .score {
@@ -103,71 +61,61 @@
       margin-bottom: 10px;
     }
 
-    /* --- Hauteur du podium selon score --- */
-    .first .bar { height: 250px; background: linear-gradient(180deg, #f1c40f, #f39c12); }
-    .second .bar { height: 200px; background: linear-gradient(180deg, #00e5ff, #0077ff); box-shadow: 0 0 25px #00bfff; }
-    .third .bar { height: 150px; background: linear-gradient(180deg, #ff69b4, #ff1493); box-shadow: 0 0 25px #ff66cc; }
+    .first .bar { background: linear-gradient(180deg, #f1c40f, #f39c12); box-shadow: 0 0 25px #f39c12; }
+    .second .bar { background: linear-gradient(180deg, #00e5ff, #0077ff); box-shadow: 0 0 25px #00bfff; }
+    .third .bar { background: linear-gradient(180deg, #ff69b4, #ff1493); box-shadow: 0 0 25px #ff66cc; }
 
-    /* --- Animation pulsante --- */
     @keyframes glow {
       0% { box-shadow: 0 0 10px #f39c12; }
       50% { box-shadow: 0 0 25px #f1c40f; }
       100% { box-shadow: 0 0 10px #f39c12; }
     }
-
-    .first .bar {
-      animation: glow 2s infinite;
-    }
-
-    /* Fond plus clair */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: radial-gradient(circle at top, rgba(255,255,255,0.1), transparent 60%);
-      z-index: -1;
-    }
-
+    .first .bar { animation: glow 2s infinite; }
   </style>
 </head>
 <body>
 
-  <!-- Menu horizontal -->
-  <nav class="horizontal">
-    <a href="index.html">Accueil</a>
-    <a href="equipes.html">Équipes</a>
-    <a href="soiree.html">La soirée</a>
-    <a href="resultat.html" class="active">Résultats</a>
-  </nav>
+<h1>Classement des Équipes</h1>
 
-  <!-- Contenu principal -->
-  <div class="content">
-    <h1>Classement des Équipes</h1>
-
-    <div class="podium">
-      <div class="team second">
-        <div class="bar">
-          <span class="score">4 pts</span>
-        </div>
-        <div class="team-name">Hellfest</div>
-      </div>
-
-      <div class="team first">
-        <div class="bar">
-          <span class="score">72 pts</span>
-        </div>
-        <div class="team-name">Coachella</div>
-      </div>
-
-      <div class="team third">
-        <div class="bar">
-          <span class="score">108 pts</span>
-        </div>
-        <div class="team-name">FIL</div>
-      </div>
-    </div>
+<div class="podium" id="podium">
+  <div class="team" data-name="Hellfest" data-score="4">
+    <div class="bar"><span class="score">4 pts</span></div>
+    <div class="team-name">Hellfest</div>
   </div>
+  <div class="team" data-name="Coachella" data-score="72">
+    <div class="bar"><span class="score">72 pts</span></div>
+    <div class="team-name">Coachella</div>
+  </div>
+  <div class="team" data-name="FIL" data-score="108">
+    <div class="bar"><span class="score">108 pts</span></div>
+    <div class="team-name">FIL</div>
+  </div>
+</div>
+
+<script>
+  const podium = document.getElementById('podium');
+  const teams = Array.from(podium.querySelectorAll('.team'));
+
+  // Trier les équipes par score décroissant
+  teams.sort((a, b) => b.dataset.score - a.dataset.score);
+
+  // Mettre à jour le podium
+  podium.innerHTML = '';
+  teams.forEach((team, index) => {
+    team.classList.remove('first', 'second', 'third');
+    if(index === 0) team.classList.add('first');
+    else if(index === 1) team.classList.add('second');
+    else team.classList.add('third');
+
+    // Ajuster la hauteur de la barre (ex: max 250px)
+    const maxHeight = 250;
+    const maxScore = Math.max(...teams.map(t => +t.dataset.score));
+    const height = (team.dataset.score / maxScore) * maxHeight;
+    team.querySelector('.bar').style.height = height + 'px';
+
+    podium.appendChild(team);
+  });
+</script>
 
 </body>
 </html>
