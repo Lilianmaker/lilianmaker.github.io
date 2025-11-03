@@ -228,6 +228,10 @@ nav.vertical a:hover {
     0% { transform: translateY(-10px) rotate(0deg); }
     100% { transform: translateY(110vh) rotate(360deg); }
 }
+/* Classe qui déclenche la disparition */
+.confetti.fade-out {
+  opacity: 0;
+}
 
 /* --- RESPONSIVE MOBILE --- */
 @media (max-width: 600px) {
