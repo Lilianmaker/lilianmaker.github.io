@@ -230,6 +230,7 @@ nav.vertical a:hover {
 }
 /* Classe qui déclenche la disparition */
 .confetti.fade-out {
+  transition: opacity 1s ease; /* disparition en 1 seconde */
   opacity: 0;
 }
 
