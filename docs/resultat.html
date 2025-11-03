@@ -72,6 +72,7 @@
     });
 
     // --- Générer confettis ---
+document.addEventListener("DOMContentLoaded", () => {
     const colors = ['#ff0','#f39c12','#00ff00','#00e5ff','#ff4d4d','#ff69b4'];
     for(let i=0;i<80;i++){
       const confetti = document.createElement('div');
@@ -83,6 +84,10 @@
       confetti.style.animationDelay = Math.random()*5 + 's';
       document.body.appendChild(confetti);
     }
+    setTimeout(() => {
+    document.querySelectorAll('.confetti').forEach(c => c.remove());
+  }, 5000);
+});
   </script>
 
 </body>
