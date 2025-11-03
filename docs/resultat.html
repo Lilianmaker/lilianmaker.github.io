@@ -85,6 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.appendChild(confetti);
     }
     setTimeout(() => {
+    document.querySelectorAll('.confetti').forEach(c => c.classList.add('fade-out'));
+  }, 5000);
+    setTimeout(() => {
     document.querySelectorAll('.confetti').forEach(c => c.remove());
   }, 7000);
 });
