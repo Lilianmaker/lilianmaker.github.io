@@ -240,7 +240,7 @@ nav.vertical a:hover {
     display: block;           /* afficher le burger sur mobile */
     position: fixed;
     left: 10px;
-    top: 5px;
+    top: 0px;
     background-color: #111;
     color: #fff;
     border: none;
