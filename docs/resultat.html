@@ -84,12 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
       confetti.style.animationDelay = Math.random()*5 + 's';
       document.body.appendChild(confetti);
     }
-    setTimeout(() => {
-    document.querySelectorAll('.confetti').forEach(c => {
-      c.style.animation = 'none'; // stop l'animation
-      c.classList.add('fade-out'); // lance le fade-out
-    });
-  }, 4000);
+      setTimeout(() => {
+    document.querySelectorAll('.confetti').forEach(c => c.classList.add('fade-out'));
+  }, 3000);
     setTimeout(() => {
     document.querySelectorAll('.confetti').forEach(c => c.remove());
   }, 7000);
