@@ -122,11 +122,11 @@ nav.vertical a:hover {
     text-align: center;
 }
 .main-img {
-    max-width: 400px; /* limite la taille sur PC */
-    width: 100%;      /* reste responsive */
-    height: auto;     /* conserve les proportions */
-    flex: 1 1 300px;
-    text-align: center;
+  display: block;      /* transforme l'image en bloc */
+  margin: 0 auto;      /* centre horizontalement */
+  max-width: 400px;    /* limite la taille sur PC */
+  width: 100%;         /* reste responsive */
+  height: auto;        /* conserve les proportions */
 }
 
 .section-image img {
