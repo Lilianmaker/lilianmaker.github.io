@@ -305,21 +305,20 @@ nav.vertical a:hover {
     width: 10px;
     height: 10px;
     background-color: red;
-    opacity: 0.8;
-    z-index: 1;
-    pointer-events: none;
     border-radius: 50%;
-    animation: fall 7s linear infinite;
+    pointer-events: none;
+    animation: fall 7s linear forwards; /* plus d'infinite, conserve le dernier état */
 }
 
+/* animation chute + disparition */
 @keyframes fall {
     0% {
         transform: translateY(-10px) rotate(0deg);
-        opacity: 1; /* visible au départ */
+        opacity: 1; 
     }
     50% {
         transform: translateY(50vh) rotate(180deg);
-        opacity: 1; /* reste visible jusqu'à 50% de la chute (~5s) */
+        opacity: 1; 
     }
     100% {
         transform: translateY(110vh) rotate(360deg);
