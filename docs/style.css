@@ -318,7 +318,7 @@ nav.vertical a:hover {
     background-color: red;
     border-radius: 50%;
     pointer-events: none;
-    animation: fall 7s linear forwards; /* plus d'infinite, conserve le dernier état */
+    animation: fall 7s ease-out forwards; /* plus d'infinite, conserve le dernier état */
 }
 
 /* animation chute + disparition */
@@ -327,7 +327,7 @@ nav.vertical a:hover {
         transform: translateY(-10px) rotate(0deg);
         opacity: 1; 
     }
-    50% {
+    70% {
         transform: translateY(50vh) rotate(180deg);
         opacity: 1; 
     }
