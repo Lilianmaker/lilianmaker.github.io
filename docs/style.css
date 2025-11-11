@@ -318,26 +318,23 @@ nav.vertical a:hover {
     background-color: red;
     border-radius: 50%;
     pointer-events: none;
-    animation: fall 7s ease-in-out forwards; /* chute et disparition plus douces */
+    animation: fall 7s cubic-bezier(0.33, 1, 0.68, 1) forwards; /* chute naturelle */
+    will-change: transform, opacity;
 }
 
-/* Animation fluide avec fondu naturel */
+/* Animation chute + fondu fluide */
 @keyframes fall {
     0% {
         transform: translateY(-10px) rotate(0deg);
         opacity: 1;
     }
-    60% {
-        transform: translateY(60vh) rotate(200deg);
-        opacity: 1; /* bien visible pendant la chute */
-    }
-    80% {
-        transform: translateY(85vh) rotate(280deg);
-        opacity: 0.6; /* commence à s’estomper */
+    70% {
+        transform: translateY(85dvh) rotate(260deg);
+        opacity: 0.9;
     }
     100% {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0; /* disparition douce */
+        transform: translateY(105dvh) rotate(360deg);
+        opacity: 0; /* fondu très doux */
     }
 }
 
