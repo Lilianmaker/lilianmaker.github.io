@@ -147,7 +147,7 @@ nav.vertical a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh; /* la place au milieu de la page */
+    min-height: 40vh; /* la place au milieu de la page */
 }
 
 
