@@ -232,6 +232,7 @@ nav.vertical a:hover {
 
 
 /* Titre festif */
+/* Titre festif mais plus net */
 .fun-title {
     font-family: 'Comic Sans MS', cursive, sans-serif;
     font-size: 36px;
@@ -239,7 +240,7 @@ nav.vertical a:hover {
     background: linear-gradient(90deg, #ff6f61, #f8b500, #00e5ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* plus léger que 2px 2px 8px */
     margin-bottom: 40px;
 }
 /* --- PODIUM --- */
