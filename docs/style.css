@@ -53,7 +53,7 @@ nav.horizontal {
     position: fixed;
     left: 15px;
     top: 0px;
-    background: transparent;
+    background: none;
     backdrop-filter: blur(10px) saturate(180%);
     -webkit-backdrop-filter: blur(10px) saturate(180%);
     color: #fff;
