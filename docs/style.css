@@ -339,25 +339,25 @@ nav.vertical a:hover {
         border-radius: 12px;
     }
 
-    nav.vertical {
-         position: fixed;
-    top: 80px;
-    left: 10px;
-    bottom: 80px; /* espace depuis le bas */
-    width: 130px;
-    background: rgba(17, 17, 17, 0.6);
-    backdrop-filter: blur(10px) saturate(180%);
-    -webkit-backdrop-filter: blur(10px) saturate(180%);
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 15px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 1001; /* plus haut que le menu horizontal */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        transform: translateX(-100%);
-    transition: transform 0.4s ease;
+   nav.vertical {
+        position: fixed;
+        top: 80px;
+        left: 0; /* met le menu à gauche du viewport */
+        width: 130px;
+        height: calc(100% - 80px);
+        background: rgba(17, 17, 17, 0.6);
+        backdrop-filter: blur(10px) saturate(180%);
+        -webkit-backdrop-filter: blur(10px) saturate(180%);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 15px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1001;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        transform: translateX(-120%); /* complètement hors écran */
+        transition: transform 0.4s ease;
     }
 
     body.menu-open nav.vertical {
