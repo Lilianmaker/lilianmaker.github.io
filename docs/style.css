@@ -295,8 +295,18 @@ nav.vertical a:hover {
 }
 
 @keyframes fall {
-    0% { transform: translateY(-10px) rotate(0deg); }
-    100% { transform: translateY(110vh) rotate(360deg); }
+    0% {
+        transform: translateY(-10px) rotate(0deg);
+        opacity: 1; /* visible au départ */
+    }
+    50% {
+        transform: translateY(50vh) rotate(180deg);
+        opacity: 1; /* reste visible jusqu'à 50% de la chute (~5s) */
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0; /* disparaît progressivement à la fin */
+    }
 }
 
 /* --- RESPONSIVE MOBILE --- */
