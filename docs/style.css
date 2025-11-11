@@ -237,9 +237,7 @@ nav.vertical a:hover {
     font-family: 'Comic Sans MS', cursive, sans-serif;
     font-size: 36px;
     text-align: center;
-    background: linear-gradient(90deg, #ff6f61, #f8b500, #00e5ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background: none;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* plus léger que 2px 2px 8px */
     margin-bottom: 40px;
 }
