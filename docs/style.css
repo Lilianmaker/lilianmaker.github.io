@@ -332,9 +332,6 @@ nav.vertical a:hover {
         opacity: 1; 
     }
 
-    70% {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0.5; /* disparaît progressivement à la fin */
     }
     100% {
         transform: translateY(110vh) rotate(360deg);
