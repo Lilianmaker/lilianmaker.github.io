@@ -48,22 +48,21 @@ nav.horizontal {
 }
 
 /* --- BOUTON BURGER --- */
-.menu-toggle {
-    display: none;
+
+ .menu-toggle {
+    display: none;          /* caché par défaut sur desktop */
     position: fixed;
     left: 15px;
     top: 0px;
-    background: none;
-    backdrop-filter: blur(10px) saturate(180%);
-    -webkit-backdrop-filter: blur(10px) saturate(180%);
-    color: #fff;
-    border: none;
-    font-size: 20px;
+    background: transparent; /* aucun fond */
+    border: none;            /* aucune bordure */
+    color: #fff;             /* icône en blanc */
+    font-size: 28px;         /* taille icône */
     cursor: pointer;
-    padding: 3px 6px;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    padding: 0;              /* pas de padding */
     z-index: 1100;
+    box-shadow: none;        /* pas d’ombre */
+}
 }
 
 /* --- MENU VERTICAL --- */
