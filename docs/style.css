@@ -145,6 +145,8 @@ nav.vertical a:hover {
 }
 
 .section-image img {
+    display: block;
+    margin: 0 auto;
     max-width: 100%;
     height: auto;
     border-radius: 10px;
