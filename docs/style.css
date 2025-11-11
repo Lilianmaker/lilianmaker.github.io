@@ -10,7 +10,7 @@ body, html {
 }
 /* --- FOND COACHELLA --- */
 body.coachella-page {
-    background: url('../image/Coachella.jpg') no-repeat center center fixed;
+    background: img src="image/coachella.webp" no-repeat center center fixed;
     background-size: cover;
     position: relative;
     color: #fff;
