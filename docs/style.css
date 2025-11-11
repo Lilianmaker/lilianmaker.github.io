@@ -289,7 +289,7 @@ nav.vertical a:hover {
     z-index: 1;
     pointer-events: none;
     border-radius: 50%;
-    animation: fall linear infinite;
+    animation: fall 7s linear infinite;
 }
 
 @keyframes fall {
