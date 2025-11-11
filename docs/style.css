@@ -57,10 +57,10 @@ nav.horizontal {
     backdrop-filter: blur(10px) saturate(180%);
     -webkit-backdrop-filter: blur(10px) saturate(180%);
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.9);
     font-size: 20px;
     cursor: pointer;
-    padding: 6px 10px;
+    padding: 3px 6px;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     z-index: 1100;
