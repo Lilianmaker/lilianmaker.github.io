@@ -228,7 +228,7 @@ nav.vertical a:hover {
 /* --- CONFETTIS --- */
 .confetti {
     position: fixed;
-    top: 0;
+    top: -10px;
     width: 10px;
     height: 10px;
     background-color: red;
