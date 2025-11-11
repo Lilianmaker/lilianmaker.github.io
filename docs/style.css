@@ -165,6 +165,54 @@ nav.vertical a:hover {
     font-size: 18px;
 }
 
+/* Blocs pour équipes */
+
+/* --- Grille de contenus --- */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 blocs par ligne */
+    gap: 20px; /* espace entre les blocs */
+    padding: 20px;
+    justify-items: center; /* centre chaque bloc horizontalement */
+}
+
+.content-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255,255,255,0.1);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.content-block img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.content-block p {
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+}
+
+/* --- Responsive mobile --- */
+@media (max-width: 600px) {
+    .content-grid {
+        grid-template-columns: repeat(2, 1fr); /* on garde 2 blocs par ligne */
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .content-block img {
+        max-width: 140px; /* optionnel : réduire légèrement les images pour mobile */
+    }
+}
+/* Fin Blocs pour équipes */
+
 /* --- PODIUM --- */
 .podium {
     display: flex;
