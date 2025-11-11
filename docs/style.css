@@ -4,7 +4,7 @@ body, html {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #fceabb, #f8b500, #ff6f61);
     color: #111;
-    padding-top: 60px; /* espace pour menu horizontal fixe */
+    padding-top: 80px; /* espace pour menu horizontal arrondi */
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -12,14 +12,20 @@ body, html {
 /* --- MENU HORIZONTAL --- */
 nav.horizontal {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #111;
-    padding: 12px 20px;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    background: rgba(17, 17, 17, 0.6); /* semi-transparent */
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    padding: 8px 15px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     z-index: 1000;
 }
 
@@ -43,51 +49,59 @@ nav.horizontal {
 
 /* --- BOUTON BURGER --- */
 .menu-toggle {
-    display: none; /* caché sur desktop */
+    display: none;
     position: fixed;
-    left: 10px;
-    top: 1px;
-    background-color: transparent;
+    left: 15px;
+    top: 15px;
+    background: rgba(17, 17, 17, 0.6);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
     color: #fff;
-    border: none;
-    font-size: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 20px;
     cursor: pointer;
-    padding: 3px 6px;
-    border-radius: 5px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     z-index: 1100;
 }
 
 /* --- MENU VERTICAL --- */
 nav.vertical {
     position: fixed;
-    top: 40px;
-    left: 0;
-    width: 150px;
-    height: calc(100% - 60px);
-    background-color: #111;
-    padding-top: 20px;
+    top: 80px;
+    left: 10px;
+    width: 130px;
+    height: calc(100% - 100px);
+    background: rgba(17, 17, 17, 0.6);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     transition: transform 0.4s ease;
 }
 
 nav.vertical a.titre-equipes {
     font-family: 'Brush Script MT', cursive;
-    font-size: 28px;
+    font-size: 26px;
     color: #fff;
     text-align: center;
-    margin-bottom: 20px;
-    border-bottom: 3px solid #f39c12;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #f39c12;
     padding-bottom: 5px;
 }
 
 nav.vertical a {
     color: #fff;
     text-decoration: none;
-    margin: 10px 0;
-    padding: 5px 15px;
+    margin: 8px 0;
+    padding: 5px 10px;
     transition: color 0.3s, transform 0.3s;
 }
 
@@ -98,11 +112,11 @@ nav.vertical a:hover {
 
 /* --- CONTENU --- */
 .content {
-    margin-left: 150px; /* espace pour menu vertical */
+    margin-left: 150px;
     padding: 20px;
-     display: flex;
-    justify-content: center; /* centre horizontalement */
-    flex-direction: column;  /* utile si tu ajoutes du texte dessous */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 /* --- SECTIONS ÉQUIPES --- */
@@ -121,12 +135,13 @@ nav.vertical a:hover {
     flex: 1 1 300px;
     text-align: center;
 }
+
 .main-img {
-  display: block;      /* transforme l'image en bloc */
-  margin: 0 auto;      /* centre horizontalement */
-  max-width: 400px;    /* limite la taille sur PC */
-  width: 100%;         /* reste responsive */
-  height: auto;        /* conserve les proportions */
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    flex: 1 1 300px;
+    text-align: center;
 }
 
 .section-image img {
@@ -148,7 +163,7 @@ nav.vertical a:hover {
     gap: 40px;
     width: 80%;
     max-width: 800px;
-    margin: 50px auto 0 auto; /* <-- centrage horizontal */
+    margin: 50px auto 0 auto;
 }
 
 .team {
@@ -202,8 +217,6 @@ nav.vertical a:hover {
     box-shadow: 0 0 25px #ff4d4d; 
 }
 
-
-
 @keyframes glow {
     0% { box-shadow: 0 0 10px #00ff00; }
     50% { box-shadow: 0 0 25px #00ff00; }
@@ -228,37 +241,31 @@ nav.vertical a:hover {
     0% { transform: translateY(-10px) rotate(0deg); }
     100% { transform: translateY(110vh) rotate(360deg); }
 }
-/* Classe qui déclenche la disparition */
-.confetti.fade-out {
-  transition: opacity 1s ease; /* disparition en 1 seconde */
-  opacity: 0;
-}
 
 /* --- RESPONSIVE MOBILE --- */
 @media (max-width: 600px) {
-.menu-toggle {
-    display: block;           /* afficher le burger sur mobile */
-    position: fixed;
-    left: 10px;
-    top: 0px;
-    background-color: #111;
-    color: #fff;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 6px 10px;
-    border-radius: 5px;
-    z-index: 1100;
-}
+    .menu-toggle {
+        display: block;
+    }
+
+    nav.horizontal {
+        width: 90%;
+        padding: 6px 10px;
+        border-radius: 12px;
+    }
 
     nav.vertical {
-    transform: translateX(-100%); /* hors écran à gauche */
-    transition: transform 0.4s ease;
-}
+        top: 70px;
+        left: 5px;
+        width: 120px;
+        border-radius: 12px;
+        transform: translateX(-110%);
+        transition: transform 0.4s ease;
+    }
 
-body.menu-open nav.vertical {
-    transform: translateX(0); /* revenir à l’écran quand burger cliqué */
-}
+    body.menu-open nav.vertical {
+        transform: translateX(0);
+    }
 
     .content {
         margin-left: 0;
@@ -274,7 +281,7 @@ body.menu-open nav.vertical {
     }
 
     .podium {
-        flex-direction: row; /* garder podium côte à côte */
+        flex-direction: row;
         gap: 15px;
         width: 100%;
     }
@@ -288,13 +295,13 @@ body.menu-open nav.vertical {
         max-height: 200px;
     }
 
-    /* Sections équipes adaptatives */
     .section {
         flex-direction: column;
         gap: 10px;
     }
-      .section.reverse {
-        flex-direction: column; /* annule le row-reverse sur mobile */
+
+    .section.reverse {
+        flex-direction: column;
     }
 
     .section-image, .section-text {
