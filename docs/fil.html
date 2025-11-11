@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FIL</title>
+  <title>Equipe FIL</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- Menu horizontal -->
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
   <nav class="horizontal">
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    
     <div class="menu-items">
-      <a href="index.html">Accueil</a>
-      <a href="equipes.html" class="active">Équipes</a>
+      <a href="index.html"class="active" >Accueil</a>
+      <a href="equipes.html" >Équipes</a>
       <a href="soiree.html">La soirée</a>
       <a href="resultat.html">Résultats</a>
     </div>
@@ -29,51 +30,40 @@
   </nav>
 
   <!-- Contenu principal -->
-  <div class="content">
-    <div class="section">
-      <div class="section-image">
-        <img src="image/coachella.webp" alt="Coachella">
-      </div>
-      <div class="section-text">
-        <h2>Coachella</h2>
-        <p>
-          Coachella, c’est le Disneyland des mélomanes sous acide de soleil 🌴🎶
-          Imagine : deux week-ends par an, au milieu du désert californien, des milliers de gens en tenues boho-chic, paillettes plein les cheveux et smartphones à bout de bras.
-        </p>
-      </div>
-    </div>
 
-    <div class="section reverse">
-      <div class="section-image">
-        <img src="image/hellfest.jpg" alt="HellFest">
-      </div>
-      <div class="section-text">
-        <h2>HellFest</h2>
-        <p>
-          Le Hellfest, c’est le parc d’attractions des métalleux en short et t-shirts noirs 🤘🔥
-          Un petit village de clous, tatouages, et piercings, planté à Clisson chaque été.
-        </p>
-      </div>
-    </div>
-    <div class="section">
-      <div class="section-image">
-        <img src="image/fil.jpg" alt="FIL">
-      </div>
-      <div class="section-text">
-        <h2>Festival Interceltique de Lorient</h2>
-        <p>
-         FIL </p>
-      </div>
-    </div>
+  <!-- Contenu principal -->
+
+  
+  <div class="content-grid">
+  
+  <div class="content-block">
+    <img src="image/ChatGPT.png" alt="Bloc 1">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
   </div>
 
- 
-    
+  <div class="content-block">
+    <img src="image/ChatGPT.png" alt="Bloc 2">
+    <p>Curabitur euismod ligula et quam ultrices, vitae fermentum risus.</p>
+  </div>
 
-  <script>
+  <div class="content-block">
+    <img src="image/ChatGPT.png" alt="Bloc 3">
+    <p>Praesent nec risus at odio commodo faucibus.</p>
+  </div>
+
+  <div class="content-block">
+    <img src="image/ChatGPT.png" alt="Bloc 4">
+    <p>Sed sit amet justo sed purus efficitur fermentum.</p>
+  </div>
+
+</div>
+
+<script>
     function toggleMenu() {
       document.body.classList.toggle('menu-open');
     }
   </script>
+ 
+  
 </body>
 </html>
