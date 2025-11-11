@@ -143,6 +143,13 @@ nav.vertical a:hover {
     flex: 1 1 300px;
     text-align: center;
 }
+.main-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* la place au milieu de la page */
+}
+
 
 .section-image img {
     display: block;
