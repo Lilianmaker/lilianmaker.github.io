@@ -61,17 +61,18 @@ body.coachella-page::before {
 
 /* --- IMAGE DES SECTIONS --- */
 .section-image {
-    flex: 0 0 auto; /* ne pas étirer */
-    max-width: 400px;
-    text-align: center;
-    margin: 0 auto;
+  flex: 0 0 auto;        /* ne pas laisser le flex l'étirer */
+  max-width: 400px;       /* limite la largeur maximale */
+  width: 100%;            /* mais garde réactif à la largeur du conteneur */
+  text-align: center;
+  margin: 0 auto;         /* centre le conteneur lui-même */
 }
 
 .section-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    display: block;
+  display: block;         /* transforme l'image en bloc pour centrage */
+  width: 100%;            /* occupe toute la largeur du conteneur limité */
+  height: auto;           /* conserve les proportions */
+  border-radius: 10px;    /* comme tu avais */
 }
 
 /* --- TEXTE DES SECTIONS --- */
