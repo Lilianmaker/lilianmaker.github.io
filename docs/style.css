@@ -1,21 +1,13 @@
 /* --- GLOBAL --- */
-html, body {
-    height: 100%;
+body, html {
     margin: 0;
-    padding: 0;
     font-family: Arial, sans-serif;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
     background: linear-gradient(135deg, #fceabb, #f8b500, #ff6f61);
     color: #111;
-    padding-top: 60px; /* espace pour menu horizontal arrondi */
+    padding-top: 40px; /* espace pour menu horizontal arrondi */
+    min-height: 100vh;
     overflow-x: hidden;
 }
-
 /* --- FOND COACHELLA --- */
 body.coachella-page {
     background: url("image/coachella.webp") no-repeat center center fixed;
@@ -35,84 +27,24 @@ body.coachella-page::before {
     filter: blur(5px) brightness(0.8);
     z-index: -1;
 }
-
-/* --- CONTENU PRINCIPAL --- */
-.content {
-    flex: 1; /* prend tout l'espace restant entre header et footer */
-    margin-left: 150px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-/* --- SECTIONS --- */
-.section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.section.reverse {
-    flex-direction: row-reverse;
-}
-
-/* --- IMAGE DES SECTIONS --- */
-.section-image {
-  flex: 0 0 auto;        /* ne pas laisser le flex l'étirer */
-  max-width: 400px;       /* limite la largeur maximale */
-  width: 100%;            /* mais garde réactif à la largeur du conteneur */
-  text-align: center;
-  margin: 0 auto;         /* centre le conteneur lui-même */
-}
-
-.section-image img {
-  display: block;         /* transforme l'image en bloc pour centrage */
-  width: 100%;            /* occupe toute la largeur du conteneur limité */
-  height: auto;           /* conserve les proportions */
-  border-radius: 10px;    /* comme tu avais */
-}
-
-/* --- TEXTE DES SECTIONS --- */
-.section-text {
-    flex: 1 1 300px;
-    font-size: 18px;
-    text-align: center;
-}
-
-/* --- FOOTER --- */
 footer {
-    margin-top: auto; /* pousse le footer en bas */
-    width: 95%;
-    max-width: 50px;
-    background: rgba(17, 17, 17, 0.4);
+  position: absolute; /* ou fixed si tu veux qu'il suive le scroll */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(17, 17, 17, 0.6);
     backdrop-filter: blur(10px) saturate(180%);
     -webkit-backdrop-filter: blur(10px) saturate(180%);
     padding: 8px 15px;
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    z-index: 1000;
+  color: #fff;
+  text-align: center;
+  padding: 50px 0;
 }
-
-footer a {
-    color: #ddd;
-    text-decoration: none;
-    margin-left: 10px;
-}
-
-footer a:hover {
-    text-decoration: underline;
+main {
+  padding-bottom: 60px; /* même hauteur que ton footer */
 }
 
 /* --- MENU HORIZONTAL --- */
@@ -122,7 +54,7 @@ nav.horizontal {
     left: 50%;
     transform: translateX(-50%);
     width: 95%;
-    background: rgba(17, 17, 17, 0.6);
+    background: rgba(17, 17, 17, 0.6); /* semi-transparent */
     backdrop-filter: blur(10px) saturate(180%);
     -webkit-backdrop-filter: blur(10px) saturate(180%);
     padding: 8px 15px;
@@ -134,7 +66,6 @@ nav.horizontal {
     align-items: center;
     z-index: 1000;
 }
-
 .menu-items {
     display: flex;
     justify-content: center;
@@ -154,26 +85,30 @@ nav.horizontal {
 }
 
 /* --- BOUTON BURGER --- */
-.menu-toggle {
-    display: none; /* caché par défaut sur desktop */
+
+ .menu-toggle {
+    display: none;          /* caché par défaut sur desktop */
     position: fixed;
     left: 15px;
     top: 0px;
-    background: transparent;
-    border: none;
-    color: #fff;
-    font-size: 28px;
+    background: transparent; /* aucun fond */
+    border: none;            /* aucune bordure */
+    color: #fff;             /* icône en blanc */
+    font-size: 28px;         /* taille icône */
     cursor: pointer;
-    padding: 0;
+    padding: 0;              /* pas de padding */
     z-index: 1100;
+    box-shadow: none;        /* pas d’ombre */
 }
+
+
 
 /* --- MENU VERTICAL --- */
 nav.vertical {
     position: fixed;
     top: 80px;
     left: 10px;
-    bottom: 80px;
+    bottom: 80px; /* espace depuis le bas */
     width: 130px;
     background: rgba(17, 17, 17, 0.6);
     backdrop-filter: blur(10px) saturate(180%);
@@ -184,7 +119,7 @@ nav.vertical {
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 1001;
+    z-index: 1001; /* plus haut que le menu horizontal */
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     transition: transform 0.4s ease;
 }
@@ -212,6 +147,119 @@ nav.vertical a:hover {
     transform: translateX(5px);
 }
 
+/* --- CONTENU --- */
+.content {
+    margin-left: 150px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* --- SECTIONS ÉQUIPES --- */
+.section {
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+    gap: 20px;
+}
+
+.section.reverse {
+    flex-direction: row-reverse;
+}
+
+.section-image {
+    flex: 1 1 300px;
+    text-align: center;
+}
+
+.main-img {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    flex: 1 1 300px;
+    text-align: center;
+}
+.main-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40vh; /* la place au milieu de la page */
+}
+
+
+.section-image img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.section-text {
+    flex: 2 1 300px;
+    font-size: 18px;
+}
+
+/* Blocs pour équipes */
+
+/* --- Grille de contenus --- */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 blocs par ligne */
+    gap: 20px; /* espace entre les blocs */
+    padding: 20px;
+    justify-items: center; /* centre chaque bloc horizontalement */
+}
+
+.content-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255,255,255,0.1);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.content-block img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.content-block p {
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+}
+
+/* --- Responsive mobile --- */
+@media (max-width: 600px) {
+    .content-grid {
+        grid-template-columns: repeat(2, 1fr); /* on garde 2 blocs par ligne */
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .content-block img {
+        max-width: 140px; /* optionnel : réduire légèrement les images pour mobile */
+    }
+}
+/* Fin Blocs pour équipes */
+
+
+/* Titre festif */
+/* Titre festif mais plus net */
+.fun-title {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 36px;
+    text-align: center;
+    background: none;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* plus léger que 2px 2px 8px */
+    margin-bottom: 40px;
+}
 /* --- PODIUM --- */
 .podium {
     display: flex;
@@ -259,7 +307,7 @@ nav.vertical a:hover {
     margin-bottom: 10px;
 }
 
-/* Couleurs podium */
+/* --- COULEURS PODIUM --- */
 .first .bar { 
     background: linear-gradient(180deg, #00ff00, #008000); 
     box-shadow: 0 0 25px #00ff00; 
@@ -280,6 +328,38 @@ nav.vertical a:hover {
     100% { box-shadow: 0 0 10px #00ff00; }
 }
 
+/* --- CONFETTIS --- */
+.confetti {
+    position: fixed;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: fall 5s linear forwards, fadeOut 2s linear 5s forwards; /* fadeOut commence après 5s */
+}
+
+/* Chute linéaire */
+@keyframes fall {
+    0% {
+        transform: translateY(-10px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+/* Disparition douce après 5 secondes */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 /* --- RESPONSIVE MOBILE --- */
 @media (max-width: 600px) {
     .menu-toggle {
@@ -292,8 +372,25 @@ nav.vertical a:hover {
         border-radius: 12px;
     }
 
-    nav.vertical {
-        transform: translateX(-105%);
+   nav.vertical {
+        position: fixed;
+    top: 80px;
+    left: 0px;
+    bottom: 80px; /* espace depuis le bas */
+    width: 130px;
+    background: rgba(17, 17, 17, 0.6);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1001; /* plus haut que le menu horizontal */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+       transform: translateX(-105%);
+    transition: transform 0.4s ease;
     }
 
     body.menu-open nav.vertical {
