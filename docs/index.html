@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Acceuil</title>
   <link rel="stylesheet" href="style.css">
+  
 </head>
 <body>
 
@@ -21,12 +22,31 @@
 
   
 
+
   <!-- Contenu principal -->
 
   <div class="main-image-container">
     <img src="image/ChatGPT.png" alt="Événement" class="main-img">
 </div>
-  
+
+
+  <div id="footer-placeholder"></div>
+<script>
+  // On récupère le fichier footer.html et on l'injecte dans le conteneur
+  fetch('/footer.html')
+    .then(response => {
+      if (!response.ok) throw new Error('Impossible de charger le footer');
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+    })
+    .catch(error => {
+      console.error('Erreur:', error);
+    });
+</script>
+
+
 
  
   
