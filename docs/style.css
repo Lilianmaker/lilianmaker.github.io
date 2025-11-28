@@ -49,20 +49,25 @@ body.coachella-page::before {
 /* --- FOOTER --- */
 footer {
     margin-top: auto; /* pousse le footer en bas */
-     
-    transform: translateX(-50%);
     width: 95%;
+    max-width: 1200px; /* optionnel, pour ne pas étirer trop sur grand écran */
     background: rgba(17, 17, 17, 0.6);
     backdrop-filter: blur(10px) saturate(180%);
     -webkit-backdrop-filter: blur(10px) saturate(180%);
-    padding: 8px 15px;
+    padding: 12px 20px;
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* centre horizontalement le contenu */
+    align-items: center;     /* centre verticalement le contenu */
+    
+    margin-left: auto;       /* centre le footer dans la page */
+    margin-right: auto;
+    
     z-index: 1000;
+    text-align: center;
 }
 
 footer a {
