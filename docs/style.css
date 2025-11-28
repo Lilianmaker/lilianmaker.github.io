@@ -27,6 +27,26 @@ body.coachella-page::before {
     filter: blur(5px) brightness(0.8);
     z-index: -1;
 }
+.site-footer {
+  background-color: #222;  /* couleur de fond */
+  color: #fff;             /* texte blanc */
+  text-align: center;
+  padding: 20px 0;
+  position: relative;      /* ou fixed si tu veux qu’il reste en bas de l’écran */
+  bottom: 0;
+  width: 100%;
+  font-size: 14px;
+}
+
+.site-footer a {
+  color: #f0f0f0;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
 
 
 /* --- MENU HORIZONTAL --- */
