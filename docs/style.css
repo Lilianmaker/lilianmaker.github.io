@@ -37,7 +37,9 @@ footer {
   text-align: center;
   padding: 20px 0;
 }
-
+main {
+  padding-bottom: 60px; /* même hauteur que ton footer */
+}
 
 /* --- MENU HORIZONTAL --- */
 nav.horizontal {
@@ -92,6 +94,7 @@ nav.horizontal {
     z-index: 1100;
     box-shadow: none;        /* pas d’ombre */
 }
+
 
 
 /* --- MENU VERTICAL --- */
