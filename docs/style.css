@@ -45,7 +45,7 @@ body.coachella-page::before {
 }
 main {
   padding-bottom: 60px; /* même hauteur que ton footer */
-}
+/*}
 */
 /* --- MENU HORIZONTAL --- */
 nav.horizontal {
