@@ -50,8 +50,6 @@ body.coachella-page::before {
 footer {
     margin-top: auto; /* pousse le footer en bas */
      
-    
-    left: 50%;
     transform: translateX(-50%);
     width: 95%;
     background: rgba(17, 17, 17, 0.6);
