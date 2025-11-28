@@ -38,7 +38,7 @@ body.coachella-page::before {
 
 /* --- CONTENU PRINCIPAL --- */
 .content {
-    flex: 1; /* prend tout l'espace restant entre header et footer */
+    flex: 1;
     margin-left: 150px;
     padding: 20px;
     display: flex;
@@ -53,6 +53,8 @@ body.coachella-page::before {
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .section.reverse {
@@ -61,18 +63,18 @@ body.coachella-page::before {
 
 /* --- IMAGE DES SECTIONS --- */
 .section-image {
-  flex: 0 0 auto;        /* ne pas laisser le flex l'étirer */
-  max-width: 400px;       /* limite la largeur maximale */
-  width: 100%;            /* mais garde réactif à la largeur du conteneur */
-  text-align: center;
-  margin: 0 auto;         /* centre le conteneur lui-même */
+    flex: 0 0 auto;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .section-image img {
-  display: block;         /* transforme l'image en bloc pour centrage */
-  width: 100%;            /* occupe toute la largeur du conteneur limité */
-  height: auto;           /* conserve les proportions */
-  border-radius: 10px;    /* comme tu avais */
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
 
 /* --- TEXTE DES SECTIONS --- */
@@ -84,13 +86,13 @@ body.coachella-page::before {
 
 /* --- FOOTER --- */
 footer {
-    margin-top: auto; /* pousse le footer en bas */
+    margin-top: auto;
     width: 95%;
-    max-width: 50px;
-    background: rgba(17, 17, 17, 0.4);
+    max-width: 1200px;
+    background: rgba(17, 17, 17, 0.6);
     backdrop-filter: blur(10px) saturate(180%);
     -webkit-backdrop-filter: blur(10px) saturate(180%);
-    padding: 8px 15px;
+    padding: 12px 20px;
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
