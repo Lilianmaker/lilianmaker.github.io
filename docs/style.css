@@ -27,57 +27,15 @@ body.coachella-page::before {
     filter: blur(5px) brightness(0.8);
     z-index: -1;
 }
-/* Structure globale pour que le footer soit en bas si contenu court */
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-main {
-  flex: 1;
-}
-
-/* Style du footer */
 footer {
-  background-color: #333;   /* couleur background du footer — change selon ton header */
-  color: #fff;              /* couleur du texte */
+  position: absolute; /* ou fixed si tu veux qu'il suive le scroll */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
   text-align: center;
   padding: 20px 0;
-  font-family: inherit;     /* hérite de la police générale du site, comme le header */
-}
-
-/* Si tu as des liens ou des icônes dans le footer */
-footer a {
-  color: #ddd;
-  text-decoration: none;
-  margin: 0 10px;
-}
-footer a:hover {
-  text-decoration: underline;
-}
-
-/* Pour une structure en colonnes dans le footer si besoin */
-footer .footer-content {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-
-.site-footer a {
-  color: #f0f0f0;
-  text-decoration: none;
-  margin: 0 10px;
-}
-
-.site-footer a:hover {
-  text-decoration: underline;
 }
 
 
