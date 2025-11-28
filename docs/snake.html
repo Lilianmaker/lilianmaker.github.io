@@ -90,6 +90,7 @@ document.addEventListener("keydown", (event) => {
   else if (event.key === "ArrowUp" && direction !== "DOWN") direction = "UP";
   else if (event.key === "ArrowRight" && direction !== "LEFT") direction = "RIGHT";
   else if (event.key === "ArrowDown" && direction !== "UP") direction = "DOWN";
+  else if (event.key === "Enter") startGame(); // <-- START avec Entrée
 });
 
 /* --------------------------
