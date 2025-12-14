@@ -1,1 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La soirée - Snake</title>
+  <link rel="stylesheet" href="style.css">
 
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #game-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    canvas {
+      background: #222;
+      border: 3px solid #0f0;
+      touch-action: none;
+      display: block;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    button {
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 6px;
+      border: none;
+      background: #0f0;
+      color: #000;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #3f3;
+    }
+
+    nav.horizontal {
+      width: 100%;
+      background: #111;
+      padding: 5px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav.horizontal .menu-items a {
+      color: #0f0;
+      margin: 0 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    nav.horizontal .menu-items a.active {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="horizontal">
+    <div class="menu-items">
+      <a href="index.html">Accueil</a>
+      <a href="equipes.html">Équipes</a>
+      <a href="soiree.html" class="active">La soirée</a>
+      <a href="resultat.html">Résultats</a>
+    </div>
+  </nav>
+
+  <div id="game-container">
+    <canvas id="game"></canvas>
+
+    <div class="controls">
+      <button id="startBtn">Start</button>
+      <button id="pauseBtn">Pause</button>
+    </div>
+  </div>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+// Canvas responsive
+function resizeCanvas() {
+  const size = Math.min(window.innerWidth - 20, 350);
+  canvas.width = size;
+  canvas.height = size;
+}
+resizeCanvas();
+
+// GAME VARIABLES
+let bird, pipes, score, gravity, gameLoop, gameRunning;
+
+// INIT GAME
+function initGame() {
+  bird = {
+    x: canvas.width / 4,
+    y: canvas.height / 2,
+    radius: 10,
+    velocity: 0,
+    jump: -4
+  };
+
+  pipes = [];
+  score = 0;
+  gravity = 0.25;
+}
+
+// CREATE PIPE
+function createPipe() {
+  const gap = canvas.height / 3.5;
+  const topHeight = Math.random() * (canvas.height - gap - 60) + 30;
+
+  pipes.push({
+    x: canvas.width,
+    top: topHeight,
+    bottom: topHeight + gap,
+    width: 30,
+    passed: false
+  });
+}
+
+// DRAW GAME
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Bird
+  bird.velocity += gravity;
+  bird.y += bird.velocity;
+
+  ctx.fillStyle = "yellow";
+  ctx.beginPath();
+  ctx.arc(bird.x, bird.y, bird.radius, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Pipes
+  ctx.fillStyle = "#0f0";
+  pipes.forEach(pipe => {
+    pipe.x -= 1.8;
+
+    // Top pipe
+    ctx.fillRect(pipe.x, 0, pipe.width, pipe.top);
+
+    // Bottom pipe
+    ctx.fillRect(
+      pipe.x,
+      pipe.bottom,
+      pipe.width,
+      canvas.height - pipe.bottom
+    );
+
+    // Score
+    if (!pipe.passed && pipe.x + pipe.width < bird.x) {
+      score++;
+      pipe.passed = true;
+    }
+
+    // Collision
+    if (
+      bird.x + bird.radius > pipe.x &&
+      bird.x - bird.radius < pipe.x + pipe.width &&
+      (bird.y - bird.radius < pipe.top ||
+       bird.y + bird.radius > pipe.bottom)
+    ) {
+      gameOver();
+    }
+  });
+
+  // Remove old pipes
+  pipes = pipes.filter(pipe => pipe.x + pipe.width > 0);
+
+  // Ground / ceiling collision
+  if (bird.y + bird.radius > canvas.height || bird.y - bird.radius < 0) {
+    gameOver();
+  }
+
+  // Score display
+  ctx.fillStyle = "#fff";
+  ctx.font = "16px Arial";
+  ctx.fillText("Score : " + score, 10, 20);
+}
+
+// GAME LOOP
+function loop() {
+  draw();
+}
+
+// JUMP
+function flap() {
+  if (gameRunning) {
+    bird.velocity = bird.jump;
+  }
+}
+
+// GAME OVER
+function gameOver() {
+  stopGame();
+  alert("Game Over ! Score : " + score);
+  document.location.reload();
+}
+
+// START / STOP
+function startGame() {
+  if (!gameRunning) {
+    initGame();
+    gameRunning = true;
+    gameLoop = setInterval(loop, 20);
+    pipeInterval = setInterval(createPipe, 1500);
+  }
+}
+
+function stopGame() {
+  clearInterval(gameLoop);
+  clearInterval(pipeInterval);
+  gameRunning = false;
+}
+
+// CONTROLS
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Space" || e.code === "Enter") {
+    if (!gameRunning) startGame();
+    flap();
+  }
+});
+
+// TOUCH / CLICK
+canvas.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  if (!gameRunning) startGame();
+  flap();
+});
+
+canvas.addEventListener("mousedown", () => {
+  if (!gameRunning) startGame();
+  flap();
+});
+
+// Buttons
+document.getElementById("startBtn").addEventListener("click", startGame);
+document.getElementById("pauseBtn").addEventListener("click", stopGame);
+
+// Resize
+window.addEventListener("resize", resizeCanvas);
+</script>
+
+
+</body>
+</html>
