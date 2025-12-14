@@ -47,6 +47,14 @@ main {
   padding-bottom: 60px; /* même hauteur que ton footer */
 /*}
 */
+
+.footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 15px 10px;
+    font-size: 14px;
+}
 /* --- MENU HORIZONTAL --- */
 nav.horizontal {
     position: fixed;
