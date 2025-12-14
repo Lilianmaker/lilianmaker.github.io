@@ -1,11 +1,28 @@
 /* --- GLOBAL --- */
+
 body, html {
+    margin: 0;
+    font-family: Arial, sans-serif;
+
+    background-image: url("images/background.jpg");
+    background-size: cover;       /* l’image couvre tout l’écran */
+    background-position: center;  /* centrée */
+    background-repeat: no-repeat; /* pas de répétition */
+
+    color: #111;
+    padding-top: 40px; /* espace pour menu horizontal arrondi */
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+/*body, html {
     margin: 0;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #fceabb, #f8b500, #ff6f61);
     color: #111;
     padding-top: 40px; /* espace pour menu horizontal arrondi */
-    min-height: 100vh;
+   /* min-height: 100vh;
     overflow-x: hidden;
 }
 /* --- FOND COACHELLA --- */
