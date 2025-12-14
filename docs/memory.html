@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La soirée - Snake</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #game-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    canvas {
+      background: #222;
+      border: 3px solid #0f0;
+      touch-action: none;
+      display: block;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    button {
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 6px;
+      border: none;
+      background: #0f0;
+      color: #000;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #3f3;
+    }
+
+    nav.horizontal {
+      width: 100%;
+      background: #111;
+      padding: 5px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav.horizontal .menu-items a {
+      color: #0f0;
+      margin: 0 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    nav.horizontal .menu-items a.active {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="horizontal">
+    <div class="menu-items">
+      <a href="index.html">Accueil</a>
+      <a href="equipes.html">Équipes</a>
+      <a href="soiree.html" class="active">La soirée</a>
+      <a href="resultat.html">Résultats</a>
+    </div>
+  </nav>
+
+  <div id="game-container">
+    <canvas id="game"></canvas>
+
+    <div class="controls">
+      <button id="startBtn">Start</button>
+      <button id="pauseBtn">Pause</button>
+    </div>
+  </div>
+
+<div id="game-container">
+  <div id="memory-grid"></div>
+  <div class="controls">
+    <button id="startBtn">Start</button>
+    <button id="resetBtn">Reset</button>
+  </div>
+</div>
+
+  <script>
+const memoryGrid = document.getElementById("memory-grid");
+
+const totalPairs = 19; // 19 paires
+let cards = [];
+let flippedCards = [];
+let matched = 0;
+
+// Remplace ces images par les tiennes
+const images = [];
+for (let i = 1; i <= totalPairs; i++) {
+  images.push(`image/img${i}.jpg`); // ex: image/img1.jpg, img2.jpg ...
+}
+
+// Générer le deck
+function createDeck() {
+  const deck = [...images, ...images]; // 2 fois chaque image
+  deck.sort(() => Math.random() - 0.5);
+  return deck;
+}
+
+// Créer la grille
+function setupGrid() {
+  memoryGrid.innerHTML = '';
+  const deck = createDeck();
+
+  deck.forEach(src => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+
+    const inner = document.createElement('div');
+    inner.classList.add('card-inner');
+
+    const front = document.createElement('div');
+    front.classList.add('card-front');
+
+    const back = document.createElement('div');
+    back.classList.add('card-back');
+    back.style.backgroundImage = `url(${src})`;
+
+    inner.appendChild(front);
+    inner.appendChild(back);
+    card.appendChild(inner);
+
+    card.addEventListener('click', () => flipCard(card, src));
+    memoryGrid.appendChild(card);
+  });
+}
+
+// Retourner une carte
+function flipCard(card, src) {
+  if (flippedCards.length < 2 && !card.classList.contains('flipped')) {
+    card.classList.add('flipped');
+    flippedCards.push({card, src});
+
+    if (flippedCards.length === 2) {
+      checkMatch();
+    }
+  }
+}
+
+// Vérifier correspondance
+function checkMatch() {
+  const [first, second] = flippedCards;
+
+  if (first.src === second.src) {
+    matched++;
+    flippedCards = [];
+
+    // Fin de jeu
+    if (matched === totalPairs) {
+      setTimeout(() => alert('Bravo ! Vous avez trouvé toutes les paires !'), 200);
+    }
+  } else {
+    setTimeout(() => {
+      first.card.classList.remove('flipped');
+      second.card.classList.remove('flipped');
+      flippedCards = [];
+    }, 800);
+  }
+}
+
+// START / RESET
+document.getElementById("startBtn").addEventListener("click", () => {
+  matched = 0;
+  setupGrid();
+});
+
+document.getElementById("resetBtn").addEventListener("click", () => {
+  matched = 0;
+  setupGrid();
+});
+
+// AUTO START AU CHARGEMENT
+setupGrid();
+</script>
+
+
+  
+</body>
+</html>
