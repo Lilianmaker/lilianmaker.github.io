@@ -16,6 +16,26 @@
       align-items: center;
     }
 
+    nav.horizontal {
+      width: 100%;
+      background: #111;
+      padding: 5px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav.horizontal .menu-items a {
+      color: #0f0;
+      margin: 0 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    nav.horizontal .menu-items a.active {
+      text-decoration: underline;
+    }
+
     #memory-container {
       display: flex;
       flex-direction: column;
@@ -33,7 +53,7 @@
     .card {
       position: relative;
       width: 100%;
-      padding-top: 100%; /* carré parfait */
+      padding-top: 100%;
       cursor: pointer;
       perspective: 600px;
     }
@@ -94,6 +114,18 @@
 </head>
 
 <body>
+
+  <!-- MENU HORIZONTAL -->
+  <nav class="horizontal">
+    <div class="menu-items">
+      <a href="index.html">Accueil</a>
+      <a href="equipes.html">Équipes</a>
+      <a href="soiree.html" class="active">La soirée</a>
+      <a href="resultat.html">Résultats</a>
+    </div>
+  </nav>
+
+  <!-- MEMORY GAME -->
   <div id="memory-container">
     <div id="memory-grid"></div>
     <div class="controls">
@@ -187,7 +219,6 @@
         matched++;
         flippedCards = [];
 
-        // Fin de jeu
         if (matched === totalPairs) {
           setTimeout(() => alert('Bravo ! Vous avez trouvé toutes les paires !'), 200);
         }
