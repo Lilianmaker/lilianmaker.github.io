@@ -96,5 +96,202 @@
   </div>
 
 
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+/* CANVAS RESPONSIVE */
+function resizeCanvas() {
+  const size = Math.min(window.innerWidth - 20, 350);
+  canvas.width = size;
+  canvas.height = size;
+}
+resizeCanvas();
+
+/* GAME VARIABLES */
+let paddle, ball, bricks, score;
+let gameLoop = null;
+let gameRunning = false;
+let ballLaunched = false;
+
+/* INIT GAME */
+function initGame() {
+  paddle = {
+    width: canvas.width / 4,
+    height: 10,
+    x: canvas.width / 2 - canvas.width / 8,
+    y: canvas.height - 20,
+    speed: 6
+  };
+
+  ball = {
+    x: canvas.width / 2,
+    y: canvas.height - 40,
+    radius: 6,
+    dx: 2,
+    dy: -2
+  };
+
+  score = 0;
+  ballLaunched = false;
+
+  // Create bricks
+  bricks = [];
+  const rows = 4;
+  const cols = 6;
+  const padding = 8;
+  const brickWidth = (canvas.width - padding * (cols + 1)) / cols;
+  const brickHeight = 14;
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      bricks.push({
+        x: padding + c * (brickWidth + padding),
+        y: 40 + r * (brickHeight + padding),
+        w: brickWidth,
+        h: brickHeight,
+        alive: true
+      });
+    }
+  }
+}
+
+/* DRAW */
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Paddle
+  ctx.fillStyle = "#0f0";
+  ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+
+  // Ball
+  ctx.fillStyle = "#fff";
+  ctx.beginPath();
+  ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Bricks
+  bricks.forEach(b => {
+    if (b.alive) {
+      ctx.fillStyle = "#f55";
+      ctx.fillRect(b.x, b.y, b.w, b.h);
+    }
+  });
+
+  // Score
+  ctx.fillStyle = "#fff";
+  ctx.font = "16px Arial";
+  ctx.fillText("Score : " + score, 10, 20);
+
+  if (!ballLaunched) {
+    ctx.fillText("Tap / Espace pour lancer", 40, canvas.height / 2);
+    return;
+  }
+
+  // Move ball
+  ball.x += ball.dx;
+  ball.y += ball.dy;
+
+  // Wall collision
+  if (ball.x < ball.radius || ball.x > canvas.width - ball.radius) ball.dx *= -1;
+  if (ball.y < ball.radius) ball.dy *= -1;
+
+  // Paddle collision
+  if (
+    ball.y + ball.radius > paddle.y &&
+    ball.x > paddle.x &&
+    ball.x < paddle.x + paddle.width
+  ) {
+    ball.dy *= -1;
+    ball.y = paddle.y - ball.radius;
+  }
+
+  // Brick collision
+  bricks.forEach(b => {
+    if (
+      b.alive &&
+      ball.x > b.x &&
+      ball.x < b.x + b.w &&
+      ball.y > b.y &&
+      ball.y < b.y + b.h
+    ) {
+      b.alive = false;
+      ball.dy *= -1;
+      score++;
+    }
+  });
+
+  // Win
+  if (bricks.every(b => !b.alive)) {
+    alert("Bravo ! Score : " + score);
+    stopGame();
+    document.location.reload();
+  }
+
+  // Lose
+  if (ball.y > canvas.height) {
+    alert("Perdu ! Score : " + score);
+    stopGame();
+    document.location.reload();
+  }
+}
+
+/* LOOP */
+function loop() {
+  draw();
+}
+
+/* START / STOP */
+function startGame() {
+  if (!gameRunning) {
+    initGame();
+    gameRunning = true;
+    gameLoop = setInterval(loop, 16);
+  }
+}
+
+function stopGame() {
+  clearInterval(gameLoop);
+  gameRunning = false;
+}
+
+/* CONTROLS */
+document.addEventListener("keydown", e => {
+  if (e.key === "ArrowLeft") paddle.x -= paddle.speed;
+  if (e.key === "ArrowRight") paddle.x += paddle.speed;
+  if (e.key === " " || e.key === "Enter") ballLaunched = true;
+});
+
+/* TOUCH CONTROL */
+canvas.addEventListener("touchmove", e => {
+  const t = e.touches[0];
+  const rect = canvas.getBoundingClientRect();
+  paddle.x = t.clientX - rect.left - paddle.width / 2;
+  e.preventDefault();
+});
+
+canvas.addEventListener("touchstart", () => {
+  ballLaunched = true;
+});
+
+/* LIMIT PADDLE */
+function clampPaddle() {
+  if (paddle.x < 0) paddle.x = 0;
+  if (paddle.x + paddle.width > canvas.width)
+    paddle.x = canvas.width - paddle.width;
+}
+setInterval(clampPaddle, 10);
+
+/* BUTTONS */
+document.getElementById("startBtn").addEventListener("click", startGame);
+document.getElementById("pauseBtn").addEventListener("click", stopGame);
+
+/* RESIZE */
+window.addEventListener("resize", resizeCanvas);
+</script>
+
+
+
+  
 </body>
 </html>
