@@ -4,7 +4,7 @@ body, html {
     margin: 0;
     font-family: Arial, sans-serif;
 
-    background-image: url("doc/images/ciel.png");
+    background-image: url("images/ciel.png");
     background-size: cover;       /* l’image couvre tout l’écran */
     background-position: center;  /* centrée */
     background-repeat: no-repeat; /* pas de répétition */
