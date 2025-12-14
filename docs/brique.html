@@ -197,14 +197,29 @@ function draw() {
   if (ball.y < ball.radius) ball.dy *= -1;
 
   // Paddle collision
-  if (
-    ball.y + ball.radius > paddle.y &&
-    ball.x > paddle.x &&
-    ball.x < paddle.x + paddle.width
-  ) {
-    ball.dy *= -1;
-    ball.y = paddle.y - ball.radius;
-  }
+  // Nouvelle version : rebond selon endroit du contact
+if (
+  ball.y + ball.radius > paddle.y &&
+  ball.x > paddle.x &&
+  ball.x < paddle.x + paddle.width
+) {
+  // calcul de la position relative (0 = gauche, 1 = droite)
+  let hitPos = (ball.x - paddle.x) / paddle.width;
+  
+  // angle max = 75° ~ 1.308 rad
+  let angle = (hitPos - 0.5) * Math.PI / 1.2; 
+
+  // vitesse totale de la balle
+  let speed = Math.sqrt(ball.dx * ball.dx + ball.dy * ball.dy);
+
+  // nouvelle direction
+  ball.dx = speed * Math.sin(angle);
+  ball.dy = -Math.abs(speed * Math.cos(angle));
+
+  // position juste au-dessus de la raquette pour éviter de "coller"
+  ball.y = paddle.y - ball.radius;
+}
+
 
   // Brick collision
   bricks.forEach(b => {
