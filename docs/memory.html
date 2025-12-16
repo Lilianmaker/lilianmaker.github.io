@@ -61,8 +61,8 @@
   </div>
 </div>
 
-<script src="memory.js">
-  const grid = document.getElementById("memory-grid");
+<script>
+const grid = document.getElementById("memory-grid");
 const startBtn = document.getElementById("memoryStartBtn");
 const resetBtn = document.getElementById("memoryResetBtn");
 
@@ -70,7 +70,6 @@ let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
 
-/* 👉 Simule ta BDD (remplace par fetch si besoin) */
 const imagesBDD = [
   "image/ChatGPT.png",
   "image/ciel.png",
@@ -80,13 +79,10 @@ const imagesBDD = [
   "image/hellfest.jpg"
 ];
 
-/* Crée les 6 paires */
 function createDeck() {
-  const deck = [...imagesBDD, ...imagesBDD];
-  return deck.sort(() => Math.random() - 0.5);
+  return [...imagesBDD, ...imagesBDD].sort(() => Math.random() - 0.5);
 }
 
-/* Création des cartes */
 function createBoard() {
   grid.innerHTML = "";
   firstCard = null;
@@ -96,22 +92,18 @@ function createBoard() {
 
   deck.forEach(src => {
     const card = document.createElement("div");
-    card.classList.add("memory-card");
-
+    card.className = "memory-card";
     card.innerHTML = `
       <div class="back"></div>
       <img src="${src}" class="front">
     `;
-
     card.addEventListener("click", () => flipCard(card));
     grid.appendChild(card);
   });
 }
 
-/* Gestion du clic */
 function flipCard(card) {
   if (lockBoard || card === firstCard) return;
-
   card.classList.add("flip");
 
   if (!firstCard) {
@@ -123,17 +115,15 @@ function flipCard(card) {
   checkMatch();
 }
 
-/* Vérifie si les cartes correspondent */
 function checkMatch() {
   const img1 = firstCard.querySelector(".front").src;
   const img2 = secondCard.querySelector(".front").src;
-
   img1 === img2 ? disableCards() : unflipCards();
 }
 
 function disableCards() {
-  firstCard.removeEventListener("click", flipCard);
-  secondCard.removeEventListener("click", flipCard);
+  firstCard.style.pointerEvents = "none";
+  secondCard.style.pointerEvents = "none";
   resetTurn();
 }
 
@@ -151,11 +141,10 @@ function resetTurn() {
   lockBoard = false;
 }
 
-/* Boutons */
 startBtn.addEventListener("click", createBoard);
 resetBtn.addEventListener("click", createBoard);
-
 </script>
+
 
 
   
