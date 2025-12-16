@@ -455,6 +455,8 @@ nav.vertical a:hover {
   
   display: grid;
   grid-template-columns: repeat(4, 90px);
+    gap: 10px;
+  margin-top: 20px;
 }
   
 .memory-card {
