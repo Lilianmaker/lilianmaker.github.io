@@ -453,46 +453,44 @@ nav.vertical a:hover {
 }
 #memory-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 90px);
   gap: 10px;
-  max-width: 350px;
+  margin-top: 20px;
 }
 
-.card {
-  position: relative;
-  width: 100%;
-  padding-top: 100%;
+.memory-card {
+  width: 90px;
+  height: 90px;
+  background: #222;
+  border-radius: 6px;
   cursor: pointer;
-  perspective: 600px;
-}
-
-.card-inner {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  transition: transform 0.5s;
+  position: relative;
   transform-style: preserve-3d;
+  transition: transform 0.5s;
 }
 
-.card.flipped .card-inner {
+.memory-card.flip {
   transform: rotateY(180deg);
 }
 
-.card-front, .card-back {
-  position: absolute;
-  width: 100%; height: 100%;
+.memory-card img {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
   backface-visibility: hidden;
-  border-radius: 8px;
 }
 
-.card-front {
-  background: #ccc;
+.memory-card .back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #0f0;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  backface-visibility: hidden;
 }
 
-.card-back {
+.memory-card .front {
   transform: rotateY(180deg);
-  background-size: cover;
-  background-position: center;
-  border: 2px solid #0f0;
 }
-
