@@ -181,11 +181,12 @@ nav.vertical a:hover {
 }
 
 .main-img {
-    max-width: 400px;
     width: 100%;
+    max-width: 600px;   /* plus grande sur desktop */
     height: auto;
-    flex: 1 1 300px;
-    text-align: center;
+    display: block;
+    margin: 0 auto;     /* centrage horizontal */
+}
 }
 .main-image-container {
     display: flex;
