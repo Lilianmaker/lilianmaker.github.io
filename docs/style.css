@@ -503,7 +503,7 @@ nav.vertical a:hover {
 #memory-grid {
   
   display: grid;
-  grid-template-columns: repeat(4, 90px);
+  grid-template-columns: repeat(5, 90px);
     gap: 10px;
   margin-top: 20px;
 }
