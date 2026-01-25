@@ -179,7 +179,15 @@ nav.vertical a:hover {
     flex: 1 1 300px;
     text-align: center;
 }
-
+/* Image normale */
+.main-img2 {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    cursor: zoom-in;
+}
 /* Image normale */
 .main-img {
     width: 100%;
