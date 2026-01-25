@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipe Coachella</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+
+  <!-- Menu horizontal -->
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  <nav class="horizontal">
+    
+    <div class="menu-items">
+      <a href="index.html" >Accueil</a>
+      <a href="equipes.html" class="active" >Équipes</a>
+      <a href="soiree.html">La soirée</a>
+      <a href="resultat.html">Résultats</a>
+        <a href="repas.html">Repas</a>
+    </div>
+  </nav>
+
+  <!-- Menu vertical -->
+  <nav class="vertical">
+    <a href="equipes.html" class="titre-equipes">Les Équipes</a>
+    
+    <a href="Coachella.html" class="active" >Coachella</a>
+    <a href="hellfest.html">HellFest</a>
+    <a href="fil.html">F I L</a>
+  </nav>
+  <!-- Contenu principal -->
+<h1 class="fun-title"> L'équipe Coachella</h1>
+  
+  <div class="content-grid">
+   
+    
+  <div class="content-block">
+    <img src="image/emma.PNG" alt="Bloc 1">
+    <p>EmmaStone.</p>
+  </div>
+
+  <div class="content-block">
+    <img src="image/ChatGPT.png" alt="Bloc 2">
+    <p>Curabitur euismod ligula et quam ultrices, vitae fermentum risus.</p>
+  </div>
+
+  <div class="content-block">
+    <img src="image/ChatGPT.png" alt="Bloc 3">
+    <p>Praesent nec risus at odio commodo faucibus.</p>
+  </div>
+
+  <div class="content-block">
+    <img src="image/ChatGPT.png" alt="Bloc 4">
+    <p>Sed sit amet justo sed purus efficitur fermentum.</p>
+  </div>
+
+</div>
+   <div class="content-block">
+    <img src="image/ChatGPT.png" alt="Bloc 4">
+    <p>Sed sit amet justo sed purus efficitur fermentum.</p>
+  </div>
+
+<script>
+    function toggleMenu() {
+      document.body.classList.toggle('menu-open');
+    }
+  </script>
+ 
+  
+</body>
+</html>
