@@ -508,7 +508,7 @@ nav.vertical a:hover {
 }
 #memory-grid {
   display: grid;
-  grid-template-columns: repeat(5, 120px);
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 5px;
   margin-top: 20px;
   justify-content: center; /* centre la grille */
