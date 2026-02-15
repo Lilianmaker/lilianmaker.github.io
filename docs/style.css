@@ -508,7 +508,7 @@ nav.vertical a:hover {
 }
 #memory-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(5, 120px);
   gap: 5px;
   margin-top: 20px;
   justify-content: center; /* centre la grille */
@@ -525,7 +525,19 @@ nav.vertical a:hover {
   transform-style: preserve-3d;
   transition: transform 0.5s;
 }
+/* Tablette */
+@media screen and (max-width: 900px) {
+  #memory-grid {
+    grid-template-columns: repeat(3, 100px);
+  }
+}
 
+/* Téléphone */
+@media screen and (max-width: 500px) {
+  #memory-grid {
+    grid-template-columns: repeat(1, 90px);
+  }
+}
 .memory-card.flip {
   transform: rotateY(180deg);
 }
