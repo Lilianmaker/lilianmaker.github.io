@@ -20,7 +20,10 @@ body.fluo {
     background-color: black;
     color: white;
 }
-
+body.fluo .section-text h2,
+body.fluo .section-text p {
+    color: #39ff14; /* vert fluo néon */
+}
 
 /*body, html {
     margin: 0;
