@@ -552,7 +552,7 @@ nav.vertical a:hover {
 @media screen and (max-width: 500px) {
   #memory-grid {
     grid-template-columns: repeat(4, 1fr); /* 4 colonnes flexibles */
-    gap: 8px;
+    gap: 4px;
   }
 
   .memory-card {
