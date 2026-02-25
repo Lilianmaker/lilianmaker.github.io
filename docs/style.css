@@ -510,18 +510,7 @@ nav.vertical a:hover {
         height: auto;
     }
 }
-#memory-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); /* minimum 70px par carte */
-  gap: 4px;
-  width: 100%;
-  padding: 5px;
-  box-sizing: border-box;
-}
-.memory-card {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-}
+
 /*#memory-grid {
   display: grid;
   grid-template-columns: repeat(5, 120px);
@@ -560,10 +549,46 @@ nav.vertical a:hover {
  /*   aspect-ratio: 1/1;  /* carré parfait */
  /* }
 } */
+#memory-grid {
+  display: grid;
+  gap: 8px;
+
+  /* on garde des colonnes flexibles */
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+
+  /* garantit que chaque ligne a la bonne hauteur pour des carrés */
+  grid-auto-rows: 0; /* hauteur automatique via padding de l'enfant */
+}
+
+.memory-card {
+  position: relative;
+  width: 100%;
+
+  /* carré parfait */
+  padding-top: 100%; /* hauteur = largeur */
+  border-radius: 6px;
+  background: #222;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+/* contenu de la carte en absolu */
+.memory-card img,
+.memory-card .front,
+.memory-card .back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  backface-visibility: hidden;
+}
 .memory-card.flip {
   transform: rotateY(180deg);
 }
-
+/*
 .memory-card img {
   width: 100%;
   height: 100%;
@@ -584,7 +609,7 @@ nav.vertical a:hover {
 
 .memory-card .front {
   transform: rotateY(180deg);
-}
+}*/
 
 body.fluo .section-text {
     background: rgba(0, 0, 0, 0.7);
