@@ -528,14 +528,14 @@ nav.vertical a:hover {
 /* Tablette */
 @media screen and (max-width: 900px) {
   #memory-grid {
-    grid-template-columns: repeat(3, 100px);
+    grid-template-columns: repeat(3, 50px);
   }
 }
 
 /* Téléphone */
 @media screen and (max-width: 500px) {
   #memory-grid {
-    grid-template-columns: repeat(1, 90px);
+    grid-template-columns: repeat(1, 50px);
   }
 }
 .memory-card.flip {
