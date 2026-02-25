@@ -552,28 +552,20 @@ nav.vertical a:hover {
 #memory-grid {
   display: grid;
   gap: 8px;
-
-  /* on garde des colonnes flexibles */
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-
-  /* garantit que chaque ligne a la bonne hauteur pour des carrés */
-  grid-auto-rows: 0; /* hauteur automatique via padding de l'enfant */
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 120px));
 }
 
 .memory-card {
+  width: 120px;
+  height: 120px;
   position: relative;
-  width: 100%;
-
-  /* carré parfait */
-  padding-top: 100%; /* hauteur = largeur */
   border-radius: 6px;
-  background: #222;
   cursor: pointer;
   transform-style: preserve-3d;
   transition: transform 0.5s;
 }
 
-/* contenu de la carte en absolu */
 .memory-card img,
 .memory-card .front,
 .memory-card .back {
@@ -585,6 +577,8 @@ nav.vertical a:hover {
   border-radius: 6px;
   backface-visibility: hidden;
 }
+
+
 .memory-card.flip {
   transform: rotateY(180deg);
 }
