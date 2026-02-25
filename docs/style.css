@@ -532,14 +532,14 @@ nav.vertical a:hover {
 /* Tablette */
 @media screen and (max-width: 900px) {
   #memory-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 
 /* Téléphone */
 @media screen and (max-width: 500px) {
   #memory-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr)); /* 4 colonnes flexibles */
+    grid-template-columns: repeat(5, minmax(0, 1fr)); /* 4 colonnes flexibles */
     gap: 4px;
   }
 
