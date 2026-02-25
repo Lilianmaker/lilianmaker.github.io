@@ -20,6 +20,15 @@ body.fluo {
     background-color: black;
     color: white;
 }
+body.fluo .section-text {
+    background: rgba(0, 0, 0, 0.6); /* fond noir transparent */
+    padding: 25px;
+    border-radius: 15px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(57, 255, 20, 0.4);
+    box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+}
 body.fluo .section-text h2,
 body.fluo .section-text p {
     color: #39ff14; /* vert fluo néon */
