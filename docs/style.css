@@ -511,19 +511,19 @@ nav.vertical a:hover {
     }
 }
 
-/*#memory-grid {
+#memory-grid {
   display: grid;
   grid-template-columns: repeat(5, 120px);
   gap: 5px;
   margin-top: 20px;
   justify-content: center; /* centre la grille */
-/*}
+}
 
   
 .memory-card {
-  /*width: 90px;
+  width: 90px;
   height: 90px;*/
-  /*background: #222;
+  background: #222;
   border-radius: 6px;
   cursor: pointer;
   position: relative;
@@ -531,36 +531,24 @@ nav.vertical a:hover {
   transition: transform 0.5s;
 }
 /* Tablette */
-/*@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) {
   #memory-grid {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 
 /* Téléphone */
-/*@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) {
   #memory-grid {
     grid-template-columns: repeat(5, minmax(0, 1fr)); /* 4 colonnes flexibles */
- /*   gap: 4px;
+   gap: 4px;
   }
 
   .memory-card {
     width: 100%;        /* prend toute la colonne */
- /*   aspect-ratio: 1/1;  /* carré parfait */
- /* }
-} */
-#memory-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); /* minimum 70px par carte */
-  gap: 4px;
-  width: 100%;
-  padding: 5px;
-  box-sizing: border-box;
-}
-.memory-card {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-}
+   aspect-ratio: 1/1;  /* carré parfait */
+  }
+} 
 
 
 .memory-card.flip {
