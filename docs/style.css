@@ -575,7 +575,7 @@ nav.vertical a:hover {
 
 .memory-card .front {
   transform: rotateY(180deg);
-}*/
+}
 
 body.fluo .section-text {
     background: rgba(0, 0, 0, 0.7);
