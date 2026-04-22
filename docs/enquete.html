@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boîte Mail - Outlook</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #0078d4;
+            color: white;
+            padding: 20px;
+        }
+        .sidebar h2 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar li {
+            padding: 8px 0;
+            cursor: pointer;
+        }
+        .sidebar li:hover {
+            text-decoration: underline;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+        }
+        .header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .search-box {
+            padding: 8px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .mail-list {
+            flex: 1;
+            overflow-y: auto;
+            border-right: 1px solid #e0e0e0;
+        }
+        .mail-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .mail-item:hover {
+            background-color: #f5f5f5;
+        }
+        .mail-item.unread {
+            background-color: #e8f4fd;
+            font-weight: bold;
+        }
+        .mail-sender {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .mail-subject {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .mail-date {
+            color: #666;
+            font-size: 12px;
+        }
+        .mail-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .mail-header {
+            margin-bottom: 20px;
+        }
+        .mail-sender-info {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .mail-subject-info {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .mail-date-info {
+            color: #666;
+            font-size: 12px;
+        }
+        .mail-body {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>Boîte de réception</h2>
+            <ul>
+                <li>Nouveau message</li>
+                <li>Boîte de réception</li>
+                <li>Envoyés</li>
+                <li>Brouillons</li>
+                <li>Corbeille</li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <h2>Boîte de réception</h2>
+                <input type="text" class="search-box" placeholder="Rechercher un message...">
+            </div>
+            <div class="mail-list" id="mailList">
+                <div class="mail-item unread" onclick="showMail(0)">
+                    <div>
+                        <span class="mail-sender">Amazon</span>
+                        <span class="mail-subject">Votre commande #12345 a été expédiée</span>
+                    </div>
+                    <span class="mail-date">10:30</span>
+                </div>
+                <div class="mail-item" onclick="showMail(1)">
+                    <div>
+                        <span class="mail-sender">LinkedIn</span>
+                        <span class="mail-subject">Nouvelle connexion</span>
+                    </div>
+                    <span class="mail-date">Hier</span>
+                </div>
+                <div class="mail-item" onclick="showMail(2)">
+                    <div>
+                        <span class="mail-sender">Netflix</span>
+                        <span class="mail-subject">Nouveautés cette semaine</span>
+                    </div>
+                    <span class="mail-date">Lun 15</span>
+                </div>
+                <div class="mail-item" onclick="showMail(3)">
+                    <div>
+                        <span class="mail-sender">Banque Populaire</span>
+                        <span class="mail-subject">Relevé de compte - Avril 2026</span>
+                    </div>
+                    <span class="mail-date">Ven 12</span>
+                </div>
+            </div>
+            <div class="mail-content" id="mailContent">
+                <!-- Le contenu du mail sélectionné sera affiché ici -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const mails = [
+            {
+                sender: "Amazon <no-reply@amazon.fr>",
+                subject: "Votre commande #12345 a été expédiée",
+                date: "10:30",
+                body: `
+                    <p>Bonjour Lilian,</p>
+                    <p>Nous sommes ravis de vous informer que votre commande #12345 a été expédiée et est en route vers l'adresse de livraison que vous avez indiquée.</p>
+                    <p><strong>Date de livraison estimée :</strong> 25 avril 2026</p>
+                    <p><strong>Adresse de livraison :</strong> 123 Rue de Paris, 75000 Paris</p>
+                    <p>Vous pouvez suivre l'état de votre commande en cliquant sur le lien ci-dessous :</p>
+                    <p><a href="#">Suivre ma commande</a></p>
+                    <p>Merci d'avoir fait vos achats chez Amazon.</p>
+                    <p>Cordialement,<br>L'équipe Amazon</p>
+                `
+            },
+            {
+                sender: "LinkedIn <notifications@linkedin.com>",
+                subject: "Nouvelle connexion",
+                date: "Hier",
+                body: `
+                    <p>Bonjour Lilian,</p>
+                    <p>Nous avons remarqué une nouvelle connexion à votre compte LinkedIn depuis un nouvel appareil.</p>
+                    <p><strong>Appareil :</strong> iPhone 15 Pro</p>
+                    <p><strong>Localisation :</strong> Paris, France</p>
+                    <p><strong>Date/Heure :</strong> 21 avril 2026 à 14:30</p>
+                    <p>Si vous ne reconnaissez pas cette activité, nous vous recommandons de <a href="#">changer votre mot de passe</a> immédiatement.</p>
+                    <p>Cordialement,<br>L'équipe LinkedIn</p>
+                `
+            },
+            {
+                sender: "Netflix <info@netflix.com>",
+                subject: "Nouveautés cette semaine",
+                date: "Lun 15",
+                body: `
+                    <p>Bonjour Lilian,</p>
+                    <p>Voici les nouveautés disponibles cette semaine sur Netflix :</p>
+                    <ul>
+                        <li><strong>Stranger Things - Saison 5</strong> : La saison tant attendue est enfin disponible !</li>
+                        <li><strong>Le Jeu de la Dame - Film</strong> : Découvrez l'histoire inspirante de Beth Harmon.</li>
+                        <li><strong>Lupin - Partie 3</strong> : Omar Sy revient dans de nouvelles aventures.</li>
+                    </ul>
+                    <p>Profitez de vos films et séries préférés sur Netflix.</p>
+                    <p>Cordialement,<br>L'équipe Netflix</p>
+                `
+            },
+            {
+                sender: "Banque Populaire <service@banquepopulaire.fr>",
+                subject: "Relevé de compte - Avril 2026",
+                date: "Ven 12",
+                body: `
+                    <p>Bonjour Monsieur Bonnec,</p>
+                    <p>Votre relevé de compte pour le mois d'avril 2026 est maintenant disponible.</p>
+                    <p><strong>Solde au 30/04/2026 :</strong> 12 345,67 €</p>
+                    <p>Vous pouvez consulter votre relevé détaillé en vous connectant à votre espace client :</p>
+                    <p><a href="#">Accéder à mon compte</a></p>
+                    <p>N'hésitez pas à nous contacter pour toute question.</p>
+                    <p>Cordialement,<br>Votre conseiller Banque Populaire</p>
+                `
+            }
+        ];
+
+        function showMail(index) {
+            const mail = mails[index];
+            const mailContent = document.getElementById('mailContent');
+
+            // Marquer le mail comme lu
+            const mailItems = document.querySelectorAll('.mail-item');
+            mailItems[index].classList.remove('unread');
+
+            mailContent.innerHTML = `
+                <div class="mail-header">
+                    <div class="mail-sender-info">${mail.sender}</div>
+                    <div class="mail-subject-info">${mail.subject}</div>
+                    <div class="mail-date-info">${mail.date}</div>
+                </div>
+                <div class="mail-body">
+                    ${mail.body}
+                </div>
+            `;
+        }
+
+        // Afficher le premier mail par défaut
+        showMail(0);
+    </script>
+</body>
+</html>
