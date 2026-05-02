@@ -23,7 +23,6 @@
             height: 100vh;
         }
 
-        /* ==================== SIDEBAR ==================== */
         .sidebar {
             width: 250px;
             background-color: var(--primary);
@@ -52,7 +51,6 @@
             background: rgba(255,255,255,0.15);
         }
 
-        /* ==================== MAIN ==================== */
         .main-content {
             flex: 1;
             display: flex;
@@ -67,15 +65,14 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            flex-wrap: wrap;
         }
 
         .back-btn {
             display: none;
             background: none;
             border: none;
-            font-size: 24px;
-            padding: 4px 10px;
+            font-size: 26px;
+            padding: 4px 8px;
             cursor: pointer;
         }
 
@@ -84,10 +81,9 @@
             padding: 10px 14px;
             border: 1px solid #ccc;
             border-radius: 8px;
-            font-size: 16px; /* mieux pour mobile */
+            font-size: 16px;
         }
 
-        /* ==================== LISTE DES MAILS ==================== */
         .mail-list {
             flex: 1;
             overflow-y: auto;
@@ -135,12 +131,12 @@
             white-space: nowrap;
         }
 
-        /* ==================== CONTENU DU MAIL ==================== */
         .mail-content {
             flex: 1;
             padding: 20px;
             overflow-y: auto;
             background: white;
+            display: none;
         }
 
         .mail-header {
@@ -210,7 +206,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        /* ==================== RESPONSIVE MOBILE ==================== */
+        /* ==================== MOBILE ==================== */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -235,10 +231,6 @@
                 background: rgba(255,255,255,0.2);
             }
 
-            .header {
-                padding: 12px 16px;
-            }
-
             .back-btn {
                 display: block;
             }
@@ -258,16 +250,11 @@
                 font-size: 17.5px;
                 line-height: 1.8;
             }
-
-            .mail-item {
-                padding: 14px 16px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar -->
         <div class="sidebar">
             <h2>Boîte de réception</h2>
             <ul>
@@ -279,7 +266,6 @@
             </ul>
         </div>
 
-        <!-- Main Content -->
         <div class="main-content">
             <div class="header">
                 <button class="back-btn" onclick="goBackToList()">←</button>
@@ -287,42 +273,125 @@
                 <input type="text" class="search-box" placeholder="Rechercher un message...">
             </div>
 
-            <div class="mail-list" id="mailList">
-                <!-- Les mails sont ajoutés via JS -->
-            </div>
-
-            <div class="mail-content" id="mailContent" style="display: none;">
-                <!-- Contenu dynamique -->
-            </div>
+            <div class="mail-list" id="mailList"></div>
+            <div class="mail-content" id="mailContent"></div>
         </div>
     </div>
 
     <script>
-        const mails = [ /* Tes mails restent identiques */ 
+        const mails = [
             {
                 sender: "Anonyme <no-reply@darkweb.org>",
                 subject: "Les bases du piratage",
                 date: "Aujourd'hui",
-                body: `...` // (ton contenu original)
+                body: `
+                    <p>Agent Zic,</p>
+                    <p>Voici un rappel des bases en <strong>HTML, Java et PHP</strong> pour tes missions d'infiltration.</p>
+                    <h3>1. HTML - Structure de base</h3>
+                    <div class="code-block">
+                        &lt;!DOCTYPE html&gt;<br>
+                        &lt;html&gt;<br>
+                        &lt;head&gt;<br>
+                        &nbsp;&nbsp;&lt;title&gt;Titre&lt;/title&gt;<br>
+                        &lt;/head&gt;<br>
+                        &lt;body&gt;<br>
+                        &nbsp;&nbsp;&lt;h1&gt;Bonjour&lt;/h1&gt;<br>
+                        &lt;/body&gt;<br>
+                        &lt;/html&gt;
+                    </div>
+                    <h3>2. Java - Exemple</h3>
+                    <div class="code-block">
+                        public class HelloWorld {<br>
+                        &nbsp;&nbsp;public static void main(String[] args) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Hello World!");<br>
+                        &nbsp;&nbsp;}<br>
+                        }
+                    </div>
+                    <h3>3. PHP</h3>
+                    <div class="code-block">
+                        &lt;?php<br>
+                        &nbsp;&nbsp;echo "Bonjour Agent Zic!";<br>
+                        ?&gt;
+                    </div>
+                    <p><strong>Ne te fais pas prendre !</strong></p>
+                `
             },
-            // ... tous les autres mails (je les ai gardés identiques dans la version finale)
+            {
+                sender: "Dr Grippe <dr.grippe@clinique.fr>",
+                subject: "Résultats de votre consultation - Allergie à l'alcool",
+                date: "10:30",
+                body: `
+                    <p>Bonjour Mr Zic,</p>
+                    <p>Votre allergie à l'alcool s'aggrave malheureusement.</p>
+                    <p><strong>Symptômes observés :</strong></p>
+                    <ul>
+                        <li>Réactions cutanées intenses</li>
+                        <li>Maux de tête persistants</li>
+                        <li>Difficultés respiratoires</li>
+                    </ul>
+                    <p>Je vous recommande d'éviter toute consommation d'alcool.</p>
+                    <p>PS : Ce rapport est envoyé à vos supérieurs hiérarchiques.</p>
+                    <p>Cordialement,<br>Dr Grippe</p>
+                `
+            },
+            {
+                sender: "Mr X <dr.x@festival.org>",
+                subject: "Bon festival !",
+                date: "Hier",
+                body: `
+                    <p>Salut Jacques,</p>
+                    <p>Je te souhaite un excellent festival ! Profite bien et <strong>surtout ne bois pas trop d'alcool</strong> !</p>
+                    <p>Amuse-toi bien,<br>Mr X</p>
+                `
+            },
+            {
+                sender: "Agence Espionne <formation@espionnage.pro>",
+                subject: "Espion pour les nuls - Rappel code Morse",
+                date: "Lun 15",
+                body: `
+                    <p>Agent Zic,</p>
+                    <p>Voici un rappel du code Morse :</p>
+                    <table class="morse-table">
+                        <tr><th>Lettre</th><th>Code</th><th>Lettre</th><th>Code</th></tr>
+                        <tr><td>A</td><td>.-</td><td>N</td><td>-.</td></tr>
+                        <tr><td>B</td><td>-...</td><td>O</td><td>---</td></tr>
+                        <tr><td>C</td><td>-.-.</td><td>P</td><td>.--.</td></tr>
+                        <tr><td>E</td><td>.</td><td>S</td><td>...</td></tr>
+                        <tr><td>T</td><td>-</td><td>Z</td><td>--..</td></tr>
+                    </table>
+                    <p>Bonne chance pour ta mission !</p>
+                `
+            },
+            {
+                sender: "Jacquie et Michel <service@jacquieetmichel.fr>",
+                subject: "Renouvellement abonnement",
+                date: "Ven 12",
+                body: `
+                    <p>Bonjour Lilian Bouvet,</p>
+                    <p>Votre abonnement a été automatiquement renouvelé pour 2 ans.</p>
+                    <p><strong>Détails :</strong></p>
+                    <ul>
+                        <li>Montant : 40 €/mois</li>
+                        <li>Prochain prélèvement : 1er Juillet 2026</li>
+                    </ul>
+                    <p>On dit merci qui ?</p>
+                `
+            },
             {
                 sender: "Anonyme <shadow@unknown.org>",
                 subject: "Confidentiel",
                 date: "Maintenant",
                 body: `
                     <p><strong>Agent Zic,</strong></p>
-                    <p>Informations hautement confidentielles. Ne forward pas ce message.</p>
+                    <p>Informations hautement confidentielles.</p>
                     <p>Voici la photo que tu as demandée :</p>
-                    <img src="image/electro.png" alt="Electro">
-                    <p>Utilise-la avec prudence. Elle contient des éléments sensibles liés à la mission.</p>
+                    <img src="image/electro.png" alt="Electro" style="max-width:100%;">
+                    <p>Utilise-la avec prudence.</p>
                     <p>Destruction du message recommandée après lecture.</p>
                     <p><em>— Un allié dans l'ombre</em></p>
                 `
             }
         ];
-
-        let currentMailIndex = null;
 
         function renderMailList() {
             const list = document.getElementById('mailList');
@@ -344,7 +413,6 @@
         }
 
         function showMail(index) {
-            currentMailIndex = index;
             const mail = mails[index];
             const content = document.getElementById('mailContent');
             const list = document.getElementById('mailList');
@@ -371,11 +439,9 @@
             document.getElementById('headerTitle').textContent = 'Boîte de réception';
         }
 
-        // Initialisation
         window.onload = () => {
             renderMailList();
-            // Afficher le premier mail par défaut (optionnel sur mobile)
-            // showMail(0);
+            // showMail(0); // Décommente si tu veux ouvrir le premier mail automatiquement
         };
     </script>
 </body>
