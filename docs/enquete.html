@@ -123,6 +123,15 @@
         .morse-table th {
             background-color: #f2f2f2;
         }
+        .code-block {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -145,26 +154,33 @@
             <div class="mail-list" id="mailList">
                 <div class="mail-item unread" onclick="showMail(0)">
                     <div>
+                        <span class="mail-sender">Anonyme</span>
+                        <span class="mail-subject">Les bases du piratage</span>
+                    </div>
+                    <span class="mail-date">Aujourd'hui</span>
+                </div>
+                <div class="mail-item unread" onclick="showMail(1)">
+                    <div>
                         <span class="mail-sender">Dr Grippe</span>
                         <span class="mail-subject">Résultats de votre consultation - Allergie à l'alcool</span>
                     </div>
                     <span class="mail-date">10:30</span>
                 </div>
-                <div class="mail-item unread" onclick="showMail(1)">
+                <div class="mail-item unread" onclick="showMail(2)">
                     <div>
                         <span class="mail-sender">Mr X</span>
                         <span class="mail-subject">Bon festival !</span>
                     </div>
                     <span class="mail-date">Hier</span>
                 </div>
-                <div class="mail-item" onclick="showMail(2)">
+                <div class="mail-item" onclick="showMail(3)">
                     <div>
                         <span class="mail-sender">Agence Espionne</span>
                         <span class="mail-subject">Espion pour les nuls - Rappel code Morse</span>
                     </div>
                     <span class="mail-date">Lun 15</span>
                 </div>
-                <div class="mail-item" onclick="showMail(3)">
+                <div class="mail-item" onclick="showMail(4)">
                     <div>
                         <span class="mail-sender">Jacquie et Michel</span>
                         <span class="mail-subject">Renouvellement abonnement</span>
@@ -180,6 +196,52 @@
 
     <script>
         const mails = [
+            {
+                sender: "Anonyme <no-reply@darkweb.org>",
+                subject: "Les bases du piratage",
+                date: "Aujourd'hui",
+                body: `
+                    <p>Agent Zic,</p>
+                    <p>Voici un rappel des bases en <strong>HTML, Java et PHP</strong> pour tes missions d'infiltration. Ces compétences sont essentielles pour manipuler les systèmes et extraire des informations.</p>
+
+                    <h3>1. HTML - Structure de base</h3>
+                    <p>Le HTML est le langage de balisage standard pour créer des pages web.</p>
+                    <div class="code-block">
+                        &lt;!DOCTYPE html&gt;<br>
+                        &lt;html&gt;<br>
+                        &lt;head&gt;<br>
+                        &nbsp;&nbsp;&lt;title&gt;Titre de la page&lt;/title&gt;<br>
+                        &lt;/head&gt;<br>
+                        &lt;body&gt;<br>
+                        &nbsp;&nbsp;&lt;h1&gt;Bonjour le monde&lt;/h1&gt;<br>
+                        &nbsp;&nbsp;&lt;p&gt;Ceci est un paragraphe.&lt;/p&gt;<br>
+                        &lt;/body&gt;<br>
+                        &lt;/html&gt;
+                    </div>
+
+                    <h3>2. Java - Exemple de classe simple</h3>
+                    <p>Java est un langage orienté objet utilisé pour développer des applications robustes.</p>
+                    <div class="code-block">
+                        public class HelloWorld {<br>
+                        &nbsp;&nbsp;public static void main(String[] args) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Hello, World!");<br>
+                        &nbsp;&nbsp;}<br>
+                        }
+                    </div>
+
+                    <h3>3. PHP - Script de base</h3>
+                    <p>PHP est un langage de script côté serveur, souvent utilisé pour interagir avec des bases de données.</p>
+                    <div class="code-block">
+                        &lt;?php<br>
+                        &nbsp;&nbsp;$name = "Agent Zic";<br>
+                        &nbsp;&nbsp;echo "Bonjour, " . $name . "!";<br>
+                        ?&gt;
+                    </div>
+
+                    <p>Utilise ces exemples pour t'infiltrer dans les systèmes du festival. <strong>Ne te fais pas prendre !</strong></p>
+                    <p>Cordialement,<br>Un ami anonyme</p>
+                `
+            },
             {
                 sender: "Dr Grippe <dr.grippe@clinique.fr>",
                 subject: "Résultats de votre consultation - Allergie à l'alcool",
