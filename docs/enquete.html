@@ -4,84 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boîte Mail - Festival</title>
-
     <style>
-
-        *{
-            box-sizing:border-box;
-        }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f5f5f5;
-            overflow: hidden;
         }
-
         .container {
             display: flex;
             height: 100vh;
         }
-
         .sidebar {
             width: 250px;
             background-color: #0078d4;
             color: white;
             padding: 20px;
-            overflow-y:auto;
+            flex-shrink: 0;
         }
-
         .sidebar h2 {
             margin-top: 0;
             font-size: 18px;
         }
-
         .sidebar ul {
             list-style: none;
             padding: 0;
         }
-
         .sidebar li {
             padding: 8px 0;
             cursor: pointer;
         }
-
         .sidebar li:hover {
             text-decoration: underline;
         }
-
         .main-content {
             flex: 1;
             display: flex;
             flex-direction: column;
             background-color: white;
-            min-width:0;
+            min-width: 0;
         }
-
         .header {
             padding: 15px 20px;
             border-bottom: 1px solid #e0e0e0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap:10px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
-
         .search-box {
             padding: 8px;
             width: 300px;
+            max-width: 100%;
             border: 1px solid #ccc;
             border-radius: 4px;
-            max-width:100%;
         }
-
         .mail-list {
+            flex: 1;
             overflow-y: auto;
             border-right: 1px solid #e0e0e0;
-            max-height: 320px;
+            min-width: 280px;
         }
-
         .mail-item {
             padding: 15px 20px;
             border-bottom: 1px solid #f0f0f0;
@@ -89,86 +73,66 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap:10px;
         }
-
         .mail-item:hover {
             background-color: #f5f5f5;
         }
-
         .mail-item.unread {
             background-color: #e8f4fd;
             font-weight: bold;
         }
-
         .mail-sender {
             font-weight: bold;
             margin-right: 10px;
         }
-
         .mail-subject {
             flex: 1;
             margin-right: 10px;
-            word-break: break-word;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-
         .mail-date {
             color: #666;
             font-size: 12px;
-            white-space: nowrap;
+            flex-shrink: 0;
         }
-
         .mail-content {
             flex: 1;
             padding: 20px;
             overflow-y: auto;
         }
-
         .mail-header {
             margin-bottom: 20px;
         }
-
         .mail-sender-info {
             font-weight: bold;
             font-size: 16px;
-            word-break: break-word;
         }
-
         .mail-subject-info {
             font-size: 18px;
             margin: 10px 0;
-            word-break: break-word;
         }
-
         .mail-date-info {
             color: #666;
             font-size: 12px;
         }
-
         .mail-body {
             line-height: 1.6;
         }
-
         .morse-table {
             border-collapse: collapse;
             width: 100%;
             margin: 15px 0;
-            overflow-x:auto;
-            display:block;
         }
-
-        .morse-table th,
-        .morse-table td {
+        .morse-table th, .morse-table td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
-            white-space: nowrap;
         }
-
         .morse-table th {
             background-color: #f2f2f2;
         }
-
         .code-block {
             background-color: #f8f8f8;
             border: 1px solid #ddd;
@@ -177,354 +141,317 @@
             font-family: monospace;
             overflow-x: auto;
             margin: 10px 0;
-            font-size:14px;
         }
 
-        /* =========================
-           VERSION MOBILE
-        ========================= */
-        @media screen and (max-width: 768px) {
+        /* Image style */
+        .mail-body img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
 
-            body {
-                overflow: auto;
-            }
-
+        /* === RESPONSIVE MOBILE === */
+        @media (max-width: 768px) {
             .container {
                 flex-direction: column;
-                height: auto;
-                min-height: 100vh;
+                height: 100vh;
             }
-
             .sidebar {
                 width: 100%;
-                padding: 15px;
+                padding: 12px;
+                order: -1;
             }
-
             .sidebar ul {
                 display: flex;
-                gap: 20px;
-                overflow-x: auto;
-                white-space: nowrap;
-                padding-bottom: 5px;
-            }
-
-            .sidebar li {
-                flex-shrink: 0;
-            }
-
-            .header {
-                flex-direction: column;
-                align-items: stretch;
+                flex-wrap: wrap;
                 gap: 10px;
             }
-
-            .header h2 {
-                margin: 0;
+            .sidebar li {
+                padding: 6px 12px;
+                background: rgba(255,255,255,0.2);
+                border-radius: 20px;
+                font-size: 14px;
             }
-
-            .search-box {
-                width: 100%;
+            .main-content {
+                flex: 1;
+                min-height: 0;
             }
-
+            .header {
+                padding: 12px 15px;
+            }
             .mail-list {
-                max-height: 300px;
                 border-right: none;
                 border-bottom: 1px solid #e0e0e0;
+                max-height: 45vh;
+                min-width: auto;
             }
-
-            .mail-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-            }
-
-            .mail-date {
-                font-size: 11px;
-            }
-
             .mail-content {
                 padding: 15px;
             }
-
-            .mail-subject-info {
-                font-size: 22px;
-            }
-
-            .mail-body {
-                font-size: 15px;
-            }
-
-            .code-block {
-                font-size: 12px;
-                white-space: nowrap;
+            .mail-item {
+                padding: 12px 15px;
             }
         }
-
     </style>
 </head>
-
 <body>
-
-<div class="container">
-
-    <div class="sidebar">
-
-        <h2>Boîte de réception</h2>
-
-        <ul>
-            <li>Nouveau message</li>
-            <li>Boîte de réception</li>
-            <li>Envoyés</li>
-            <li>Brouillons</li>
-            <li>Corbeille</li>
-        </ul>
-
-    </div>
-
-    <div class="main-content">
-
-        <div class="header">
+    <div class="container">
+        <div class="sidebar">
             <h2>Boîte de réception</h2>
-
-            <input
-                type="text"
-                class="search-box"
-                placeholder="Rechercher un message..."
-            >
+            <ul>
+                <li>Nouveau message</li>
+                <li>Boîte de réception</li>
+                <li>Envoyés</li>
+                <li>Brouillons</li>
+                <li>Corbeille</li>
+            </ul>
         </div>
-
-        <div class="mail-list" id="mailList">
-
-            <div class="mail-item unread" onclick="showMail(0)">
-                <div>
-                    <span class="mail-sender">Anonyme</span>
-                    <span class="mail-subject">Les bases du piratage</span>
-                </div>
-                <span class="mail-date">Aujourd'hui</span>
+        <div class="main-content">
+            <div class="header">
+                <h2>Boîte de réception</h2>
+                <input type="text" class="search-box" placeholder="Rechercher un message...">
             </div>
-
-            <div class="mail-item unread" onclick="showMail(1)">
-                <div>
-                    <span class="mail-sender">Dr Grippe</span>
-                    <span class="mail-subject">
-                        Résultats de votre consultation - Allergie à l'alcool
-                    </span>
+            <div class="mail-list" id="mailList">
+                <div class="mail-item unread" onclick="showMail(0)">
+                    <div>
+                        <span class="mail-sender">Anonyme</span>
+                        <span class="mail-subject">Les bases du piratage</span>
+                    </div>
+                    <span class="mail-date">Aujourd'hui</span>
                 </div>
-                <span class="mail-date">10:30</span>
-            </div>
-
-            <div class="mail-item unread" onclick="showMail(2)">
-                <div>
-                    <span class="mail-sender">Mr X</span>
-                    <span class="mail-subject">Bon festival !</span>
+                <div class="mail-item unread" onclick="showMail(1)">
+                    <div>
+                        <span class="mail-sender">Dr Grippe</span>
+                        <span class="mail-subject">Résultats de votre consultation - Allergie à l'alcool</span>
+                    </div>
+                    <span class="mail-date">10:30</span>
                 </div>
-                <span class="mail-date">Hier</span>
-            </div>
-
-            <div class="mail-item" onclick="showMail(3)">
-                <div>
-                    <span class="mail-sender">Agence Espionne</span>
-                    <span class="mail-subject">
-                        Espion pour les nuls - Rappel code Morse
-                    </span>
+                <div class="mail-item unread" onclick="showMail(2)">
+                    <div>
+                        <span class="mail-sender">Mr X</span>
+                        <span class="mail-subject">Bon festival !</span>
+                    </div>
+                    <span class="mail-date">Hier</span>
                 </div>
-                <span class="mail-date">Lun 15</span>
-            </div>
-
-            <div class="mail-item" onclick="showMail(4)">
-                <div>
-                    <span class="mail-sender">Jacquie et Michel</span>
-                    <span class="mail-subject">
-                        Renouvellement abonnement
-                    </span>
+                <div class="mail-item" onclick="showMail(3)">
+                    <div>
+                        <span class="mail-sender">Agence Espionne</span>
+                        <span class="mail-subject">Espion pour les nuls - Rappel code Morse</span>
+                    </div>
+                    <span class="mail-date">Lun 15</span>
                 </div>
-                <span class="mail-date">Ven 12</span>
-            </div>
-
-            <!-- Nouveau mail -->
-            <div class="mail-item unread" onclick="showMail(5)">
-                <div>
-                    <span class="mail-sender">Anonyme</span>
-                    <span class="mail-subject">Confidentiel</span>
+                 <!-- Nouveau mail ajouté -->
+                <div class="mail-item unread" onclick="showMail(5)">
+                    <div>
+                        <span class="mail-sender">Anonyme</span>
+                        <span class="mail-subject">Confidentiel</span>
+                    </div>
+                    <span class="mail-date">Lun 15</span>
                 </div>
-                <span class="mail-date">Maintenant</span>
+                <div class="mail-item" onclick="showMail(4)">
+                    <div>
+                        <span class="mail-sender">Jacquie et Michel</span>
+                        <span class="mail-subject">Renouvellement abonnement</span>
+                    </div>
+                    <span class="mail-date">Ven 12</span>
+                </div>
+               
             </div>
-
+            <div class="mail-content" id="mailContent">
+                <!-- Le contenu du mail sélectionné sera affiché ici -->
+            </div>
         </div>
-
-        <div class="mail-content" id="mailContent">
-            <!-- contenu -->
-        </div>
-
     </div>
 
-</div>
+    <script>
+        const mails = [
+            {
+                sender: "Anonyme <no-reply@darkweb.org>",
+                subject: "Les bases du piratage",
+                date: "Aujourd'hui",
+                body: `
+                    <p>Agent Zic,</p>
+                    <p>Voici un rappel des bases en <strong>HTML, Java et PHP</strong> pour tes missions d'infiltration. Ces compétences sont essentielles pour manipuler les systèmes et extraire des informations.</p>
 
-<script>
+                    <h3>1. HTML - Structure de base</h3>
+                    <p>Le HTML est le langage de balisage standard pour créer des pages web.</p>
+                    <div class="code-block">
+                        &lt;!DOCTYPE html&gt;<br>
+                        &lt;html&gt;<br>
+                        &lt;head&gt;<br>
+                        &nbsp;&nbsp;&lt;title&gt;Titre de la page&lt;/title&gt;<br>
+                        &lt;/head&gt;<br>
+                        &lt;body&gt;<br>
+                        &nbsp;&nbsp;&lt;h1&gt;Bonjour le monde&lt;/h1&gt;<br>
+                        &nbsp;&nbsp;&lt;p&gt;Ceci est un paragraphe.&lt;/p&gt;<br>
+                        &lt;/body&gt;<br>
+                        &lt;/html&gt;
+                    </div>
 
-const mails = [
+                    <h3>2. Java - Exemple de classe simple</h3>
+                    <p>Java est un langage orienté objet utilisé pour développer des applications robustes.</p>
+                    <div class="code-block">
+                        public class HelloWorld {<br>
+                        &nbsp;&nbsp;public static void main(String[] args) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Hello, World!");<br>
+                        &nbsp;&nbsp;}<br>
+                        }
+                    </div>
 
-    {
-        sender: "Anonyme <no-reply@darkweb.org>",
-        subject: "Les bases du piratage",
-        date: "Aujourd'hui",
+                    <h3>3. PHP - Script de base</h3>
+                    <p>PHP est un langage de script côté serveur, souvent utilisé pour interagir avec des bases de données.</p>
+                    <div class="code-block">
+                        &lt;?php<br>
+                        &nbsp;&nbsp;$name = "Agent Zic";<br>
+                        &nbsp;&nbsp;echo "Bonjour, " . $name . "!";<br>
+                        ?&gt;
+                    </div>
 
-        body: `
-            <p>Agent Zic,</p>
+                    <p>Utilise ces exemples pour t'infiltrer dans les systèmes du festival. <strong>Ne te fais pas prendre !</strong></p>
+                    <p>Cordialement,<br>Un ami anonyme</p>
+                `
+            },
+            {
+                sender: "Dr Grippe <dr.grippe@clinique.fr>",
+                subject: "Résultats de votre consultation - Allergie à l'alcool",
+                date: "10:30",
+                body: `
+                    <p>Bonjour Mr Zic,</p>
+                    <p>Je vous écris pour vous faire part des résultats de votre dernière consultation. Votre allergie à l'alcool s'aggrave malheureusement, comme en témoignent les analyses que nous avons réalisées.</p>
+                    <p><strong>Symptômes observés :</strong></p>
+                    <ul>
+                        <li>Réactions cutanées plus intenses (rougeurs, démangeaisons)</li>
+                        <li>Maux de tête persistants après ingestion, même en petite quantité</li>
+                        <li>Difficultés respiratoires dans les cas les plus sévères</li>
+                    </ul>
+                    <p>Je vous recommande vivement d'éviter toute consommation d'alcool, même occasionnelle. Nous allons ajuster votre traitement et je vous propose un suivi mensuel pour surveiller l'évolution.</p>
+                    <p>N'hésitez pas à me contacter en cas de besoin urgent.</p>
+                    <p>PS : Ce rapport est envoyé à vos supérieurs hiérarchiques</p>
+                    <p>Cordialement,<br>Dr Grippe</p>
+                `
+            },
+            {
+                sender: "Mr X <dr.x@festival.org>",
+                subject: "Bon festival !",
+                date: "Hier",
+                body: `
+                    <p>Salut Jacques,</p>
+                    <p>Je te souhaite un excellent festival ! Profite bien des concerts, de l'ambiance, et surtout... <strong>ne bois pas trop d'alcool</strong> !</p>
+                    <p>Je me souviens encore de la dernière fois où tu t'es retrouvé complètement saoul au bar... Ce n'était pas une bonne idée. Prends soin de toi et reste raisonnable, au bar.</p>
+                    <p>Si jamais tu as besoin d'un conseil ou d'un soutien, je suis joignable sur mon portable.</p>
+                    <p>Amuse-toi bien, au bar<br>Mr X</p>
+                `
+            },
+            {
+                sender: "Agence Espionne <formation@espionnage.pro>",
+                subject: "Espion pour les nuls - Rappel des bases",
+                date: "Lun 15",
+                body: `
+                    <p>Agent Zic,</p>
+                    <p>En prévision de votre prochaine mission (Festival Edition), voici un rappel du code Morse et de l'alphabet international. Ces compétences pourraient s'avérer utiles sur le terrain.</p>
 
-            <p>
-                Voici un rappel des bases en
-                <strong>HTML, Java et PHP</strong>.
-            </p>
+                    <h3>Alphabet international (OTAN) :</h3>
+                    <ul>
+                        <li>A : Alpha</li>
+                        <li>B : Bravo</li>
+                        <li>C : Charlie</li>
+                        <li>D : Delta</li>
+                        <li>E : Echo</li>
+                        <li>F : Foxtrot</li>
+                        <li>G : Golf</li>
+                        <li>H : Hotel</li>
+                        <li>I : India</li>
+                        <li>J : Juliett</li>
+                        <li>K : Kilo</li>
+                        <li>L : Lima</li>
+                        <li>M : Mike</li>
+                    </ul>
 
-            <div class="code-block">
-                &lt;h1&gt;Bonjour&lt;/h1&gt;
-            </div>
-        `
-    },
+                    <h3>Code Morse :</h3>
+                    <table class="morse-table">
+                        <tr><th>Lettre</th><th>Code</th><th>Lettre</th><th>Code</th></tr>
+                        <tr><td>A</td><td>.-</td><td>N</td><td>-.</td></tr>
+                        <tr><td>B</td><td>-...</td><td>O</td><td>---</td></tr>
+                        <tr><td>C</td><td>-.-.</td><td>P</td><td>.--.</td></tr>
+                        <tr><td>D</td><td>-..</td><td>Q</td><td>--.-</td></tr>
+                        <tr><td>E</td><td>.</td><td>R</td><td>.-.</td></tr>
+                        <tr><td>F</td><td>..-.</td><td>S</td><td>...</td></tr>
+                        <tr><td>G</td><td>--.</td><td>T</td><td>-</td></tr>
+                        <tr><td>H</td><td>....</td><td>U</td><td>..-</td></tr>
+                        <tr><td>I</td><td>..</td><td>V</td><td>...-</td></tr>
+                        <tr><td>J</td><td>.---</td><td>W</td><td>.--</td></tr>
+                        <tr><td>K</td><td>-.-</td><td>X</td><td>-..-</td></tr>
+                        <tr><td>L</td><td>.-..</td><td>Y</td><td>-.--</td></tr>
+                        <tr><td>M</td><td>--</td><td>Z</td><td>--..</td></tr>
+                    </table>
 
-    {
-        sender: "Dr Grippe <dr.grippe@clinique.fr>",
-        subject: "Résultats de votre consultation",
-        date: "10:30",
+                    <p>Bonne chance pour ta mission !<br>L'Agence Espionne</p>
+                `
+            },
+            {
+                sender: "Jacquie et Michel <service@jacquieetmichel.fr>",
+                subject: "Renouvellement abonnement",
+                date: "Ven 12",
+                body: `
+                    <p>Bonjour Lilian Bouvet, petit coquin</p>
+                    <p>Nous vous remercions pour votre fidélité depuis ces nombreuses années. Votre abonnement a été automatiquement renouvelé pour une durée de 2 ans.</p>
+                    <p><strong>Détails de l'abonnement :</strong></p>
+                    <ul>
+                        <li>Montant : 40 €/mois</li>
+                        <li>Durée : 24 mois</li>
+                        <li>Prochain prélèvement : 1er Juillet 2026</li>
+                    </ul>
+                    <p>Vous pouvez gérer votre abonnement à tout moment en vous connectant à votre espace client.</p>
+                    <p>On dit merci qui ?</p>
+                    <p>Cordialement,<br>L'équipe Jacquie et Michel</p>
+                `
+            },
+            // ==================== NOUVEAU MAIL ====================
+            {
+                sender: "Anonyme <shadow@unknown.org>",
+                subject: "Confidentiel",
+                date: "Maintenant",
+                body: `
+                    <p><strong>Agent Zic,</strong></p>
+                    <p>Informations hautement confidentielles. Ne forward pas ce message.</p>
+                    
+                    <p>Voici la photo que tu as demandée :</p>
+                    <img src="electro.jpg" alt="Electro" title="Photo Electro">
+                    
+                    <p>Utilise-la avec prudence. Elle contient des éléments sensibles liés à la mission.</p>
+                    <p>Destruction du message recommandée après lecture.</p>
+                    
+                    <p><em>— Un allié dans l'ombre</em></p>
+                `
+            }
+        ];
 
-        body: `
-            <p>
-                Votre allergie à l'alcool s'aggrave.
-            </p>
-        `
-    },
+        function showMail(index) {
+            const mail = mails[index];
+            const mailContent = document.getElementById('mailContent');
 
-    {
-        sender: "Mr X <dr.x@festival.org>",
-        subject: "Bon festival !",
-        date: "Hier",
+            // Marquer comme lu
+            const mailItems = document.querySelectorAll('.mail-item');
+            if (mailItems[index]) mailItems[index].classList.remove('unread');
 
-        body: `
-            <p>
-                Profite bien du festival !
-            </p>
-        `
-    },
+            mailContent.innerHTML = `
+                <div class="mail-header">
+                    <div class="mail-sender-info">${mail.sender}</div>
+                    <div class="mail-subject-info">${mail.subject}</div>
+                    <div class="mail-date-info">${mail.date}</div>
+                </div>
+                <div class="mail-body">
+                    ${mail.body}
+                </div>
+            `;
+        }
 
-    {
-        sender: "Agence Espionne <formation@espionnage.pro>",
-        subject: "Espion pour les nuls",
-        date: "Lun 15",
-
-        body: `
-            <p>
-                Voici un rappel du code Morse.
-            </p>
-
-            <table class="morse-table">
-                <tr>
-                    <th>Lettre</th>
-                    <th>Code</th>
-                </tr>
-
-                <tr>
-                    <td>A</td>
-                    <td>.-</td>
-                </tr>
-
-                <tr>
-                    <td>B</td>
-                    <td>-...</td>
-                </tr>
-            </table>
-        `
-    },
-
-    {
-        sender: "Jacquie et Michel <service@jacquieetmichel.fr>",
-        subject: "Renouvellement abonnement",
-        date: "Ven 12",
-
-        body: `
-            <p>
-                Votre abonnement a été renouvelé.
-            </p>
-        `
-    },
-
-    /* ===== NOUVEAU MAIL ===== */
-
-    {
-        sender: "Anonyme <confidentiel@hidden.net>",
-        subject: "Confidentiel",
-        date: "Maintenant",
-
-        body: `
-            <p>Agent Zic,</p>
-
-            <p>
-                Voici le document récupéré durant l'opération.
-                Cette image doit rester strictement confidentielle.
-            </p>
-
-            <img
-                src="electro.jpg"
-                alt="Photo confidentielle"
-                style="
-                    width:100%;
-                    max-width:600px;
-                    border-radius:8px;
-                    margin-top:15px;
-                "
-            >
-
-            <p>
-                Détruisez ce message après consultation.
-            </p>
-
-            <p>
-                — Expéditeur anonyme
-            </p>
-        `
-    }
-
-];
-
-function showMail(index) {
-
-    const mail = mails[index];
-    const mailContent = document.getElementById('mailContent');
-
-    // Marquer comme lu
-    const mailItems = document.querySelectorAll('.mail-item');
-
-    if(mailItems[index]){
-        mailItems[index].classList.remove('unread');
-    }
-
-    mailContent.innerHTML = `
-        <div class="mail-header">
-
-            <div class="mail-sender-info">
-                ${mail.sender}
-            </div>
-
-            <div class="mail-subject-info">
-                ${mail.subject}
-            </div>
-
-            <div class="mail-date-info">
-                ${mail.date}
-            </div>
-
-        </div>
-
-        <div class="mail-body">
-            ${mail.body}
-        </div>
-    `;
-}
-
-// Affichage du premier mail
-showMail(0);
-
-</script>
-
+        // Afficher le premier mail par défaut
+        window.onload = () => {
+            showMail(0);
+        };
+    </script>
 </body>
 </html>
