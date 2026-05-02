@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Memory Game</title>
+  <link rel="stylesheet" href="style.css">
+
   <style>
     body {
       margin: 0;
@@ -34,63 +36,6 @@
       text-decoration: underline;
     }
 
-    #memory-container {
-      margin-top: 20px;
-    }
-
-    #memory-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .memory-card {
-      width: 80px;
-      height: 80px;
-      perspective: 1000px;
-      cursor: pointer;
-    }
-
-    .memory-card .front, .memory-card .back {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      backface-visibility: hidden;
-      transition: transform 0.5s;
-      border-radius: 5px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .memory-card .front {
-      transform: rotateY(180deg);
-    }
-
-    .memory-card .back {
-      background: #333;
-    }
-
-    .memory-card.flip .front {
-      transform: rotateY(0deg);
-    }
-
-    .memory-card.flip .back {
-      transform: rotateY(180deg);
-    }
-
-    .memory-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 5px;
-    }
-
-    .controls {
-      margin-top: 10px;
-    }
-
     #win-message {
       font-size: 24px;
       font-weight: bold;
@@ -102,138 +47,140 @@
 </head>
 
 <body>
+
   <!-- MENU HORIZONTAL -->
   <nav class="horizontal">
     <div class="menu-items">
       <a href="index.html">Accueil</a>
       <a href="equipes.html">Équipes</a>
-      <a href="soiree.html">La soirée</a>
+      <a href="soiree.html" >La soirée</a>
       <a href="resultat.html">Résultats</a>
-      <a href="repas.html">Repas</a>
+            <a href="repas.html">Repas</a>
     </div>
   </nav>
 
   <!-- MEMORY GAME -->
   <div id="memory-container">
-    <div id="memory-grid"></div>
-    <div class="controls">
-      <button id="memoryStartBtn">Start</button>
-      <button id="memoryResetBtn">Reset</button>
-    </div>
-    <div id="win-message"></div>
+  <div id="memory-grid"></div>
+  <div class="controls">
+
+    <button id="memoryStartBtn">Start</button>
+    <button id="memoryResetBtn">Reset</button>
   </div>
+  <div id="win-message"></div>
+</div>
 
-  <script>
-    const grid = document.getElementById("memory-grid");
-    const startBtn = document.getElementById("memoryStartBtn");
-    const resetBtn = document.getElementById("memoryResetBtn");
-    const winMessage = document.getElementById("win-message");
+<script>
+const grid = document.getElementById("memory-grid");
+const startBtn = document.getElementById("memoryStartBtn");
+const resetBtn = document.getElementById("memoryResetBtn");
+const winMessage = document.getElementById("win-message");
 
-    let firstCard = null;
-    let secondCard = null;
-    let lockBoard = false;
-    let matchesFound = 0;
+let firstCard = null;
+let secondCard = null;
+let lockBoard = false;
+let matchesFound = 0;
 
-    const imagesBDD = [
-      "image/audrey.png",
-      "image/charlie.PNG",
-      "image/elina.PNG",
-      "image/este.jpeg",
-      "image/ma.PNG",
-      "image/guillaume.jpeg",
-      "image/justine.jpeg",
-      "image/ladis.jpg",
-      "image/lenny.jpeg",
-      "image/lilian.jpeg",
-      "image/lois.jpeg",
-      "image/marion.jpeg",
-      "image/karen.jpeg",
-      "image/lil.jpg",
-      "image/clement.jpeg",
-      "image/py.jpeg",
-      "image/marine.jpeg",
-      "image/laeti.jpeg"
-    ];
+const imagesBDD = [
+  "image/audrey.png",
+  "image/charlie.PNG",
+  "image/elina.PNG",
+  "image/este.jpeg",
+  "image/ma.PNG",
+  "image/guillaume.jpeg",
+  "image/justine.jpeg",
+  "image/ladis.jpg",
+  "image/lenny.jpeg",
+  "image/lilian.jpeg",
+  "image/lois.jpeg",
+  "image/marion.jpeg",
+  "image/karen.jpeg",
+  "image/lil.jpg",
+  "image/clement.jpeg",
+  "image/py.jpeg",
+  "image/marine.jpeg",
+  "image/laeti.jpeg"
+];
 
-    function createDeck() {
-      return [...imagesBDD, ...imagesBDD].sort(() => Math.random() - 0.5);
-    }
+function createDeck() {
+  return [...imagesBDD, ...imagesBDD].sort(() => Math.random() - 0.5);
+}
 
-    function createBoard() {
-      grid.innerHTML = "";
-      winMessage.textContent = "";
-      winMessage.style.display = "none";
-      firstCard = null;
-      secondCard = null;
-      matchesFound = 0;
-      lockBoard = false;
+function createBoard() {
+  grid.innerHTML = "";
+  winMessage.textContent = "";
+  winMessage.style.display = "none";
+  firstCard = null;
+  secondCard = null;
+  matchesFound = 0;
 
-      const deck = createDeck();
+  const deck = createDeck();
 
-      deck.forEach(src => {
-        const card = document.createElement("div");
-        card.className = "memory-card";
-        card.innerHTML = `
-          <div class="back"></div>
-          <img src="${src}" class="front">
-        `;
-        card.addEventListener("click", () => flipCard(card));
-        grid.appendChild(card);
-      });
-    }
+  deck.forEach(src => {
+    const card = document.createElement("div");
+    card.className = "memory-card";
+    card.innerHTML = `
+      <div class="back"></div>
+      <img src="${src}" class="front">
+    `;
+    card.addEventListener("click", () => flipCard(card));
+    grid.appendChild(card);
+  });
+}
 
-    function flipCard(card) {
-      if (lockBoard || card === firstCard) return;
-      card.classList.add("flip");
+function flipCard(card) {
+  if (lockBoard || card === firstCard) return;
+  card.classList.add("flip");
 
-      if (!firstCard) {
-        firstCard = card;
-        return;
-      }
+  if (!firstCard) {
+    firstCard = card;
+    return;
+  }
 
-      secondCard = card;
-      checkMatch();
-    }
+  secondCard = card;
+  checkMatch();
+}
 
-    function checkMatch() {
-      const img1 = firstCard.querySelector(".front").src;
-      const img2 = secondCard.querySelector(".front").src;
-      if (img1 === img2) {
-        disableCards();
-        matchesFound++;
-        if (matchesFound === imagesBDD.length) {
-          setTimeout(() => {
-            winMessage.textContent = "piano";
-            winMessage.style.display = "block";
-          }, 500);
-        }
-      } else {
-        unflipCards();
-      }
-    }
-
-    function disableCards() {
-      firstCard.style.pointerEvents = "none";
-      secondCard.style.pointerEvents = "none";
-      resetTurn();
-    }
-
-    function unflipCards() {
-      lockBoard = true;
+function checkMatch() {
+  const img1 = firstCard.querySelector(".front").src;
+  const img2 = secondCard.querySelector(".front").src;
+  if (img1 === img2) {
+    disableCards();
+    matchesFound++;
+    if (matchesFound === imagesBDD.length) {
       setTimeout(() => {
-        firstCard.classList.remove("flip");
-        secondCard.classList.remove("flip");
-        resetTurn();
-      }, 800);
+        winMessage.textContent = "piano";
+        winMessage.style.display = "block";
+      }, 500);
     }
+  } else {
+    unflipCards();
+  }
+}
 
-    function resetTurn() {
-      [firstCard, secondCard] = [null, null];
-      lockBoard = false;
-    }
+function disableCards() {
+  firstCard.style.pointerEvents = "none";
+  secondCard.style.pointerEvents = "none";
+  resetTurn();
+}
 
-    startBtn.addEventListener("click", createBoard);
-    resetBtn.addEventListener("click", createBoard);
-  </script>
+function unflipCards() {
+  lockBoard = true;
+  setTimeout(() => {
+    firstCard.classList.remove("flip");
+    secondCard.classList.remove("flip");
+    resetTurn();
+  }, 800);
+}
+
+function resetTurn() {
+  [firstCard, secondCard] = [null, null];
+  lockBoard = false;
+}
+
+startBtn.addEventListener("click", createBoard);
+resetBtn.addEventListener("click", createBoard);
+</script>
+
 </body>
 </html>
