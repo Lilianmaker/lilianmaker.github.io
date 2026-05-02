@@ -28,15 +28,9 @@
             flex-shrink: 0;
         }
 
-        .sidebar h2 {
-            margin-top: 0;
-            font-size: 18px;
-        }
+        .sidebar h2 { margin-top: 0; font-size: 18px; }
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
+        .sidebar ul { list-style: none; padding: 0; }
 
         .sidebar li {
             padding: 10px 12px;
@@ -99,14 +93,64 @@
         .mail-item:hover { background-color: #f9f9f9; }
         .mail-item.unread { background-color: #e8f4fd; font-weight: 600; }
 
-        .mail-sender { font-weight: bold; }
-        .mail-subject { flex: 1; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .mail-sender { font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .mail-subject { flex: 1; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #333; }
+        .mail-date { font-size: 13px; color: #666; white-space: nowrap; }
 
         .mail-content {
             flex: 1;
             padding: 20px;
             overflow-y: auto;
             display: none;
+        }
+
+        .mail-header {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mail-sender-info { font-size: 17px; font-weight: 600; }
+        .mail-subject-info { font-size: 20px; margin: 10px 0 8px 0; line-height: 1.3; }
+        .mail-date-info { color: #666; font-size: 14px; }
+
+        .mail-body {
+            line-height: 1.75;
+            font-size: 17px;
+            color: #222;
+        }
+
+        .code-block {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: 14px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 15px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+
+        .morse-table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .morse-table th, .morse-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .morse-table th { background-color: #f2f2f2; }
+
+        .mail-body img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         /* Mobile */
@@ -149,50 +193,156 @@
     </div>
 
     <script>
-        const mails = [ /* === TES MAILS ORIGINAUX === */ 
+        const mails = [
             {
                 sender: "Anonyme <no-reply@darkweb.org>",
                 subject: "Les bases du piratage",
                 date: "Aujourd'hui",
-                body: `<p>Agent Zic,</p><p>Voici un rappel des bases en <strong>HTML, Java et PHP</strong>...</p>` // (raccourci pour lisibilité)
+                body: `
+                    <p>Agent Zic,</p>
+                    <p>Voici un rappel des bases en <strong>HTML, Java et PHP</strong> pour tes missions d'infiltration. Ces compétences sont essentielles pour manipuler les systèmes et extraire des informations.</p>
+                    <h3>1. HTML - Structure de base</h3>
+                    <p>Le HTML est le langage de balisage standard pour créer des pages web.</p>
+                    <div class="code-block">
+                        &lt;!DOCTYPE html&gt;<br>
+                        &lt;html&gt;<br>
+                        &lt;head&gt;<br>
+                        &nbsp;&nbsp;&lt;title&gt;Titre de la page&lt;/title&gt;<br>
+                        &lt;/head&gt;<br>
+                        &lt;body&gt;<br>
+                        &nbsp;&nbsp;&lt;h1&gt;Bonjour le monde&lt;/h1&gt;<br>
+                        &nbsp;&nbsp;&lt;p&gt;Ceci est un paragraphe.&lt;/p&gt;<br>
+                        &lt;/body&gt;<br>
+                        &lt;/html&gt;
+                    </div>
+                    <h3>2. Java - Exemple de classe simple</h3>
+                    <p>Java est un langage orienté objet utilisé pour développer des applications robustes.</p>
+                    <div class="code-block">
+                        public class HelloWorld {<br>
+                        &nbsp;&nbsp;public static void main(String[] args) {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Hello, World!");<br>
+                        &nbsp;&nbsp;}<br>
+                        }
+                    </div>
+                    <h3>3. PHP - Script de base</h3>
+                    <p>PHP est un langage de script côté serveur, souvent utilisé pour interagir avec des bases de données.</p>
+                    <div class="code-block">
+                        &lt;?php<br>
+                        &nbsp;&nbsp;$name = "Agent Zic";<br>
+                        &nbsp;&nbsp;echo "Bonjour, " . $name . "!";<br>
+                        ?&gt;
+                    </div>
+                    <p>Utilise ces exemples pour t'infiltrer dans les systèmes du festival. <strong>Ne te fais pas prendre !</strong></p>
+                    <p>Cordialement,<br>Un ami anonyme</p>
+                `
             },
             {
                 sender: "Dr Grippe <dr.grippe@clinique.fr>",
                 subject: "Résultats de votre consultation - Allergie à l'alcool",
                 date: "10:30",
-                body: `<p>Bonjour Mr Zic,</p><p>Votre allergie à l'alcool s'aggrave malheureusement...</p>`
+                body: `
+                    <p>Bonjour Mr Zic,</p>
+                    <p>Je vous écris pour vous faire part des résultats de votre dernière consultation. Votre allergie à l'alcool s'aggrave malheureusement, comme en témoignent les analyses que nous avons réalisées.</p>
+                    <p><strong>Symptômes observés :</strong></p>
+                    <ul>
+                        <li>Réactions cutanées plus intenses (rougeurs, démangeaisons)</li>
+                        <li>Maux de tête persistants après ingestion, même en petite quantité</li>
+                        <li>Difficultés respiratoires dans les cas les plus sévères</li>
+                    </ul>
+                    <p>Je vous recommande vivement d'éviter toute consommation d'alcool, même occasionnelle. Nous allons ajuster votre traitement et je vous propose un suivi mensuel pour surveiller l'évolution.</p>
+                    <p>N'hésitez pas à me contacter en cas de besoin urgent.</p>
+                    <p>PS : Ce rapport est envoyé à vos supérieurs hiérarchiques</p>
+                    <p>Cordialement,<br>Dr Grippe</p>
+                `
             },
             {
                 sender: "Mr X <dr.x@festival.org>",
                 subject: "Bon festival !",
                 date: "Hier",
-                body: `<p>Salut Jacques,</p><p>Je te souhaite un excellent festival !...</p>`
+                body: `
+                    <p>Salut Tony,</p>
+                    <p>Je te souhaite un excellent festival ! Profite bien des concerts, de l'ambiance, et surtout... <strong>ne bois pas trop d'alcool</strong> !</p>
+                    <p>Je me souviens encore de la dernière fois où tu t'es retrouvé complètement saoul au bar... Ce n'était pas une bonne idée. Prends soin de toi et reste raisonnable.</p>
+                    <p>Si jamais tu as besoin d'un conseil ou d'un soutien, je suis joignable sur mon portable.</p>
+                    <p>Amuse-toi bien,<br>Mr X</p>
+                `
+            },
+            {
+                sender: "Anonyme <shadow@unknown.org>",
+                subject: "Confidentiel",
+                date: "Lun 15",
+                body: `
+                    <p><strong>Agent Zic,</strong></p>
+                    <p>Informations hautement confidentielles. Ne forward pas ce message.</p>
+                    <p>Voici la photo que tu as demandée :</p>
+                    <img src="image/electro.png" alt="Electro" title="Photo Electro">
+                    <p>Utilise-la avec prudence. Elle contient des éléments sensibles liés à la mission.</p>
+                    <p>Destruction du message recommandée après lecture.</p>
+                    <p><em>— Un allié dans l'ombre</em></p>
+                `
             },
             {
                 sender: "Agence Espionne <formation@espionnage.pro>",
-                subject: "Espion pour les nuls - Rappel code Morse",
+                subject: "Espion pour les nuls - Rappel des bases",
                 date: "Lun 15",
-                body: `<p>Agent Zic,</p><p>Voici un rappel du code Morse...</p>`
+                body: `
+                    <p>Agent Zic,</p>
+                    <p>En prévision de votre prochaine mission (Festival Edition), voici un rappel du code Morse et de l'alphabet international. Ces compétences pourraient s'avérer utiles sur le terrain.</p>
+                    <h3>Alphabet international (OTAN) :</h3>
+                    <ul>
+                        <li>A : Alpha</li>
+                        <li>B : Bravo</li>
+                        <li>C : Charlie</li>
+                        <li>D : Delta</li>
+                        <li>E : Echo</li>
+                        <li>F : Foxtrot</li>
+                        <li>G : Golf</li>
+                        <li>H : Hotel</li>
+                        <li>I : India</li>
+                        <li>J : Juliett</li>
+                        <li>K : Kilo</li>
+                        <li>L : Lima</li>
+                        <li>M : Mike</li>
+                    </ul>
+                    <h3>Code Morse :</h3>
+                    <table class="morse-table">
+                        <tr><th>Lettre</th><th>Code</th><th>Lettre</th><th>Code</th></tr>
+                        <tr><td>A</td><td>.-</td><td>N</td><td>-.</td></tr>
+                        <tr><td>B</td><td>-...</td><td>O</td><td>---</td></tr>
+                        <tr><td>C</td><td>-.-.</td><td>P</td><td>.--.</td></tr>
+                        <tr><td>D</td><td>-..</td><td>Q</td><td>--.-</td></tr>
+                        <tr><td>E</td><td>.</td><td>R</td><td>.-.</td></tr>
+                        <tr><td>F</td><td>..-.</td><td>S</td><td>...</td></tr>
+                        <tr><td>G</td><td>--.</td><td>T</td><td>-</td></tr>
+                        <tr><td>H</td><td>....</td><td>U</td><td>..-</td></tr>
+                        <tr><td>I</td><td>..</td><td>V</td><td>...-</td></tr>
+                        <tr><td>J</td><td>.---</td><td>W</td><td>.--</td></tr>
+                        <tr><td>K</td><td>-.-</td><td>X</td><td>-..-</td></tr>
+                        <tr><td>L</td><td>.-..</td><td>Y</td><td>-.--</td></tr>
+                        <tr><td>M</td><td>--</td><td>Z</td><td>--..</td></tr>
+                    </table>
+                    <p>Bonne chance pour ta mission !<br>L'Agence Espionne</p>
+                `
             },
             {
                 sender: "Jacquie et Michel <service@jacquieetmichel.fr>",
                 subject: "Renouvellement abonnement",
                 date: "Ven 12",
-                body: `<p>Bonjour Lilian Bouvet,</p><p>Votre abonnement a été automatiquement renouvelé...</p>`
-            },
-            {
-                sender: "Anonyme <shadow@unknown.org>",
-                subject: "Confidentiel",
-                date: "Maintenant",
                 body: `
-                    <p><strong>Agent Zic,</strong></p>
-                    <p>Informations hautement confidentielles.</p>
-                    <p>Voici la photo que tu as demandée :</p>
-                    <img src="image/electro.png" alt="Electro">
-                    <p>Utilise-la avec prudence.</p>
-                    <p><em>— Un allié dans l'ombre</em></p>
+                    <p>Bonjour Lilian Bouvet, petit coquin</p>
+                    <p>Nous vous remercions pour votre fidélité depuis ces nombreuses années. Votre abonnement a été automatiquement renouvelé pour une durée de 2 ans.</p>
+                    <p><strong>Détails de l'abonnement :</strong></p>
+                    <ul>
+                        <li>Montant : 40 €/mois</li>
+                        <li>Durée : 24 mois</li>
+                        <li>Prochain prélèvement : 1er Juillet 2026</li>
+                    </ul>
+                    <p>Vous pouvez gérer votre abonnement à tout moment en vous connectant à votre espace client.</p>
+                    <p>On dit merci qui ?</p>
+                    <p>Cordialement,<br>L'équipe Jacquie et Michel</p>
                 `
-            }
+            },
+            
         ];
 
         function renderMailList() {
@@ -225,7 +375,9 @@
                     <div class="mail-subject-info">${mail.subject}</div>
                     <div class="mail-date-info">${mail.date}</div>
                 </div>
-                <div class="mail-body">${mail.body}</div>
+                <div class="mail-body">
+                    ${mail.body}
+                </div>
             `;
 
             list.style.display = 'none';
@@ -247,7 +399,6 @@
             alert("✉️ Nouveau message - Fonctionnalité à venir");
         }
 
-        // Initialisation
         window.onload = () => {
             renderMailList();
         };
